@@ -51,8 +51,13 @@ Em **Settings → Developer settings → GitHub Apps → New GitHub App**, preen
 | Expire user authorization tokens        | Ativado                                                     |
 | Repository permissions → Contents       | Read and write                                              |
 | Repository permissions → Metadata       | Read-only                                                   |
-| Where can this GitHub App be installed? | Only on this account                                        |
+| Where can this GitHub App be installed? | Any account                                                 |
 | Installation                            | Somente `clopesle/artis`                                    |
+
+Selecionar **Any account** não concede acesso administrativo ao público: isso apenas
+permite que colaboradoras do repositório, como `rafaelromao`, concluam a autorização do
+GitHub App. A instalação do App continua limitada a `clopesle/artis` e a ponte também
+recusa qualquer conta que não tenha permissão `push` ou `admin` nesse repositório.
 
 Depois de criar o App, guardar o **Client ID** e gerar um **Client secret**. O Client ID
 é configuração pública do Worker. O Client secret é confidencial e só pode ser enviado
