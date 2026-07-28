@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import AddToCartButton from "../../components/AddToCartButton.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import catalogCategories from "../../data/categories.json";
 import products from "../../data/products.json";
 import pages from "../../data/pages.json";
 import { availabilityLabels, byEditorialPriority } from "../../lib/catalog";
@@ -14,8 +15,7 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const publishedProducts = (products as Product[])
   .filter((product) => product.published)
   .sort(byEditorialPriority);
-const preferredCategoryOrder = ["Ouro", "Titânio ASTM", "Aço 316L", "PVD"];
-const categories = preferredCategoryOrder.filter((category) =>
+const categories = catalogCategories.materialCategories.filter((category) =>
   publishedProducts.some((product) => product.materialCategory === category),
 );
 const categoryGroups = categories.map((category) => ({

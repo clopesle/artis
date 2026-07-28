@@ -1,4 +1,5 @@
 import { describe, expect, it } from "vitest";
+import categories from "../data/categories.json";
 import { candidateToProductDraft, createRootItem, slugify } from "./admin-content";
 
 describe("admin content helpers", () => {
@@ -36,5 +37,14 @@ describe("admin content helpers", () => {
     expect(product).not.toHaveProperty("providerId");
     expect(product).not.toHaveProperty("sourceUrl");
     expect(imageFilename).toBe("labret-estrela.png");
+  });
+
+  it("keeps the material categories managed in admin aligned with the public catalog", () => {
+    expect(categories.materialCategories).toEqual([
+      "Ouro",
+      "Titânio ASTM",
+      "Aço 316L",
+      "PVD",
+    ]);
   });
 });

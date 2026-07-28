@@ -20,7 +20,7 @@ every publication recoverable through Git history.
 | `products.json`   | Joias, prices, images, availability, order, and publication state        |
 | `projects.json`   | Authorized portfolio projects, images, categories, and publication state |
 | `faqs.json`       | Questions and answers                                                    |
-| `categories.json` | Jewelry and portfolio categories                                         |
+| `categories.json` | Materiais do catálogo, tipos de joias e categorias de portfólio          |
 
 The protected `/admin/` panel uses these same files. Direct editing on GitHub remains
 available as a contingency and audit workflow.
@@ -110,9 +110,10 @@ shape:
 Keep new entries unpublished until image rendering and the product detail route have
 been reviewed.
 
-`materialCategory` is the public catalog grouping and must be exactly `Ouro`,
-`Titânio ASTM`, `Aço 316L`, or `PVD`. `category` describes the jewelry type and remains
-searchable.
+`materialCategory` is the public catalog material filter and must be exactly `Ouro`,
+`Titânio ASTM`, `Aço 316L`, or `PVD`. Those permitted materials are managed visibly in
+`categories.json`. `category` describes the jewelry type (for example, `Argolas`) and
+remains searchable; it is not the public material filter.
 
 The repository is public. A configured `price.amount` can be read in the JSON source
 even though the website does not render it. Never place confidential supplier cost

@@ -110,6 +110,10 @@ assert(Array.isArray(faqs), "src/data/faqs.json deve conter uma lista.");
 assert(Array.isArray(products), "src/data/products.json deve conter uma lista.");
 assert(Array.isArray(projects), "src/data/projects.json deve conter uma lista.");
 assert(
+  Array.isArray(categories.materialCategories),
+  "src/data/categories.json deve conter materialCategories.",
+);
+assert(
   Array.isArray(categories.productCategories),
   "src/data/categories.json deve conter productCategories.",
 );
@@ -119,6 +123,16 @@ assert(
 );
 assert(Array.isArray(providers), "admin/providers.json deve conter uma lista.");
 
+validateUnique(
+  categories.materialCategories.map((name) => ({ name })),
+  "name",
+  "src/data/categories.json materialCategories",
+);
+assert(
+  JSON.stringify(categories.materialCategories) ===
+    JSON.stringify(["Ouro", "Titânio ASTM", "Aço 316L", "PVD"]),
+  "src/data/categories.json materialCategories deve conter Ouro, Titânio ASTM, Aço 316L e PVD nesta ordem.",
+);
 validateUnique(
   categories.productCategories.map((name) => ({ name })),
   "name",
@@ -150,6 +164,10 @@ for (const [index, product] of products.entries()) {
   assert(
     categories.productCategories.includes(product.category),
     `src/data/products.json[${index}].category não está cadastrada em categories.json.`,
+  );
+  assert(
+    categories.materialCategories.includes(product.materialCategory),
+    `src/data/products.json[${index}].materialCategory não está cadastrada em categories.json.`,
   );
 }
 

@@ -84,8 +84,8 @@ const sections: Section[] = [
   },
   {
     id: "categories",
-    label: "Categorias",
-    description: "Categorias disponíveis para joias e projetos.",
+    label: "Categorias e materiais",
+    description: "Tipos de joias, materiais do catálogo e categorias de projetos.",
     path: "src/data/categories.json",
     mode: "object",
   },
@@ -291,7 +291,6 @@ function selectOptions(key: string, currentValue: string): string[] | null {
     locale: ["pt-BR"],
     currency: ["BRL"],
     availability: ["disponivel", "sob-consulta", "indisponivel"],
-    materialCategory: ["Ouro", "Titânio ASTM", "Aço 316L", "PVD"],
     type: ["angel", "woocommerce"],
   };
   let options = fixed[key];
@@ -300,6 +299,9 @@ function selectOptions(key: string, currentValue: string): string[] | null {
     JsonObject | undefined;
   if (key === "category" && categories) {
     options = (categories.productCategories as JsonValue[]).map(String);
+  }
+  if (key === "materialCategory" && categories) {
+    options = (categories.materialCategories as JsonValue[]).map(String);
   }
   if (!options) return null;
   return options.includes(currentValue) ? options : [currentValue, ...options];
