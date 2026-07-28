@@ -68,6 +68,17 @@ export function cartItemCount(items: CartItem[]) {
   return items.reduce((total, item) => total + item.quantity, 0);
 }
 
+export function reconcileCartItems(items: CartItem[], catalog: CartItem[]) {
+  const currentItems = new Map(catalog.map((item) => [item.key, item]));
+
+  return items.flatMap((item) => {
+    const current = currentItems.get(item.key);
+    if (!current || current.type !== item.type || current.id !== item.id) return [];
+
+    return [{ ...current, quantity: clampQuantity(item.quantity) }];
+  });
+}
+
 export function serializeCart(items: CartItem[]) {
   return JSON.stringify({ version: CART_VERSION, items });
 }

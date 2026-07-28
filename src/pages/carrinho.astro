@@ -1,6 +1,34 @@
 ---
+import products from "../data/products.json";
+import services from "../data/services.json";
+import type { CartItem } from "../lib/cart";
+import type { Product } from "../lib/content";
 import { withBase } from "../lib/paths";
 import BaseLayout from "../layouts/BaseLayout.astro";
+
+const cartCatalog: CartItem[] = [
+  ...(products as Product[])
+    .filter((product) => product.published)
+    .map((product) => ({
+      key: `product:${product.id}`,
+      type: "product" as const,
+      id: product.id,
+      name: product.name,
+      detail: product.material,
+      quantity: 1,
+    })),
+  ...services
+    .filter((service) => service.published)
+    .map((service) => ({
+      key: `service:${service.id}`,
+      type: "service" as const,
+      id: service.id,
+      name: service.name,
+      detail: "Atendimento online",
+      priceLabel: service.price.label,
+      quantity: 1,
+    })),
+];
 ---
 
 <BaseLayout
@@ -18,7 +46,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     </p>
   </section>
 
-  <section class="cart section section--tight" aria-labelledby="resumo">
+  <section
+    class="cart section section--tight"
+    aria-labelledby="resumo"
+    data-cart-catalog={JSON.stringify(cartCatalog)}
+  >
     <header class="cart__heading">
       <h2 id="resumo" class="headline">Sua sacola</h2>
       <button type="button" data-cart-clear hidden>Limpar seleção</button>
@@ -74,6 +106,7 @@ import BaseLayout from "../layouts/BaseLayout.astro";
     buildOrderMessage,
     cartItemCount,
     deserializeCart,
+    reconcileCartItems,
     removeCartItem,
     serializeCart,
     updateCartQuantity,
@@ -88,10 +121,21 @@ import BaseLayout from "../layouts/BaseLayout.astro";
   const summary = document.querySelector<HTMLElement>("[data-cart-summary]");
   const whatsappLink =
     document.querySelector<HTMLAnchorElement>("[data-cart-whatsapp]");
+  const cartRoot = document.querySelector<HTMLElement>("[data-cart-catalog]");
+  const currentCatalog = (() => {
+    try {
+      return JSON.parse(cartRoot?.dataset.cartCatalog ?? "[]") as CartItem[];
+    } catch {
+      return [];
+    }
+  })();
 
   function readCart() {
     try {
-      return deserializeCart(localStorage.getItem(CART_STORAGE_KEY));
+      return reconcileCartItems(
+        deserializeCart(localStorage.getItem(CART_STORAGE_KEY)),
+        currentCatalog,
+      );
     } catch {
       return [];
     }

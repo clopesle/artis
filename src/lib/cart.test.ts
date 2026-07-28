@@ -4,6 +4,7 @@ import {
   addCartItem,
   buildOrderMessage,
   deserializeCart,
+  reconcileCartItems,
   removeCartItem,
   updateCartQuantity,
   type CartItem,
@@ -46,6 +47,20 @@ describe("cart state", () => {
     expect(deserializeCart(JSON.stringify({ version: 99, items: [jewelry] }))).toEqual(
       [],
     );
+  });
+
+  it("reconciles saved quantities with current catalog content", () => {
+    const stale = {
+      ...jewelry,
+      name: "Nome antigo",
+      detail: "Material antigo",
+      quantity: 3,
+    };
+    const unknown = { ...jewelry, key: "product:unknown", id: "unknown" };
+
+    expect(reconcileCartItems([stale, unknown], [jewelry])).toEqual([
+      { ...jewelry, quantity: 3 },
+    ]);
   });
 });
 

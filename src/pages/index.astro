@@ -294,6 +294,10 @@ const structuredData = {
     margin-top: 2rem;
   }
 
+  .hero__actions > :global(.button:first-child) {
+    display: none;
+  }
+
   .hero__note {
     margin: 1.3rem 0 0;
     color: var(--color-text-muted);
@@ -759,6 +763,12 @@ const structuredData = {
 
     .promise p:last-child {
       border-right: 0;
+    }
+  }
+
+  @media (min-width: 48rem) {
+    .hero__actions > :global(.button:first-child) {
+      display: inline-flex;
     }
   }
 
