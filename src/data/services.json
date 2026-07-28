@@ -1,0 +1,49 @@
+[
+  {
+    "id": "design-auricular-digital",
+    "slug": "design-auricular-digital-personalizado",
+    "published": true,
+    "featured": true,
+    "name": "Design Auricular Digital Personalizado",
+    "eyebrow": "Seu projeto, antes da perfuração",
+    "shortDescription": "Uma composição criada para a sua anatomia, seu estilo e o momento que você deseja viver.",
+    "description": [
+      "Tudo começa com uma conversa online para entendermos seu estilo, suas referências e o que você deseja transformar.",
+      "A partir das fotos da sua orelha, desenvolvemos uma visualização personalizada para que você possa decidir com mais segurança antes de qualquer perfuração.",
+      "O projeto é seu. Você pode executá-lo com o profissional qualificado de sua preferência."
+    ],
+    "price": {
+      "min": 150,
+      "max": 200,
+      "currency": "BRL",
+      "label": "de R$ 150 a R$ 200",
+      "note": "A faixa final depende da complexidade da composição."
+    },
+    "purchaseBenefit": "Ao adquirir as joias com a ARTÍS, você recebe 50% de desconto no valor do projeto.",
+    "included": [
+      "Conversa online para entender seu estilo e suas preferências",
+      "Análise visual da anatomia da sua orelha",
+      "Simulação digital da composição personalizada",
+      "Curadoria de joias para cada ponto do projeto",
+      "Orientações sobre cuidados, qualidade e execução",
+      "Arquivo em PDF para guardar e executar onde preferir"
+    ],
+    "steps": [
+      {
+        "number": "01",
+        "title": "A gente escuta",
+        "description": "Você envia as fotos e conta o que gosta, o que não gosta e o que imagina para a sua orelha."
+      },
+      {
+        "number": "02",
+        "title": "A gente desenha",
+        "description": "Criamos uma composição digital que considera proporções, pontos possíveis e harmonia entre as joias."
+      },
+      {
+        "number": "03",
+        "title": "Você visualiza",
+        "description": "Recebe o projeto completo para decidir com calma e executar com o profissional de sua preferência."
+      }
+    ]
+  }
+]
