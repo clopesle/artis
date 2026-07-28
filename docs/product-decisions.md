@@ -1,6 +1,6 @@
 # ARTÍS Product Decisions
 
-Status: Implementation complete; launch inputs pending  
+Status: Public beta deployed; owner launch inputs pending
 Last updated: 2026-07-28
 
 This is the living record of confirmed requirements, assumptions, open questions,
@@ -9,11 +9,11 @@ brief are not treated as approved decisions until the owner confirms them.
 
 ## Current Phase
 
-Phase 5: release preparation and owner content handoff.
+Phase 6: public beta and owner content handoff.
 
 The static site, content model, validation, responsive UI, and GitHub Pages workflow are
-implemented. Launch is gated on the official WhatsApp number, GitHub Pages being enabled
-by a repository administrator, and owner approval of final commercial content.
+implemented and deployed. Full commercial launch is gated on the official WhatsApp
+number and owner approval of final commercial content.
 
 ## Repository Assessment
 
@@ -139,7 +139,6 @@ fabricating the approved mark.
 ### Required before launch
 
 - Official WhatsApp number, including country code and DDD
-- Repository administrator action to enable GitHub Pages with GitHub Actions as source
 - Final confirmation of the R$ 150 to R$ 200 range and 50% project discount
 - Production-ready official logo asset, preferably SVG, PDF, or transparent PNG
 - Professional review of the draft privacy language
@@ -230,8 +229,8 @@ This definition will be refined with measurable acceptance criteria during disco
 - The official logo source is missing, so the current wordmark is provisional.
 - The official WhatsApp number is missing, so public actions currently fall back to the
   contact section instead of opening `wa.me`.
-- GitHub Pages is not yet enabled because the authenticated implementor has repository
-  write permission but not administration permission.
+- GitHub Pages is enabled with GitHub Actions as its source and the public beta is live
+  at `https://clopesle.github.io/artis/`.
 - Product and portfolio imagery will dominate perceived quality and mobile performance;
   source-image standards are not yet known.
 - Client-image permissions and legal policies are unresolved.
@@ -250,8 +249,10 @@ This definition will be refined with measurable acceptance criteria during disco
   states, privacy page, 404 page, SEO, structured data, sitemap, and robots file.
 - Added automated content validation, type checks, tests, formatting, image
   optimization, and GitHub Pages deployment workflow.
-- Recorded the remaining WhatsApp, official logo, legal-review, and Pages-admin launch
-  gates.
+- Recorded the remaining WhatsApp, official logo, legal-review, and commercial-approval
+  launch gates.
+- Enabled GitHub Pages through the repository setting supplied by the owner and verified
+  successful production deployments.
 - Created the initial living decision log.
 - Recorded the repository as empty and inventoried missing project assets.
 - Transcribed confirmed constraints from the project brief.

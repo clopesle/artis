@@ -28,11 +28,11 @@
 
 ## GitHub Pages
 
-- [ ] Repository administrator enabled Pages with GitHub Actions as source
-- [ ] Latest **Deploy GitHub Pages** workflow is green
-- [ ] Production opens at `/artis/` or the approved custom domain
-- [ ] Direct service, jewelry, project, privacy, and 404 routes work
-- [ ] CSS, fonts, images, favicon, sitemap, and robots file load under the base path
+- [x] Repository administrator enabled Pages with GitHub Actions as source
+- [x] Latest **Deploy GitHub Pages** workflow is green
+- [x] Production opens at `/artis/`
+- [x] Direct service, jewelry, project, privacy, and 404 routes work
+- [x] CSS, fonts, images, favicon, sitemap, and robots file load under the base path
 - [ ] Rollback through a revert commit has been understood by the owner
 
 ## Quality

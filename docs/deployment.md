@@ -13,7 +13,8 @@ The build uses `/artis/` as its base path.
 
 ## One-time repository configuration
 
-A repository administrator must:
+A repository administrator has completed the Pages source setting. For a new repository
+or a reset configuration:
 
 1. Open **Settings → Pages**.
 2. Under **Build and deployment**, set **Source** to **GitHub Actions**.
@@ -21,10 +22,9 @@ A repository administrator must:
 4. Create `PUBLIC_WHATSAPP_NUMBER`.
 5. Enter only digits, including `55`, DDD, and the phone number.
 
-The authenticated implementation account has `WRITE`, not `ADMIN`, permission. GitHub
-therefore rejected automatic Pages creation with
-`Resource not accessible by integration`. The administrator step cannot be replaced by a
-workflow code change.
+GitHub Pages was enabled on 2026-07-28 with **GitHub Actions** as the source. The
+authenticated implementation account has `WRITE`, not `ADMIN`, permission, so only an
+administrator can change this setting later.
 
 ## Automatic deployment
 
