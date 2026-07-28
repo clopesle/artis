@@ -12,8 +12,8 @@ brief are not treated as approved decisions until the owner confirms them.
 Phase 6: public beta and owner content handoff.
 
 The static site, content model, validation, responsive UI, and GitHub Pages workflow are
-implemented and deployed. Full commercial launch is gated on the official WhatsApp
-number and owner approval of final commercial content.
+implemented and deployed. Full commercial launch is gated on owner approval of final
+commercial content.
 
 ## Repository Assessment
 
@@ -138,7 +138,6 @@ fabricating the approved mark.
 
 ### Required before launch
 
-- Official WhatsApp number, including country code and DDD
 - Final confirmation of the R$ 150 to R$ 200 range and 50% project discount
 - Production-ready official logo asset, preferably SVG, PDF, or transparent PNG
 - Professional review of the draft privacy language
@@ -227,8 +226,7 @@ This definition will be refined with measurable acceptance criteria during disco
 ## Risks
 
 - The official logo source is missing, so the current wordmark is provisional.
-- The official WhatsApp number is missing, so public actions currently fall back to the
-  contact section instead of opening `wa.me`.
+- The official WhatsApp number is configured centrally and used by contextual actions.
 - GitHub Pages is enabled with GitHub Actions as its source and the public beta is live
   at `https://clopesle.github.io/artis/`.
 - Product and portfolio imagery will dominate perceived quality and mobile performance;
@@ -249,8 +247,8 @@ This definition will be refined with measurable acceptance criteria during disco
   states, privacy page, 404 page, SEO, structured data, sitemap, and robots file.
 - Added automated content validation, type checks, tests, formatting, image
   optimization, and GitHub Pages deployment workflow.
-- Recorded the remaining WhatsApp, official logo, legal-review, and commercial-approval
-  launch gates.
+- Recorded the remaining official-logo, legal-review, and commercial-approval launch
+  gates.
 - Enabled GitHub Pages through the repository setting supplied by the owner and verified
   successful production deployments.
 - Created the initial living decision log.

@@ -2,7 +2,7 @@
 
 ## Business content
 
-- [ ] Official WhatsApp number is configured and tested
+- [x] Official WhatsApp number is configured and tested
 - [ ] R$ 150 to R$ 200 range is approved for public display
 - [ ] 50% project discount with jewelry purchase is approved
 - [ ] Official production logo replaces the provisional text wordmark if supplied
