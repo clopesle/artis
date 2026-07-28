@@ -584,7 +584,7 @@ async function saveActiveSection() {
     record.sha = result.content.sha;
     record.dirty = false;
     saveButton.hidden = true;
-    saveState.textContent = "Alterações publicadas";
+    saveState.textContent = "Salvo; publicação em processamento";
     window.setTimeout(() => {
       if (!record.dirty) saveState.textContent = "";
     }, 4000);
@@ -784,22 +784,14 @@ async function renderImages() {
 async function importCandidate(
   candidate: ProviderCandidate,
   button: HTMLButtonElement,
+  product: JsonObject,
+  imageFilename: string,
+  productsRecord: ContentRecord,
 ) {
   button.disabled = true;
   button.textContent = "Importando…";
   try {
-    const productsRecord = await loadFile("src/data/products.json", true);
     const products = productsRecord.data as JsonObject[];
-    const categoriesRecord = await loadFile("src/data/categories.json", true);
-    const productCategories = (categoriesRecord.data as JsonObject)
-      .productCategories as JsonValue[];
-    if (!productCategories.map(String).includes(candidate.category)) {
-      throw new Error(
-        `Cadastre primeiro a categoria “${candidate.category}” na área Categorias.`,
-      );
-    }
-
-    const { product, imageFilename } = candidateToProductDraft(candidate, products);
     const imageBlob = await api<Blob>(
       "/api/providers/image",
       {
@@ -846,6 +838,104 @@ async function importCandidate(
     button.textContent = "Importar como rascunho";
     workspace.prepend(
       notice(error instanceof Error ? error.message : "Falha na importação.", "error"),
+    );
+  }
+}
+
+async function reviewCandidate(
+  candidate: ProviderCandidate,
+  trigger: HTMLButtonElement,
+) {
+  trigger.disabled = true;
+  trigger.textContent = "Preparando revisão…";
+  try {
+    const productsRecord = await loadFile("src/data/products.json", true);
+    const categoriesRecord = await loadFile("src/data/categories.json", true);
+    const products = productsRecord.data as JsonObject[];
+    const productCategories = (categoriesRecord.data as JsonObject)
+      .productCategories as JsonValue[];
+    if (!productCategories.map(String).includes(candidate.category)) {
+      throw new Error(
+        `Cadastre primeiro a categoria “${candidate.category}” na área Categorias.`,
+      );
+    }
+
+    const { product, imageFilename } = candidateToProductDraft(candidate, products);
+    const dialog = element("dialog", { className: "review-dialog" });
+    const header = element("div", { className: "review-dialog__header" });
+    header.append(
+      element("div", {
+        className: "field-label",
+        text: "Revisão antes da importação",
+      }),
+      element("h2", { text: candidate.name }),
+      element("p", {
+        text: "Confira e ajuste o rascunho. A peça continuará não publicada e sem preço.",
+      }),
+    );
+    const preview = element("img");
+    preview.src = candidate.imageUrl;
+    preview.alt = candidate.imageAlt || candidate.name;
+    const reviewData: JsonObject = {
+      name: product.name,
+      shortDescription: product.shortDescription,
+      description: product.description,
+      category: product.category,
+      materialCategory: product.materialCategory,
+      material: product.material,
+      closure: product.closure,
+      options: product.options,
+      suggestedPlacements: product.suggestedPlacements,
+      images: product.images,
+    };
+    const fields = element("div", { className: "fields" });
+    renderObjectFields(fields, reviewData, () => undefined);
+
+    const actions = element("div", { className: "review-dialog__actions" });
+    const cancel = element("button", {
+      className: "button secondary",
+      text: "Cancelar",
+      type: "button",
+    });
+    const confirmImport = element("button", {
+      className: "button",
+      text: "Confirmar importação como rascunho",
+      type: "button",
+    });
+    cancel.addEventListener("click", () => dialog.close());
+    confirmImport.addEventListener("click", async () => {
+      Object.assign(product, reviewData);
+      product.published = false;
+      product.price = { amount: null, currency: "BRL" };
+      const reviewedImages = reviewData.images as JsonObject[];
+      product.images = [
+        {
+          src: imageFilename,
+          alt: String(reviewedImages[0]?.alt || candidate.imageAlt || candidate.name),
+        },
+      ];
+      dialog.close();
+      await importCandidate(candidate, trigger, product, imageFilename, productsRecord);
+    });
+    actions.append(cancel, confirmImport);
+    dialog.append(header, preview, fields, actions);
+    dialog.addEventListener("close", () => {
+      dialog.remove();
+      if (trigger.textContent !== "Importada como rascunho") {
+        trigger.disabled = false;
+        trigger.textContent = "Importar como rascunho";
+      }
+    });
+    document.body.append(dialog);
+    dialog.showModal();
+  } catch (error) {
+    trigger.disabled = false;
+    trigger.textContent = "Importar como rascunho";
+    workspace.prepend(
+      notice(
+        error instanceof Error ? error.message : "Falha ao preparar a revisão.",
+        "error",
+      ),
     );
   }
 }
@@ -943,7 +1033,7 @@ async function renderImporter() {
         });
         importButton.disabled = !candidate.eligible;
         importButton.addEventListener("click", () =>
-          importCandidate(candidate, importButton),
+          reviewCandidate(candidate, importButton),
         );
         body.append(importButton);
         card.append(image, body);

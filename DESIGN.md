@@ -219,6 +219,19 @@ The line-drawn ear, circles, axes, and measurement marks are a signature compone
 explain planning and may overlap imagery at low opacity, but they must never claim
 anatomical precision for an actual client project.
 
+## Protected Administration
+
+`/admin/` is an internal productivity surface, not part of the customer-facing editorial
+experience. It deliberately uses familiar application conventions:
+
+- the platform system font for dense forms and operational clarity
+- compact 34–42px controls instead of the public site's 52px conversion actions
+- small-radius cards and restrained shadows to separate editable records
+- neutral white form surfaces for legibility
+
+The public ARTÍS typography, pill actions, flat editorial sections, warm palette, and
+spacing rules still apply everywhere outside `/admin/`.
+
 ## Do's and Don'ts
 
 ### Do:

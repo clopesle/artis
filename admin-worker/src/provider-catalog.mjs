@@ -50,16 +50,6 @@ function stripTags(value = "") {
   );
 }
 
-export function slugify(value) {
-  return value
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/^-|-$/g, "")
-    .slice(0, 72);
-}
-
 export function validateProviderUrl(provider, candidateUrl = provider.baseUrl) {
   const url = new URL(candidateUrl, provider.baseUrl);
   const allowedHosts = ALLOWED_PROVIDER_HOSTS[provider.type];
@@ -106,11 +96,11 @@ export function classifyMaterial(...values) {
     return ELIGIBLE_MATERIALS.pvd;
   }
 
-  if (/\btitanio\b/.test(text) && /\bastm\b|\bf136\b|\bcategoria[s]?:/.test(text)) {
+  if (/\btitanio\b/.test(text) && /\bastm\b|\bf136\b/.test(text)) {
     return ELIGIBLE_MATERIALS.titanium;
   }
 
-  if (/\baco\s*(cirurgico\s*)?316l\b/.test(text) || /\baco cirurgico\b/.test(text)) {
+  if (/\baco\s*(cirurgico\s*)?316l\b/.test(text)) {
     return ELIGIBLE_MATERIALS.steel;
   }
 
@@ -194,64 +184,4 @@ export function parseAngelSearch(html, provider) {
   }
 
   return candidates;
-}
-
-function nextUniqueSlug(base, existingSlugs) {
-  let slug = base || "joia-importada";
-  let suffix = 2;
-
-  while (existingSlugs.has(slug)) {
-    slug = `${base}-${suffix}`;
-    suffix += 1;
-  }
-
-  return slug;
-}
-
-export function candidateToProductDraft(candidate, existingProducts = []) {
-  if (!candidate.eligible || !candidate.materialCategory || !candidate.material) {
-    throw new Error("Somente joias com material elegível podem ser importadas.");
-  }
-
-  const existingSlugs = new Set(existingProducts.map((product) => product.slug));
-  const slug = nextUniqueSlug(slugify(candidate.name), existingSlugs);
-  const nextOrder =
-    Math.max(0, ...existingProducts.map((product) => Number(product.order) || 0)) + 10;
-  const extension =
-    new URL(candidate.imageUrl).pathname.match(/\.(avif|jpe?g|png|webp)$/i)?.[1] ??
-    "jpg";
-  const imageFilename = `${slug}.${extension.toLowerCase().replace("jpeg", "jpg")}`;
-
-  return {
-    id: slug,
-    slug,
-    published: false,
-    featured: false,
-    order: nextOrder,
-    name: candidate.name,
-    shortDescription:
-      candidate.description ||
-      `${candidate.name} em ${candidate.material.toLocaleLowerCase("pt-BR")}.`,
-    description: [
-      candidate.description ||
-        "Peça selecionada para revisão da curadoria antes da publicação.",
-    ],
-    category: candidate.category,
-    materialCategory: candidate.materialCategory,
-    material: candidate.material,
-    price: {
-      amount: null,
-      currency: "BRL",
-    },
-    availability: "sob-consulta",
-    closure: "Confirmar antes da publicação",
-    options: ["Confirmar medidas antes da publicação"],
-    suggestedPlacements: ["Confirmar após avaliação profissional"],
-    images: [
-      {
-        src: imageFilename,
-        alt: candidate.imageAlt || candidate.name,
-      },
-    ],
-  };
 }

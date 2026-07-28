@@ -15,10 +15,7 @@ export function createWhatsAppUrl(message: string, number = configuredNumber) {
 }
 
 export const messages = {
-  project:
-    "Olá, ARTÍS! Conheci o Design Auricular Digital pelo site e quero entender como minha composição pode ficar.",
-  jewelry:
-    "Olá, ARTÍS! Vi a curadoria de joias no site e quero conversar sobre peças para a minha composição.",
-  portfolio:
-    "Olá, ARTÍS! Vi os projetos no site e quero criar um Design Auricular Digital personalizado.",
+  project: siteData.messages.project,
+  jewelry: siteData.messages.jewelry,
+  portfolio: siteData.messages.portfolio,
 } as const;

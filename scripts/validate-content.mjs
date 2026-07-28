@@ -66,6 +66,12 @@ assert(
   "src/data/pages.json deve conter os textos do portfólio.",
 );
 assert(site.currency === "BRL", "src/data/site.json deve usar moeda BRL.");
+for (const [key, message] of Object.entries(site.messages ?? {})) {
+  assert(
+    typeof message === "string" && message.trim(),
+    `src/data/site.json messages.${key} deve conter texto.`,
+  );
+}
 assert(
   site.tagline === "Onde anatomia encontra identidade.",
   "A assinatura institucional da ARTÍS foi alterada sem registro.",

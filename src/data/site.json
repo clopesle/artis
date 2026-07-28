@@ -8,6 +8,16 @@
   "serviceArea": "Atendimento online para todo o Brasil",
   "instagramUrl": "",
   "whatsappNumber": "5531989319198",
+  "messages": {
+    "project": "Olá, ARTÍS! Conheci o Design Auricular Digital pelo site e quero entender como minha composição pode ficar.",
+    "jewelry": "Olá, ARTÍS! Vi a curadoria de joias no site e quero conversar sobre peças para a minha composição.",
+    "portfolio": "Olá, ARTÍS! Vi os projetos no site e quero criar um Design Auricular Digital personalizado.",
+    "orderIntro": "Olá, ARTÍS! Montei este pedido pelo site:",
+    "orderProducts": "Joias",
+    "orderServices": "Serviços",
+    "orderProductClosing": "Gostaria de confirmar medidas, disponibilidade e valores das joias antes de finalizar.",
+    "orderServiceClosing": "Gostaria de confirmar os próximos passos para o serviço."
+  },
   "announcement": {
     "enabled": false,
     "text": "",

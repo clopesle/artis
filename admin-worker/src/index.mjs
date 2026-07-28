@@ -313,6 +313,21 @@ async function findProvider(env, token, providerId) {
   return provider;
 }
 
+export async function fetchProviderResource(url, init, errorMessage) {
+  let response;
+  try {
+    response = await fetch(url, { ...init, redirect: "manual" });
+  } catch {
+    throw new Error(errorMessage);
+  }
+
+  if (response.status >= 300 && response.status < 400) {
+    throw new Error("O fornecedor redirecionou para uma URL não autorizada.");
+  }
+
+  return response;
+}
+
 async function handleProviderSearch(request, env, session) {
   const { providerId, query } = await request.json();
   if (typeof query !== "string" || query.trim().length < 2) {
@@ -329,9 +344,13 @@ async function handleProviderSearch(request, env, session) {
         query.trim(),
       )}&per_page=40`,
     );
-    const response = await fetch(url, {
-      headers: { Accept: "application/json", "User-Agent": "artis-admin-bridge" },
-    });
+    const response = await fetchProviderResource(
+      url,
+      {
+        headers: { Accept: "application/json", "User-Agent": "artis-admin-bridge" },
+      },
+      "Não foi possível consultar este fornecedor.",
+    );
     if (!response.ok) throw new Error("Não foi possível consultar este fornecedor.");
     candidates = normalizeWooProducts(await response.json(), provider);
   } else {
@@ -339,9 +358,13 @@ async function handleProviderSearch(request, env, session) {
       provider,
       `${provider.baseUrl}/buscar?q=${encodeURIComponent(query.trim())}`,
     );
-    const response = await fetch(url, {
-      headers: { Accept: "text/html", "User-Agent": "artis-admin-bridge" },
-    });
+    const response = await fetchProviderResource(
+      url,
+      {
+        headers: { Accept: "text/html", "User-Agent": "artis-admin-bridge" },
+      },
+      "Não foi possível consultar este fornecedor.",
+    );
     if (!response.ok) throw new Error("Não foi possível consultar este fornecedor.");
     candidates = parseAngelSearch(await response.text(), provider);
   }
@@ -360,9 +383,13 @@ async function handleProviderImage(request, env, session) {
   const { providerId, url } = await request.json();
   const provider = await findProvider(env, session.token, providerId);
   const assetUrl = validateProviderAssetUrl(provider, url);
-  const response = await fetch(assetUrl, {
-    headers: { Accept: "image/*", "User-Agent": "artis-admin-bridge" },
-  });
+  const response = await fetchProviderResource(
+    assetUrl,
+    {
+      headers: { Accept: "image/*", "User-Agent": "artis-admin-bridge" },
+    },
+    "A imagem do fornecedor não pôde ser importada.",
+  );
   const contentType = response.headers.get("Content-Type") ?? "";
   const contentLength = Number(response.headers.get("Content-Length") || 0);
   if (

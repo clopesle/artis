@@ -105,6 +105,7 @@ const cartCatalog: CartItem[] = [
     type CartItem,
   } from "../lib/cart";
   import { createWhatsAppUrl } from "../lib/contact";
+  import pages from "../data/pages.json";
 
   const itemsContainer = document.querySelector<HTMLElement>("[data-cart-items]");
   const emptyState = document.querySelector<HTMLElement>("[data-cart-empty]");
@@ -159,7 +160,9 @@ const cartCatalog: CartItem[] = [
 
     const index = createTextElement(
       "span",
-      item.type === "product" ? "Joia" : "Serviço",
+      item.type === "product"
+        ? pages.global.cartInterface.productLabel
+        : pages.global.cartInterface.serviceLabel,
     );
     index.className = "cart-row__type";
 
@@ -179,22 +182,31 @@ const cartCatalog: CartItem[] = [
 
     const decrease = createTextElement("button", "−");
     decrease.type = "button";
-    decrease.setAttribute("aria-label", `Diminuir quantidade de ${item.name}`);
+    decrease.setAttribute(
+      "aria-label",
+      `${pages.global.cartInterface.decreaseLabel} ${item.name}`,
+    );
     decrease.addEventListener("click", () =>
       writeCart(updateCartQuantity(readCart(), item.key, item.quantity - 1)),
     );
 
     const quantity = createTextElement("span", String(item.quantity));
-    quantity.setAttribute("aria-label", `Quantidade: ${item.quantity}`);
+    quantity.setAttribute(
+      "aria-label",
+      `${pages.global.cartInterface.quantityLabel}: ${item.quantity}`,
+    );
 
     const increase = createTextElement("button", "+");
     increase.type = "button";
-    increase.setAttribute("aria-label", `Aumentar quantidade de ${item.name}`);
+    increase.setAttribute(
+      "aria-label",
+      `${pages.global.cartInterface.increaseLabel} ${item.name}`,
+    );
     increase.addEventListener("click", () =>
       writeCart(updateCartQuantity(readCart(), item.key, item.quantity + 1)),
     );
 
-    const remove = createTextElement("button", "Remover");
+    const remove = createTextElement("button", pages.global.cartInterface.removeLabel);
     remove.type = "button";
     remove.className = "cart-row__remove";
     remove.addEventListener("click", () =>
@@ -218,7 +230,9 @@ const cartCatalog: CartItem[] = [
     if (summary) {
       const count = cartItemCount(items);
       summary.textContent =
-        count === 1 ? "1 item selecionado" : `${count} itens selecionados`;
+        count === 1
+          ? `1 ${pages.global.cartInterface.singleItemLabel}`
+          : `${count} ${pages.global.cartInterface.multipleItemsLabel}`;
     }
 
     if (whatsappLink && !isEmpty) {

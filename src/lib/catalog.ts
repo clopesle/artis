@@ -1,9 +1,10 @@
 import type { Product, Project } from "./content";
+import pages from "../data/pages.json";
 
 export const availabilityLabels: Record<Product["availability"], string> = {
-  disponivel: "Disponível",
-  "sob-consulta": "Disponibilidade sob consulta",
-  indisponivel: "Indisponível",
+  disponivel: pages.global.availabilityLabels.disponivel,
+  "sob-consulta": pages.global.availabilityLabels["sob-consulta"],
+  indisponivel: pages.global.availabilityLabels.indisponivel,
 };
 
 export function byEditorialPriority<

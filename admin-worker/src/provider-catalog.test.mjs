@@ -1,6 +1,5 @@
 import { describe, expect, it } from "vitest";
 import {
-  candidateToProductDraft,
   classifyMaterial,
   normalizeWooProducts,
   parseAngelSearch,
@@ -30,6 +29,8 @@ describe("provider catalog normalization", () => {
     expect(classifyMaterial("Titânio ASTM F136 PVD Gold")).toMatchObject({
       materialCategory: "PVD",
     });
+    expect(classifyMaterial("Aço cirúrgico")).toBeNull();
+    expect(classifyMaterial("Categoria: Titânio")).toBeNull();
     expect(classifyMaterial("Banho de ródio")).toBeNull();
   });
 
@@ -83,31 +84,6 @@ describe("provider catalog normalization", () => {
       materialCategory: "Ouro",
       category: "Argolas",
     });
-  });
-
-  it("creates an unpublished draft without supplier attribution or price", () => {
-    const [candidate] = normalizeWooProducts(
-      [
-        {
-          id: 9,
-          name: "Labret Estrela Titânio",
-          permalink: "https://mypiercing.com.br/produto/labret",
-          short_description: "Titânio ASTM F136",
-          images: [{ src: "https://mypiercing.com.br/labret.webp", alt: "Labret" }],
-          categories: [{ name: "Titânio" }, { name: "Labret" }],
-          tags: [],
-        },
-      ],
-      myPiercing,
-    );
-    const draft = candidateToProductDraft(candidate, []);
-
-    expect(draft).toMatchObject({
-      published: false,
-      category: "Labrets",
-      price: { amount: null, currency: "BRL" },
-    });
-    expect(JSON.stringify(draft)).not.toMatch(/mypiercing|https?:\/\//i);
   });
 
   it("restricts provider requests to supported HTTPS hosts", () => {

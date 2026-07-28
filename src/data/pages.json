@@ -16,7 +16,22 @@
     "informationLabel": "Informações",
     "privacyLabel": "Privacidade",
     "faqLabel": "Perguntas frequentes",
-    "footerLegal": "Conteúdo em português brasileiro."
+    "footerLegal": "Conteúdo em português brasileiro.",
+    "availabilityLabels": {
+      "disponivel": "Disponível",
+      "sob-consulta": "Disponibilidade sob consulta",
+      "indisponivel": "Indisponível"
+    },
+    "cartInterface": {
+      "productLabel": "Joia",
+      "serviceLabel": "Serviço",
+      "decreaseLabel": "Diminuir quantidade de",
+      "quantityLabel": "Quantidade",
+      "increaseLabel": "Aumentar quantidade de",
+      "removeLabel": "Remover",
+      "singleItemLabel": "item selecionado",
+      "multipleItemsLabel": "itens selecionados"
+    }
   },
   "home": {
     "heroEyebrow": "Design Auricular Digital Personalizado",

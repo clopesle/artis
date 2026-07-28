@@ -114,15 +114,18 @@ export function buildOrderMessage(items: CartItem[]) {
   const products = items.filter((item) => item.type === "product");
   const services = items.filter((item) => item.type === "service");
   const sections = [
-    "Olá, ARTÍS! Montei este pedido pelo site:",
-    products.length > 0 ? `Joias:\n${products.map(messageLine).join("\n")}` : undefined,
+    siteData.messages.orderIntro,
+    products.length > 0
+      ? `${siteData.messages.orderProducts}:\n${products.map(messageLine).join("\n")}`
+      : undefined,
     services.length > 0
-      ? `Serviços:\n${services.map(messageLine).join("\n")}`
+      ? `${siteData.messages.orderServices}:\n${services.map(messageLine).join("\n")}`
       : undefined,
     products.length > 0
-      ? "Gostaria de confirmar medidas, disponibilidade e valores das joias antes de finalizar."
-      : "Gostaria de confirmar os próximos passos para o serviço.",
+      ? siteData.messages.orderProductClosing
+      : siteData.messages.orderServiceClosing,
   ];
 
   return sections.filter(Boolean).join("\n\n");
 }
+import siteData from "../data/site.json";
