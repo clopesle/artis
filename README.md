@@ -61,6 +61,7 @@ Consulte `docs/deployment.md` para a configuração inicial.
 - [Arquitetura](docs/architecture.md)
 - [Gestão de conteúdo](docs/content-management.md)
 - [Segurança da administração](docs/administration-security.md)
+- [Dependências operacionais](docs/dependencies.md)
 - [Publicação](docs/deployment.md)
 - [Solução de problemas](docs/troubleshooting.md)
 - [Checklist de lançamento](docs/release-checklist.md)
