@@ -1,0 +1,221 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-07-28T12:55:00.000Z",
+  "title": "Design System: ARTÍS",
+  "extensions": {
+    "colorMeta": {
+      "cotton-paper": {
+        "role": "neutral",
+        "displayName": "Cotton Paper",
+        "canonical": "oklch(97.2% 0.012 77)",
+        "tonalRamp": [
+          "oklch(15% 0.012 77)",
+          "oklch(27% 0.012 77)",
+          "oklch(39% 0.012 77)",
+          "oklch(52% 0.012 77)",
+          "oklch(65% 0.012 77)",
+          "oklch(78% 0.012 77)",
+          "oklch(89% 0.012 77)",
+          "oklch(97.2% 0.012 77)"
+        ]
+      },
+      "champagne-paper": {
+        "role": "neutral",
+        "displayName": "Champagne Paper",
+        "canonical": "oklch(93.2% 0.024 74)",
+        "tonalRamp": [
+          "oklch(15% 0.024 74)",
+          "oklch(27% 0.024 74)",
+          "oklch(39% 0.024 74)",
+          "oklch(52% 0.024 74)",
+          "oklch(65% 0.024 74)",
+          "oklch(77% 0.024 74)",
+          "oklch(86% 0.024 74)",
+          "oklch(93.2% 0.024 74)"
+        ]
+      },
+      "satin-gold": {
+        "role": "primary",
+        "displayName": "Satin Gold",
+        "canonical": "oklch(65% 0.075 72)",
+        "tonalRamp": [
+          "oklch(15% 0.075 72)",
+          "oklch(27% 0.075 72)",
+          "oklch(39% 0.075 72)",
+          "oklch(52% 0.075 72)",
+          "oklch(65% 0.075 72)",
+          "oklch(76% 0.065 72)",
+          "oklch(86% 0.045 72)",
+          "oklch(95% 0.02 72)"
+        ]
+      },
+      "mineral-bronze": {
+        "role": "secondary",
+        "displayName": "Mineral Bronze",
+        "canonical": "oklch(46% 0.065 61)",
+        "tonalRamp": [
+          "oklch(15% 0.065 61)",
+          "oklch(27% 0.065 61)",
+          "oklch(39% 0.065 61)",
+          "oklch(52% 0.065 61)",
+          "oklch(65% 0.06 61)",
+          "oklch(76% 0.05 61)",
+          "oklch(86% 0.035 61)",
+          "oklch(95% 0.015 61)"
+        ]
+      },
+      "warm-graphite": {
+        "role": "neutral",
+        "displayName": "Warm Graphite",
+        "canonical": "oklch(25.5% 0.018 54)",
+        "tonalRamp": [
+          "oklch(15% 0.018 54)",
+          "oklch(25.5% 0.018 54)",
+          "oklch(39% 0.018 54)",
+          "oklch(52% 0.018 54)",
+          "oklch(65% 0.016 54)",
+          "oklch(77% 0.014 54)",
+          "oklch(87% 0.012 54)",
+          "oklch(95% 0.008 54)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "The central promise and page identity only."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Major narrative turns."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Warm, readable mobile-first explanation."
+      }
+    },
+    "shadows": [
+      {
+        "name": "jewelry-ambient",
+        "value": "0 1.5rem 3rem color-mix(in oklab, var(--color-bronze) 20%, transparent)",
+        "purpose": "Only beneath physical jewelry object studies."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-out",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Reveals and state transitions."
+      },
+      {
+        "name": "reveal",
+        "value": "760ms",
+        "purpose": "One-time section entrance when motion is allowed."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "content-shift",
+        "value": "40rem"
+      },
+      {
+        "name": "tablet",
+        "value": "48rem"
+      },
+      {
+        "name": "desktop",
+        "value": "64rem"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The main consultation action.",
+      "html": "<a class=\"ds-button-primary\" href=\"#\">Quero visualizar minha orelha <span aria-hidden=\"true\">↗</span></a>",
+      "css": ".ds-button-primary{display:inline-flex;align-items:center;justify-content:center;gap:.75rem;min-height:3.25rem;padding:.8rem 1.15rem;color:oklch(97.2% .012 77);font:650 .88rem/1.1 'Afacad Flux Variable',sans-serif;text-decoration:none;background:oklch(25.5% .018 54);border:1px solid oklch(25.5% .018 54);border-radius:999px;transition:transform 240ms cubic-bezier(.22,1,.36,1),background 240ms cubic-bezier(.22,1,.36,1)}.ds-button-primary:hover{color:oklch(25.5% .018 54);background:oklch(65% .075 72);border-color:oklch(65% .075 72);transform:translateY(-2px)}.ds-button-primary:focus-visible{outline:2px solid oklch(53% .12 58);outline-offset:4px}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "A lower-emphasis route into supporting content.",
+      "html": "<a class=\"ds-button-secondary\" href=\"#\">Entender o processo</a>",
+      "css": ".ds-button-secondary{display:inline-flex;align-items:center;justify-content:center;min-height:3.25rem;padding:.8rem 1.15rem;color:oklch(25.5% .018 54);font:650 .88rem/1.1 'Afacad Flux Variable',sans-serif;text-decoration:none;background:transparent;border:1px solid color-mix(in oklab,oklch(25.5% .018 54) 28%,transparent);border-radius:999px;transition:color 240ms cubic-bezier(.22,1,.36,1),background 240ms cubic-bezier(.22,1,.36,1)}.ds-button-secondary:hover{color:oklch(97.2% .012 77);background:oklch(25.5% .018 54)}.ds-button-secondary:focus-visible{outline:2px solid oklch(53% .12 58);outline-offset:4px}"
+    },
+    {
+      "name": "Navigation Link",
+      "kind": "nav",
+      "description": "Quiet desktop navigation with a measured active line.",
+      "html": "<a class=\"ds-nav-link\" href=\"#\">Design Auricular</a>",
+      "css": ".ds-nav-link{position:relative;color:oklch(47% .026 56);font:550 .88rem/1.2 'Afacad Flux Variable',sans-serif;text-decoration:none}.ds-nav-link:after{position:absolute;right:0;bottom:-.5rem;left:0;height:1px;content:'';background:oklch(46% .065 61);transform:scaleX(0);transform-origin:right;transition:transform 240ms cubic-bezier(.22,1,.36,1)}.ds-nav-link:hover:after,.ds-nav-link:focus-visible:after{transform:scaleX(1);transform-origin:left}"
+    },
+    {
+      "name": "FAQ Row",
+      "kind": "custom",
+      "description": "Native disclosure row with a drafting index.",
+      "html": "<details class=\"ds-faq\"><summary><span>01</span><strong>Eu consigo ver como vai ficar antes?</strong><i aria-hidden=\"true\"></i></summary><p>Sim. O projeto permite visualizar a composição antes da perfuração.</p></details>",
+      "css": ".ds-faq{color:oklch(25.5% .018 54);font-family:'Afacad Flux Variable',sans-serif;border-top:1px solid color-mix(in oklab,oklch(25.5% .018 54) 28%,transparent);border-bottom:1px solid color-mix(in oklab,oklch(25.5% .018 54) 28%,transparent)}.ds-faq summary{display:grid;grid-template-columns:2rem 1fr 1.5rem;gap:.75rem;align-items:center;min-height:5rem;cursor:pointer;list-style:none}.ds-faq summary span{color:oklch(46% .065 61);font-family:'Bodoni Moda Variable',serif}.ds-faq summary strong{font-size:1.03rem;font-weight:570}.ds-faq p{margin:0;padding:0 2.25rem 1.6rem 2.75rem;color:oklch(47% .026 56);line-height:1.55}.ds-faq:focus-within{outline:2px solid oklch(53% .12 58);outline-offset:4px}"
+    },
+    {
+      "name": "Image Surface",
+      "kind": "custom",
+      "refersTo": "image-surface",
+      "description": "Tactile photography frame with no decorative shadow.",
+      "html": "<figure class=\"ds-image-surface\"><div aria-label=\"Imagem editorial ARTÍS\"></div></figure>",
+      "css": ".ds-image-surface{width:18rem;height:24rem;margin:0;overflow:hidden;background:oklch(86.4% .035 67);border:1px solid color-mix(in oklab,oklch(25.5% .018 54) 13%,transparent);border-radius:.9rem}.ds-image-surface div{width:100%;height:100%;background:linear-gradient(150deg,oklch(93.2% .024 74),oklch(86.4% .035 67))}.ds-image-surface:focus-within{outline:2px solid oklch(53% .12 58);outline-offset:4px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Atelier de Precisão",
+    "overview": "ARTÍS feels like a quiet digital consultation where anatomy, jewelry, and identity receive equal attention. Tactile pale surfaces and real skin create warmth; measured spacing, architectural lines, and concise language establish authority.",
+    "keyCharacteristics": [
+      "Warm daylight, tactile paper, stone, and real skin texture",
+      "Thin construction lines used as evidence of process",
+      "Strong asymmetric typography balanced by quiet negative space",
+      "One decisive photograph instead of repeated decorative imagery",
+      "Mobile-first pacing for an Instagram-to-WhatsApp journey",
+      "Choreographed reveals with an immediate reduced-motion fallback"
+    ],
+    "rules": [
+      {
+        "name": "The Measured Gold Rule",
+        "body": "Gold is a drafting instrument, not a coating. Gold gradients, metallic text effects, and broad decorative fills are forbidden.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warm Neutral Rule",
+        "body": "Pure black and pure white are not part of the system. Every neutral carries a warm mineral hue.",
+        "section": "colors"
+      },
+      {
+        "name": "The Quiet Contrast Rule",
+        "body": "Hierarchy comes from scale, proportion, and space, never from decorative italics or a collection of unrelated type treatments.",
+        "section": "typography"
+      },
+      {
+        "name": "The Surface Rule",
+        "body": "If a shadow makes a section look like a dashboard card, remove it and restore hierarchy through composition.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do make personalized visualization the first idea visitors understand.",
+      "Do use anatomically credible imagery with natural skin texture.",
+      "Do reserve technical lines and circles for explaining the design process.",
+      "Do preserve 52px primary mobile targets and visible keyboard focus.",
+      "Do keep every customer-facing word in Brazilian Portuguese.",
+      "Do test every route under the /artis/ GitHub Pages base path."
+    ],
+    "donts": [
+      "Don't build a generic piercing-studio site with black backgrounds, neon accents, tattoo imagery, or aggressive visual language.",
+      "Don't build template luxury from beige surfaces, generic serif headlines, gold gradients, and ornamental excess.",
+      "Don't use generic AI imagery with implausible ears, invented jewelry, plastic skin, or anatomically incorrect piercing positions.",
+      "Don't use a marketplace or conventional ecommerce layout that reduces ARTÍS to a product grid.",
+      "Don't publish unsupported claims, fabricated testimonials, placeholder prices, or invented portfolio projects.",
+      "Don't use colored side-stripe borders, gradient text, glassmorphism, or repeated icon-card grids."
+    ]
+  }
+}
