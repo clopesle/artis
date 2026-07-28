@@ -12,13 +12,17 @@ every publication recoverable through Git history.
 
 ## What each file controls
 
-| File            | Content                                                                  |
-| --------------- | ------------------------------------------------------------------------ |
-| `site.json`     | Name, slogan, service area, public contact, and announcement             |
-| `services.json` | Service names, prices, descriptions, included items, and process         |
-| `products.json` | Joias, prices, images, availability, order, and publication state        |
-| `projects.json` | Authorized portfolio projects, images, categories, and publication state |
-| `faqs.json`     | Questions and answers                                                    |
+| File              | Content                                                                  |
+| ----------------- | ------------------------------------------------------------------------ |
+| `site.json`       | Name, slogan, service area, public contact, and announcement             |
+| `services.json`   | Service names, prices, descriptions, included items, and process         |
+| `products.json`   | Joias, prices, images, availability, order, and publication state        |
+| `projects.json`   | Authorized portfolio projects, images, categories, and publication state |
+| `faqs.json`       | Questions and answers                                                    |
+| `categories.json` | Jewelry and portfolio categories                                         |
+
+The protected `/admin/` panel uses these same files. Direct editing on GitHub remains
+available as a contingency and audit workflow.
 
 ## Safe editing rules
 

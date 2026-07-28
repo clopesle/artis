@@ -1,0 +1,16 @@
+[
+  {
+    "id": "angel-piercings",
+    "name": "Angel Piercings",
+    "type": "angel",
+    "baseUrl": "https://www.angelpiercings.com.br",
+    "enabled": true
+  },
+  {
+    "id": "my-piercing",
+    "name": "My Piercing",
+    "type": "woocommerce",
+    "baseUrl": "https://mypiercing.com.br",
+    "enabled": true
+  }
+]

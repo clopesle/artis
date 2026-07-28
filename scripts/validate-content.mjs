@@ -36,13 +36,16 @@ function validateUnique(items, key, path) {
   );
 }
 
-const [site, services, faqs, products, projects] = await Promise.all([
-  readJson("../src/data/site.json"),
-  readJson("../src/data/services.json"),
-  readJson("../src/data/faqs.json"),
-  readJson("../src/data/products.json"),
-  readJson("../src/data/projects.json"),
-]);
+const [site, services, faqs, products, projects, categories, providers] =
+  await Promise.all([
+    readJson("../src/data/site.json"),
+    readJson("../src/data/services.json"),
+    readJson("../src/data/faqs.json"),
+    readJson("../src/data/products.json"),
+    readJson("../src/data/projects.json"),
+    readJson("../src/data/categories.json"),
+    readJson("../admin/providers.json"),
+  ]);
 
 assert(site.locale === "pt-BR", "src/data/site.json deve usar locale pt-BR.");
 assert(site.currency === "BRL", "src/data/site.json deve usar moeda BRL.");
@@ -69,6 +72,58 @@ assert(Array.isArray(services), "src/data/services.json deve conter uma lista.")
 assert(Array.isArray(faqs), "src/data/faqs.json deve conter uma lista.");
 assert(Array.isArray(products), "src/data/products.json deve conter uma lista.");
 assert(Array.isArray(projects), "src/data/projects.json deve conter uma lista.");
+assert(
+  Array.isArray(categories.productCategories),
+  "src/data/categories.json deve conter productCategories.",
+);
+assert(
+  Array.isArray(categories.projectCategories),
+  "src/data/categories.json deve conter projectCategories.",
+);
+assert(Array.isArray(providers), "admin/providers.json deve conter uma lista.");
+
+validateUnique(
+  categories.productCategories.map((name) => ({ name })),
+  "name",
+  "src/data/categories.json productCategories",
+);
+validateUnique(
+  categories.projectCategories.map((name) => ({ name })),
+  "name",
+  "src/data/categories.json projectCategories",
+);
+validateUnique(providers, "id", "admin/providers.json");
+
+for (const [index, provider] of providers.entries()) {
+  const path = `admin/providers.json[${index}]`;
+  assert(provider.id, `${path}.id é obrigatório.`);
+  assert(provider.name, `${path}.name é obrigatório.`);
+  assert(
+    ["angel", "woocommerce"].includes(provider.type),
+    `${path}.type deve ser angel ou woocommerce.`,
+  );
+  assert(
+    /^https:\/\/[^/]+(?:\/.*)?$/.test(provider.baseUrl),
+    `${path}.baseUrl deve usar HTTPS.`,
+  );
+  assert(typeof provider.enabled === "boolean", `${path}.enabled deve ser booleano.`);
+}
+
+for (const [index, product] of products.entries()) {
+  assert(
+    categories.productCategories.includes(product.category),
+    `src/data/products.json[${index}].category não está cadastrada em categories.json.`,
+  );
+}
+
+for (const [index, project] of projects.entries()) {
+  for (const category of project.categories ?? []) {
+    assert(
+      categories.projectCategories.includes(category),
+      `src/data/projects.json[${index}] usa a categoria não cadastrada "${category}".`,
+    );
+  }
+}
 
 validateUnique(services, "id", "src/data/services.json");
 validateUnique(services, "slug", "src/data/services.json");
