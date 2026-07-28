@@ -1,7 +1,7 @@
 # ARTÍS Product Decisions
 
-Status: Public beta deployed; owner launch inputs pending
-Last updated: 2026-07-28
+- Status: Public beta deployed; owner launch inputs pending
+- Last updated: 2026-07-28
 
 This is the living record of confirmed requirements, assumptions, open questions,
 decisions, and rejected options for the ARTÍS web store. Suggestions from the project
