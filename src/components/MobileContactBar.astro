@@ -1,0 +1,31 @@
+---
+import { messages } from "../lib/contact";
+import WhatsAppLink from "./WhatsAppLink.astro";
+---
+
+<aside class="mobile-contact-bar" aria-label="Atalho para atendimento">
+  <WhatsAppLink message={messages.project} label="Quero visualizar minha orelha" />
+</aside>
+
+<style>
+  .mobile-contact-bar {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 30;
+    padding: 0.6rem var(--gutter) max(0.6rem, env(safe-area-inset-bottom));
+    background: color-mix(in oklab, var(--color-paper) 94%, transparent);
+    border-top: 1px solid var(--color-line);
+  }
+
+  .mobile-contact-bar :global(.button) {
+    width: 100%;
+  }
+
+  @media (min-width: 48rem) {
+    .mobile-contact-bar {
+      display: none;
+    }
+  }
+</style>

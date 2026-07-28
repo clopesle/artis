@@ -28,9 +28,7 @@ function validateSlug(slug, path) {
 
 function validateUnique(items, key, path) {
   const values = items.map((item) => item[key]);
-  const duplicates = values.filter(
-    (value, index) => values.indexOf(value) !== index,
-  );
+  const duplicates = values.filter((value, index) => values.indexOf(value) !== index);
 
   assert(
     duplicates.length === 0,
@@ -78,10 +76,7 @@ for (const [index, service] of services.entries()) {
     Array.isArray(service.steps) && service.steps.length === 3,
     `${path}.steps deve conter exatamente três etapas.`,
   );
-  assert(
-    service.price?.currency === "BRL",
-    `${path}.price.currency deve ser BRL.`,
-  );
+  assert(service.price?.currency === "BRL", `${path}.price.currency deve ser BRL.`);
 }
 
 for (const [index, faq] of faqs.entries()) {

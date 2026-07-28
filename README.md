@@ -32,12 +32,12 @@ O site é compilado com o caminho-base do próprio repositório. No repositório
 https://clopesle.github.io/artis/
 ```
 
-O workflow em `.github/workflows/deploy-pages.yml` valida, compila e publica apenas
-o conteúdo aprovado na branch `main`.
+O workflow em `.github/workflows/deploy-pages.yml` valida, compila e publica apenas o
+conteúdo aprovado na branch `main`.
 
-Antes do lançamento, crie a variável de repositório
-`PUBLIC_WHATSAPP_NUMBER` em **Settings → Secrets and variables → Actions →
-Variables**. Use somente dígitos, incluindo `55`, DDD e número.
+Antes do lançamento, crie a variável de repositório `PUBLIC_WHATSAPP_NUMBER` em
+**Settings → Secrets and variables → Actions → Variables**. Use somente dígitos,
+incluindo `55`, DDD e número.
 
 ## Conteúdo
 

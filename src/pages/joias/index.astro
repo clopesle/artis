@@ -1,0 +1,206 @@
+---
+import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import products from "../../data/products.json";
+import { messages } from "../../lib/contact";
+import type { Product } from "../../lib/content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const publishedProducts = (products as Product[]).filter(
+  (product) => product.published,
+);
+---
+
+<BaseLayout
+  title="Curadoria de joias"
+  description="Joias escolhidas para conversar com a anatomia, o projeto e a identidade de cada mulher."
+>
+  <section class="collection-hero">
+    <div data-reveal>
+      <p class="eyebrow">Curadoria de joias</p>
+      <h1 class="display">Cada peça tem um porquê.</h1>
+      <p class="lede">
+        A curadoria nasce do desenho. Proporção, formato, material e brilho são
+        considerados para que cada joia ocupe o lugar certo na composição.
+      </p>
+      <WhatsAppLink message={messages.jewelry} label="Conversar sobre joias" />
+    </div>
+    <div class="collection-hero__jewel" aria-hidden="true">
+      <span></span>
+      <i></i>
+      <svg viewBox="0 0 400 400" fill="none">
+        <circle cx="200" cy="200" r="145"></circle>
+        <circle cx="200" cy="200" r="72"></circle>
+        <path d="M200 0v400M0 200h400"></path>
+      </svg>
+    </div>
+  </section>
+
+  {
+    publishedProducts.length > 0 ? (
+      <section class="product-list section">
+        {publishedProducts.map((product) => (
+          <article>
+            <h2>{product.name}</h2>
+          </article>
+        ))}
+      </section>
+    ) : (
+      <section class="empty-catalog section" data-reveal>
+        <span>Catálogo em curadoria</span>
+        <div>
+          <h2 class="headline">Sem peças genéricas para preencher espaço.</h2>
+          <p class="lede">
+            O catálogo público será aberto quando cada joia tiver informações, imagens e
+            disponibilidade confirmadas. Enquanto isso, a curadoria acontece de forma
+            personalizada durante o seu projeto.
+          </p>
+          <WhatsAppLink
+            message={messages.jewelry}
+            label="Pedir uma curadoria personalizada"
+            variant="secondary"
+          />
+        </div>
+      </section>
+    )
+  }
+
+  <section class="jewelry-principles">
+    <p>01 <span>proporção</span></p>
+    <p>02 <span>material</span></p>
+    <p>03 <span>harmonia</span></p>
+  </section>
+</BaseLayout>
+
+<style>
+  .collection-hero {
+    position: relative;
+    display: grid;
+    min-height: 42rem;
+    overflow: hidden;
+    background: var(--color-champagne);
+  }
+
+  .collection-hero > div:first-child {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    max-width: 58rem;
+    padding: clamp(5rem, 11vw, 10rem) var(--gutter);
+  }
+
+  .collection-hero h1 {
+    max-width: 8ch;
+  }
+
+  .collection-hero .lede {
+    margin: 2rem 0;
+  }
+
+  .collection-hero__jewel {
+    position: relative;
+    min-height: 20rem;
+  }
+
+  .collection-hero__jewel > span {
+    position: absolute;
+    top: 15%;
+    left: 25%;
+    width: 11rem;
+    height: 11rem;
+    border: 1.2rem solid var(--color-satin);
+    border-radius: 50%;
+    box-shadow: 0 2rem 4rem color-mix(in oklab, var(--color-bronze) 20%, transparent);
+  }
+
+  .collection-hero__jewel > i {
+    position: absolute;
+    right: 16%;
+    bottom: 20%;
+    width: 3rem;
+    height: 3rem;
+    background: var(--color-paper-raised);
+    border: 0.7rem solid var(--color-satin);
+    border-radius: 50%;
+  }
+
+  .collection-hero__jewel svg {
+    position: absolute;
+    right: -5rem;
+    bottom: -5rem;
+    width: 28rem;
+    color: var(--color-bronze);
+    stroke: currentColor;
+    stroke-width: 1;
+    opacity: 0.45;
+  }
+
+  .empty-catalog {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .empty-catalog > span {
+    color: var(--color-bronze);
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .empty-catalog > div {
+    max-width: 55rem;
+  }
+
+  .empty-catalog .lede {
+    margin-block: 2rem;
+  }
+
+  .jewelry-principles {
+    display: grid;
+    color: var(--color-paper);
+    background: var(--color-graphite);
+  }
+
+  .jewelry-principles p {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 0;
+    padding: 2rem var(--gutter);
+    color: var(--color-satin);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    border-bottom: 1px solid color-mix(in oklab, var(--color-paper) 14%, transparent);
+  }
+
+  .jewelry-principles span {
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (min-width: 64rem) {
+    .collection-hero {
+      grid-template-columns: 1.2fr 0.8fr;
+    }
+
+    .collection-hero__jewel {
+      min-height: 42rem;
+    }
+
+    .empty-catalog {
+      grid-template-columns: 0.5fr 1.5fr;
+    }
+
+    .jewelry-principles {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .jewelry-principles p {
+      border-right: 1px solid color-mix(in oklab, var(--color-paper) 14%, transparent);
+      border-bottom: 0;
+    }
+  }
+</style>

@@ -1,0 +1,127 @@
+---
+import site from "../data/site.json";
+import { withBase } from "../lib/paths";
+import Wordmark from "./Wordmark.astro";
+---
+
+<footer class="site-footer">
+  <div class="site-footer__manifesto">
+    <Wordmark />
+    <p>{site.tagline}</p>
+  </div>
+
+  <div class="site-footer__links">
+    <div>
+      <p class="site-footer__label">Navegue</p>
+      <a href={withBase("/servicos/design-auricular-digital-personalizado/")}>
+        Design Auricular
+      </a>
+      <a href={withBase("/joias/")}>Joias</a>
+      <a href={withBase("/projetos/")}>Projetos</a>
+    </div>
+    <div>
+      <p class="site-footer__label">Informações</p>
+      <a href={withBase("/privacidade/")}>Privacidade</a>
+      <a href={withBase("/#perguntas")}>Perguntas frequentes</a>
+    </div>
+  </div>
+
+  <div class="site-footer__base">
+    <p>© {new Date().getFullYear()} ARTÍS. Conteúdo em português brasileiro.</p>
+    <p>Atendimento online para todo o Brasil.</p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: clamp(4rem, 9vw, 8rem) var(--gutter) 7rem;
+    color: var(--color-paper);
+    background: var(--color-graphite);
+  }
+
+  .site-footer__manifesto {
+    display: grid;
+    gap: 2rem;
+    padding-bottom: clamp(3rem, 7vw, 6rem);
+    border-bottom: 1px solid color-mix(in oklab, var(--color-paper) 18%, transparent);
+  }
+
+  .site-footer__manifesto p {
+    max-width: 12ch;
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 8vw, 7rem);
+    line-height: 0.95;
+  }
+
+  .site-footer__links {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    padding-block: 3rem;
+  }
+
+  .site-footer__links > div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+
+  .site-footer__links a {
+    width: max-content;
+    color: color-mix(in oklab, var(--color-paper) 72%, transparent);
+    text-decoration: none;
+  }
+
+  .site-footer__links a:hover {
+    color: var(--color-paper);
+  }
+
+  .site-footer__label {
+    margin: 0 0 0.4rem;
+    color: var(--color-satin);
+    font-size: 0.72rem;
+    font-weight: 650;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .site-footer__base {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    padding-top: 1.2rem;
+    color: color-mix(in oklab, var(--color-paper) 46%, transparent);
+    font-size: 0.74rem;
+    border-top: 1px solid color-mix(in oklab, var(--color-paper) 12%, transparent);
+  }
+
+  .site-footer__base p {
+    margin: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .site-footer {
+      padding-bottom: 2rem;
+    }
+
+    .site-footer__manifesto {
+      grid-template-columns: 1fr 2fr;
+      align-items: end;
+    }
+
+    .site-footer__manifesto p {
+      justify-self: end;
+    }
+
+    .site-footer__links {
+      grid-template-columns: repeat(2, minmax(10rem, 15rem));
+      justify-content: end;
+    }
+
+    .site-footer__base {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+</style>

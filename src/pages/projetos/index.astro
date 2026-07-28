@@ -1,0 +1,146 @@
+---
+import EarBlueprint from "../../components/EarBlueprint.astro";
+import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import projects from "../../data/projects.json";
+import { messages } from "../../lib/contact";
+import type { Project } from "../../lib/content";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+const publishedProjects = (projects as Project[]).filter(
+  (project) => project.published,
+);
+---
+
+<BaseLayout
+  title="Projetos auriculares"
+  description="Conheça projetos de Design Auricular Digital desenvolvidos pela ARTÍS e publicados com autorização."
+>
+  <section class="projects-hero">
+    <div class="projects-hero__copy" data-reveal>
+      <p class="eyebrow">Projetos ARTÍS</p>
+      <h1 class="display">Nenhuma orelha pede a mesma resposta.</h1>
+      <p class="lede">
+        Cada projeto nasce de uma conversa diferente. O portfólio reúne apenas trabalhos
+        reais publicados com autorização.
+      </p>
+    </div>
+    <div class="projects-hero__mark" aria-hidden="true">
+      <EarBlueprint />
+    </div>
+  </section>
+
+  {
+    publishedProjects.length > 0 ? (
+      <section class="projects-list section">
+        {publishedProjects.map((project) => (
+          <article>
+            <h2>{project.title}</h2>
+          </article>
+        ))}
+      </section>
+    ) : (
+      <section class="portfolio-pending section" data-reveal>
+        <span>Portfólio em preparação</span>
+        <div>
+          <h2 class="headline">Projetos reais pedem contexto e autorização.</h2>
+          <p class="lede">
+            Estamos preparando os primeiros casos com o cuidado que eles merecem.
+            Nenhuma imagem ou história será publicada apenas para preencher esta página.
+          </p>
+          <WhatsAppLink
+            message={messages.portfolio}
+            label="Quero criar meu projeto"
+            variant="secondary"
+          />
+        </div>
+      </section>
+    )
+  }
+
+  <section class="project-principle">
+    <p>
+      A composição ideal não é a que tem mais joias. É a que parece ter nascido para
+      você.
+    </p>
+  </section>
+</BaseLayout>
+
+<style>
+  .projects-hero {
+    position: relative;
+    min-height: 42rem;
+    overflow: hidden;
+    color: var(--color-paper);
+    background: var(--color-graphite);
+  }
+
+  .projects-hero__copy {
+    position: relative;
+    z-index: 2;
+    max-width: 70rem;
+    padding: clamp(5rem, 12vw, 11rem) var(--gutter);
+  }
+
+  .projects-hero h1 {
+    max-width: 10ch;
+  }
+
+  .projects-hero .lede {
+    margin-top: 2rem;
+    color: color-mix(in oklab, var(--color-paper) 65%, transparent);
+  }
+
+  .projects-hero .eyebrow {
+    color: var(--color-satin);
+  }
+
+  .projects-hero__mark {
+    position: absolute;
+    right: -5rem;
+    bottom: -10rem;
+    width: min(80vw, 38rem);
+    opacity: 0.28;
+  }
+
+  .portfolio-pending {
+    display: grid;
+    gap: 2rem;
+  }
+
+  .portfolio-pending > span {
+    color: var(--color-bronze);
+    font-size: 0.75rem;
+    font-weight: 650;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .portfolio-pending > div {
+    max-width: 58rem;
+  }
+
+  .portfolio-pending .lede {
+    margin-block: 2rem;
+  }
+
+  .project-principle {
+    padding: clamp(6rem, 15vw, 13rem) var(--gutter);
+    background: var(--color-champagne);
+  }
+
+  .project-principle p {
+    max-width: 20ch;
+    margin: 0 auto;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 6.5rem);
+    letter-spacing: -0.04em;
+    line-height: 0.98;
+    text-align: center;
+  }
+
+  @media (min-width: 64rem) {
+    .portfolio-pending {
+      grid-template-columns: 0.5fr 1.5fr;
+    }
+  }
+</style>

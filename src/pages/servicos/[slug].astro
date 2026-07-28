@@ -1,0 +1,268 @@
+---
+import { Image } from "astro:assets";
+import type { GetStaticPaths } from "astro";
+import EarBlueprint from "../../components/EarBlueprint.astro";
+import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import processImage from "../../assets/processo-artis.png";
+import services from "../../data/services.json";
+import { messages } from "../../lib/contact";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = (() =>
+  services
+    .filter((service) => service.published)
+    .map((service) => ({
+      params: { slug: service.slug },
+      props: { service },
+    }))) satisfies GetStaticPaths;
+
+type Service = (typeof services)[number];
+const { service } = Astro.props as { service: Service };
+---
+
+<BaseLayout
+  title={service.name}
+  description={`${service.shortDescription} Atendimento online para todo o Brasil.`}
+>
+  <section class="service-hero">
+    <div class="service-hero__copy" data-reveal>
+      <p class="eyebrow">{service.eyebrow}</p>
+      <h1 class="display">{service.name}</h1>
+      <p class="lede">{service.shortDescription}</p>
+      <WhatsAppLink
+        message={messages.project}
+        label="Quero meu projeto personalizado"
+      />
+    </div>
+    <div class="service-hero__mark" aria-hidden="true">
+      <EarBlueprint />
+    </div>
+  </section>
+
+  <section class="service-intro section">
+    <div class="service-intro__number" aria-hidden="true">01</div>
+    <div data-reveal>
+      {service.description.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+
+  <section class="service-image" data-reveal>
+    <Image
+      src={processImage}
+      alt="Criação de um Design Auricular Digital em um tablet"
+      widths={[640, 960, 1280, 1600]}
+      sizes="100vw"
+      format="avif"
+      quality={76}
+    />
+  </section>
+
+  <section class="included section">
+    <div class="included__heading" data-reveal>
+      <p class="eyebrow">O que você recebe</p>
+      <h2 class="headline">Um projeto para decidir com calma.</h2>
+    </div>
+    <ol>
+      {
+        service.included.map((item, index) => (
+          <li data-reveal>
+            <span>{String(index + 1).padStart(2, "0")}</span>
+            <p>{item}</p>
+          </li>
+        ))
+      }
+    </ol>
+  </section>
+
+  <section class="investment">
+    <div class="investment__label">
+      <p>Investimento inicial</p>
+    </div>
+    <div class="investment__value" data-reveal>
+      <strong>{service.price.label}</strong>
+      <p>{service.price.note}</p>
+    </div>
+    <div class="investment__benefit" data-reveal>
+      <p>{service.purchaseBenefit}</p>
+      <WhatsAppLink
+        message={messages.project}
+        label="Conversar sobre meu projeto"
+        variant="secondary"
+      />
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .service-hero {
+    position: relative;
+    display: grid;
+    min-height: 42rem;
+    overflow: hidden;
+    color: var(--color-paper);
+    background: var(--color-graphite);
+  }
+
+  .service-hero__copy {
+    position: relative;
+    z-index: 2;
+    align-self: center;
+    max-width: 68rem;
+    padding: clamp(5rem, 12vw, 11rem) var(--gutter);
+  }
+
+  .service-hero__copy h1 {
+    max-width: 9ch;
+  }
+
+  .service-hero__copy .lede {
+    margin: 2rem 0;
+    color: color-mix(in oklab, var(--color-paper) 68%, transparent);
+  }
+
+  .service-hero__copy .eyebrow {
+    color: var(--color-satin);
+  }
+
+  .service-hero__copy :global(.button) {
+    color: var(--color-graphite);
+    background: var(--color-satin);
+    border-color: var(--color-satin);
+  }
+
+  .service-hero__mark {
+    position: absolute;
+    right: -6rem;
+    bottom: -8rem;
+    width: min(85vw, 42rem);
+    opacity: 0.28;
+  }
+
+  .service-intro {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1.5rem;
+  }
+
+  .service-intro__number {
+    color: var(--color-satin);
+    font-family: var(--font-display);
+    font-size: 3rem;
+  }
+
+  .service-intro p {
+    max-width: 55rem;
+    margin: 0 0 1.2rem;
+    color: var(--color-text-muted);
+    font-size: clamp(1.18rem, 2.2vw, 1.6rem);
+    line-height: 1.5;
+  }
+
+  .service-image {
+    width: min(calc(100% - 2 * var(--gutter)), 90rem);
+    max-height: 52rem;
+    margin-inline: auto;
+    overflow: hidden;
+    border-radius: var(--radius-image);
+  }
+
+  .service-image :global(picture),
+  .service-image :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .service-image :global(img) {
+    object-fit: cover;
+  }
+
+  .included {
+    display: grid;
+    gap: 3rem;
+  }
+
+  .included ol {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  .included li {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 1rem;
+    padding: 1.4rem 0;
+    border-bottom: 1px solid var(--color-line-strong);
+  }
+
+  .included li span {
+    color: var(--color-bronze);
+    font-family: var(--font-display);
+  }
+
+  .included li p {
+    margin: 0;
+    font-size: 1.05rem;
+  }
+
+  .investment {
+    display: grid;
+    background: var(--color-satin);
+  }
+
+  .investment > div {
+    padding: clamp(2rem, 5vw, 5rem) var(--gutter);
+    border-bottom: 1px solid color-mix(in oklab, var(--color-graphite) 20%, transparent);
+  }
+
+  .investment__label p,
+  .investment__benefit p {
+    max-width: 34rem;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .investment__value strong {
+    display: block;
+    font-family: var(--font-display);
+    font-size: clamp(3.8rem, 10vw, 8rem);
+    font-weight: 430;
+    letter-spacing: -0.05em;
+    line-height: 0.9;
+  }
+
+  .investment__value p {
+    margin: 1rem 0 0;
+  }
+
+  .investment__benefit :global(.button) {
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 64rem) {
+    .service-intro {
+      grid-template-columns: 0.45fr 1.55fr;
+    }
+
+    .service-intro__number {
+      font-size: 5rem;
+    }
+
+    .included {
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 7rem;
+    }
+
+    .investment {
+      grid-template-columns: 0.5fr 1fr 0.8fr;
+    }
+
+    .investment > div {
+      border-right: 1px solid
+        color-mix(in oklab, var(--color-graphite) 20%, transparent);
+      border-bottom: 0;
+    }
+  }
+</style>

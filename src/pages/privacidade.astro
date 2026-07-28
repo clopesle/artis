@@ -1,0 +1,91 @@
+---
+import { withBase } from "../lib/paths";
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout
+  title="Privacidade"
+  description="Como o site da ARTÍS trata dados e direciona conversas para o WhatsApp."
+  hideMobileContact
+>
+  <article class="legal section">
+    <header>
+      <p class="eyebrow">Privacidade</p>
+      <h1 class="headline">Poucos dados. Mais clareza.</h1>
+      <p class="lede">
+        Esta página descreve o funcionamento atual do site. O texto deve ser revisado
+        profissionalmente antes de um lançamento comercial definitivo.
+      </p>
+    </header>
+
+    <section>
+      <h2>O que este site coleta</h2>
+      <p>
+        O site público não possui contas, formulários próprios, pagamento online ou
+        ferramentas de análise de audiência. A navegação não solicita seus dados
+        pessoais diretamente.
+      </p>
+    </section>
+
+    <section>
+      <h2>Contato pelo WhatsApp</h2>
+      <p>
+        Ao escolher conversar com a ARTÍS, você será direcionada ao WhatsApp com uma
+        mensagem inicial relacionada ao conteúdo visitado. A partir desse momento, o
+        tratamento das informações também segue as políticas do WhatsApp e as escolhas
+        feitas na conversa.
+      </p>
+    </section>
+
+    <section>
+      <h2>Imagens enviadas para o projeto</h2>
+      <p>
+        Fotos da orelha e demais informações necessárias ao atendimento só devem ser
+        enviadas durante a conversa oficial. O uso, a conservação e uma eventual
+        autorização para portfólio precisam ser informados durante o atendimento.
+      </p>
+    </section>
+
+    <a class="button button--secondary" href={withBase("/")}>Voltar ao início</a>
+  </article>
+</BaseLayout>
+
+<style>
+  .legal {
+    max-width: 68rem;
+  }
+
+  .legal header {
+    margin-bottom: 4rem;
+  }
+
+  .legal section {
+    display: grid;
+    gap: 1rem;
+    padding-block: 2rem;
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  .legal h2 {
+    margin: 0;
+    font-size: 1.35rem;
+  }
+
+  .legal section p {
+    max-width: 52rem;
+    margin: 0;
+    color: var(--color-text-muted);
+    line-height: 1.6;
+  }
+
+  .legal > .button {
+    margin-top: 2rem;
+  }
+
+  @media (min-width: 48rem) {
+    .legal section {
+      grid-template-columns: 0.6fr 1.4fr;
+      gap: 3rem;
+    }
+  }
+</style>

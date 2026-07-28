@@ -1,0 +1,42 @@
+---
+interface Props {
+  compact?: boolean;
+}
+
+const { compact = false } = Astro.props;
+---
+
+<span class:list={["wordmark", { "wordmark--compact": compact }]}>
+  <span class="wordmark__name">ARTÍS</span>
+  {!compact && <span class="wordmark__descriptor">design auricular</span>}
+</span>
+
+<style>
+  .wordmark {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 0.08rem;
+    color: currentColor;
+    line-height: 1;
+  }
+
+  .wordmark__name {
+    font-family: var(--font-display);
+    font-size: 1.58rem;
+    font-weight: 500;
+    letter-spacing: 0.15em;
+  }
+
+  .wordmark__descriptor {
+    padding-left: 0.05em;
+    color: var(--color-text-muted);
+    font-size: 0.62rem;
+    font-weight: 550;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+
+  .wordmark--compact .wordmark__name {
+    font-size: 1.25rem;
+  }
+</style>

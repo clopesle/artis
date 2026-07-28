@@ -1,0 +1,113 @@
+---
+import "@fontsource-variable/afacad-flux";
+import "@fontsource-variable/bodoni-moda";
+import heroImage from "../assets/hero-artis.png";
+import site from "../data/site.json";
+import "../styles/global.css";
+import MobileContactBar from "../components/MobileContactBar.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+
+interface Props {
+  title?: string;
+  description?: string;
+  hideMobileContact?: boolean;
+}
+
+const {
+  title,
+  description = site.description,
+  hideMobileContact = false,
+} = Astro.props;
+const pageTitle = title ? `${title} | ${site.name}` : `${site.name} | ${site.tagline}`;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const ogImageUrl = new URL(heroImage.src, Astro.site);
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  name: site.name,
+  description: site.description,
+  areaServed: {
+    "@type": "Country",
+    name: "Brasil",
+  },
+  slogan: site.tagline,
+  url: canonicalUrl.href,
+  priceRange: "R$ 150–200",
+  availableLanguage: "Portuguese",
+};
+---
+
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#f7f2e9" />
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link
+      rel="icon"
+      href={`${import.meta.env.BASE_URL}favicon.svg`}
+      type="image/svg+xml"
+    />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta
+      property="og:image:alt"
+      content="Composição auricular delicada criada pela ARTÍS"
+    />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImageUrl} />
+
+    <title>{pageTitle}</title>
+    <script
+      is:inline
+      type="application/ld+json"
+      set:html={JSON.stringify(structuredData)}
+    />
+  </head>
+  <body>
+    <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
+    <SiteHeader />
+    <main id="conteudo">
+      <slot />
+    </main>
+    <SiteFooter />
+    {!hideMobileContact && <MobileContactBar />}
+
+    <script>
+      const observer = new IntersectionObserver(
+        (entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.setAttribute("data-visible", "");
+              observer.unobserve(entry.target);
+            }
+          }
+        },
+        { rootMargin: "0px 0px -10% 0px", threshold: 0.08 },
+      );
+
+      document
+        .querySelectorAll("[data-reveal]")
+        .forEach((element) => observer.observe(element));
+
+      document.querySelectorAll(".site-header__menu-panel a").forEach((link) => {
+        link.addEventListener("click", () => {
+          link.closest("details")?.removeAttribute("open");
+        });
+      });
+    </script>
+  </body>
+</html>
