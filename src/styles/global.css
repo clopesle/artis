@@ -241,7 +241,7 @@ p {
   background: var(--color-line);
 }
 
-[data-reveal] {
+.js [data-reveal] {
   opacity: 0;
   transform: translateY(1.25rem);
   transition:
@@ -249,7 +249,7 @@ p {
     transform 760ms var(--ease-out);
 }
 
-[data-reveal][data-visible] {
+.js [data-reveal][data-visible] {
   opacity: 1;
   transform: translateY(0);
 }

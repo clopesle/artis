@@ -1,8 +1,14 @@
+export interface CatalogImage {
+  src: string;
+  alt: string;
+}
+
 export interface Product {
   id: string;
   slug: string;
   published: boolean;
-  featured?: boolean;
+  featured: boolean;
+  order: number;
   name: string;
   shortDescription: string;
   description: string[];
@@ -10,14 +16,15 @@ export interface Product {
   material: string;
   priceLabel: string;
   availability: "disponivel" | "sob-consulta" | "indisponivel";
-  images: string[];
+  images: CatalogImage[];
 }
 
 export interface Project {
   id: string;
   slug: string;
   published: boolean;
-  featured?: boolean;
+  featured: boolean;
+  order: number;
   title: string;
   shortDescription: string;
   description: string[];

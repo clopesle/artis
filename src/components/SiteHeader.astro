@@ -1,4 +1,5 @@
 ---
+import site from "../data/site.json";
 import { messages } from "../lib/contact";
 import { withBase } from "../lib/paths";
 import WhatsAppLink from "./WhatsAppLink.astro";
@@ -15,6 +16,17 @@ const links = [
   { href: withBase("/projetos/"), label: "Projetos" },
 ];
 ---
+
+{
+  site.announcement.enabled && (
+    <aside class="site-announcement" aria-label="Aviso">
+      <p>{site.announcement.text}</p>
+      {site.announcement.href && site.announcement.linkLabel && (
+        <a href={withBase(site.announcement.href)}>{site.announcement.linkLabel}</a>
+      )}
+    </aside>
+  )
+}
 
 <header class="site-header" data-site-header>
   <a class="site-header__brand" href={withBase("/")} aria-label="ARTÍS, página inicial">
@@ -67,6 +79,27 @@ const links = [
 </header>
 
 <style>
+  .site-announcement {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.35rem 1rem;
+    padding: 0.65rem var(--gutter);
+    color: var(--color-paper);
+    font-size: 0.84rem;
+    text-align: center;
+    background: var(--color-graphite);
+  }
+
+  .site-announcement p {
+    margin: 0;
+  }
+
+  .site-announcement a {
+    color: var(--color-satin);
+    font-weight: 650;
+  }
+
   .site-header {
     position: relative;
     z-index: 20;

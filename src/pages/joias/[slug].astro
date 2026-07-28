@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import type { GetStaticPaths } from "astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import { availabilityLabels } from "../../lib/catalog";
 import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
 import type { Product } from "../../lib/content";
@@ -21,26 +22,48 @@ export const getStaticPaths = (async () => {
 }) satisfies GetStaticPaths;
 
 const { product } = Astro.props as { product: Product };
-const availabilityLabels: Record<Product["availability"], string> = {
-  disponivel: "Disponível",
-  "sob-consulta": "Disponibilidade sob consulta",
-  indisponivel: "Indisponível",
-};
 const message = `${messages.jewelry} Tenho interesse em: ${product.name}.`;
+const productImages = product.images.map((image) => ({
+  ...image,
+  metadata: getCatalogImage(image.src),
+}));
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  name: product.name,
+  description: product.shortDescription,
+  image: productImages.map(
+    ({ metadata }) =>
+      new URL(
+        `${import.meta.env.BASE_URL}${metadata.src.replace(/^\/+/, "")}`,
+        Astro.site,
+      ).href,
+  ),
+  material: product.material,
+  category: product.category,
+};
 ---
 
-<BaseLayout title={product.name} description={product.shortDescription}>
+<BaseLayout
+  title={product.name}
+  description={product.shortDescription}
+  structuredData={structuredData}
+>
   <article class="product-detail">
-    <div class="product-detail__image" data-reveal>
-      <Image
-        src={getCatalogImage(product.images[0])}
-        alt={`${product.name}, joia selecionada pela ARTÍS`}
-        widths={[640, 960, 1280]}
-        sizes="(min-width: 64rem) 52vw, 100vw"
-        format="avif"
-        quality={80}
-        loading="eager"
-      />
+    <div class="product-detail__gallery" data-reveal>
+      {
+        productImages.map((image, index) => (
+          <Image
+            src={image.metadata}
+            alt={image.alt}
+            widths={[640, 960, 1280]}
+            sizes="(min-width: 64rem) 52vw, 100vw"
+            format="avif"
+            quality={80}
+            loading={index === 0 ? "eager" : "lazy"}
+          />
+        ))
+      }
     </div>
     <div class="product-detail__copy" data-reveal>
       <a class="product-detail__back" href={withBase("/joias/")}>
@@ -84,19 +107,22 @@ const message = `${messages.jewelry} Tenho interesse em: ${product.name}.`;
     min-height: calc(100svh - 6.75rem);
   }
 
-  .product-detail__image {
+  .product-detail__gallery {
+    display: grid;
     min-height: 38rem;
     background: var(--color-linen);
   }
 
-  .product-detail__image :global(picture),
-  .product-detail__image :global(img) {
+  .product-detail__gallery :global(picture),
+  .product-detail__gallery :global(img) {
     display: block;
     width: 100%;
     height: 100%;
   }
 
-  .product-detail__image :global(img) {
+  .product-detail__gallery :global(img) {
+    min-height: 38rem;
+    max-height: 52rem;
     object-fit: cover;
   }
 

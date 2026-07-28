@@ -3,15 +3,16 @@ import { Image } from "astro:assets";
 import EarBlueprint from "../../components/EarBlueprint.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import projects from "../../data/projects.json";
+import { byEditorialPriority } from "../../lib/catalog";
 import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
 import type { Project } from "../../lib/content";
 import { withBase } from "../../lib/paths";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const publishedProjects = (projects as Project[]).filter(
-  (project) => project.published,
-);
+const publishedProjects = (projects as Project[])
+  .filter((project) => project.published)
+  .sort(byEditorialPriority);
 ---
 
 <BaseLayout
@@ -36,7 +37,7 @@ const publishedProjects = (projects as Project[]).filter(
     publishedProjects.length > 0 ? (
       <section class="projects-list section">
         {publishedProjects.map((project) => (
-          <article data-reveal>
+          <article data-reveal data-featured={project.featured || undefined}>
             <a
               class="projects-list__image"
               href={withBase(`/projetos/${project.slug}/`)}

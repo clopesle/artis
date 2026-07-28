@@ -2,20 +2,16 @@
 import { Image } from "astro:assets";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import products from "../../data/products.json";
+import { availabilityLabels, byEditorialPriority } from "../../lib/catalog";
 import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
 import type { Product } from "../../lib/content";
 import { withBase } from "../../lib/paths";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
-const publishedProducts = (products as Product[]).filter(
-  (product) => product.published,
-);
-const availabilityLabels: Record<Product["availability"], string> = {
-  disponivel: "Disponível",
-  "sob-consulta": "Disponibilidade sob consulta",
-  indisponivel: "Indisponível",
-};
+const publishedProducts = (products as Product[])
+  .filter((product) => product.published)
+  .sort(byEditorialPriority);
 ---
 
 <BaseLayout
@@ -47,15 +43,15 @@ const availabilityLabels: Record<Product["availability"], string> = {
     publishedProducts.length > 0 ? (
       <section class="product-list section">
         {publishedProducts.map((product) => (
-          <article data-reveal>
+          <article data-reveal data-featured={product.featured || undefined}>
             <a
               class="product-list__image"
               href={withBase(`/joias/${product.slug}/`)}
               aria-label={`Conhecer ${product.name}`}
             >
               <Image
-                src={getCatalogImage(product.images[0])}
-                alt=""
+                src={getCatalogImage(product.images[0].src)}
+                alt={product.images[0].alt}
                 widths={[480, 720, 960]}
                 sizes="(min-width: 64rem) 42vw, 100vw"
                 format="avif"

@@ -50,6 +50,21 @@ assert(
   site.tagline === "Onde anatomia encontra identidade.",
   "A assinatura institucional da ARTÍS foi alterada sem registro.",
 );
+assert(
+  typeof site.announcement?.enabled === "boolean",
+  "site.announcement.enabled deve ser true ou false.",
+);
+if (site.announcement.enabled) {
+  assert(site.announcement.text, "site.announcement.text é obrigatório quando ativo.");
+  assert(
+    !site.announcement.href || site.announcement.href.startsWith("/"),
+    "site.announcement.href deve ser um caminho interno iniciado por /.",
+  );
+  assert(
+    !site.announcement.href || site.announcement.linkLabel,
+    "site.announcement.linkLabel é obrigatório quando href estiver preenchido.",
+  );
+}
 assert(Array.isArray(services), "src/data/services.json deve conter uma lista.");
 assert(Array.isArray(faqs), "src/data/faqs.json deve conter uma lista.");
 assert(Array.isArray(products), "src/data/products.json deve conter uma lista.");
@@ -59,17 +74,37 @@ validateUnique(services, "id", "src/data/services.json");
 validateUnique(services, "slug", "src/data/services.json");
 validateUnique(products, "id", "src/data/products.json");
 validateUnique(products, "slug", "src/data/products.json");
+validateUnique(products, "order", "src/data/products.json");
 validateUnique(projects, "id", "src/data/projects.json");
 validateUnique(projects, "slug", "src/data/projects.json");
+validateUnique(projects, "order", "src/data/projects.json");
 
 for (const [index, service] of services.entries()) {
   const path = `src/data/services.json[${index}]`;
   assert(service.id, `${path}.id é obrigatório.`);
   validateSlug(service.slug, path);
+  assert(
+    typeof service.published === "boolean",
+    `${path}.published deve ser true ou false.`,
+  );
+  assert(
+    typeof service.featured === "boolean",
+    `${path}.featured deve ser true ou false.`,
+  );
   assert(service.name, `${path}.name é obrigatório.`);
+  assert(service.eyebrow, `${path}.eyebrow é obrigatório.`);
   assert(service.shortDescription, `${path}.shortDescription é obrigatório.`);
   assert(
-    Array.isArray(service.included) && service.included.length > 0,
+    Array.isArray(service.description) &&
+      service.description.length > 0 &&
+      service.description.every(Boolean),
+    `${path}.description deve conter pelo menos um parágrafo.`,
+  );
+  assert(service.purchaseBenefit, `${path}.purchaseBenefit é obrigatório.`);
+  assert(
+    Array.isArray(service.included) &&
+      service.included.length > 0 &&
+      service.included.every(Boolean),
     `${path}.included deve conter pelo menos um item.`,
   );
   assert(
@@ -77,7 +112,26 @@ for (const [index, service] of services.entries()) {
     `${path}.steps deve conter exatamente três etapas.`,
   );
   assert(service.price?.currency === "BRL", `${path}.price.currency deve ser BRL.`);
+  assert(
+    Number.isFinite(service.price?.min) &&
+      Number.isFinite(service.price?.max) &&
+      service.price.min > 0 &&
+      service.price.max >= service.price.min,
+    `${path}.price deve conter min e max válidos.`,
+  );
+  assert(service.price.label, `${path}.price.label é obrigatório.`);
+  assert(service.price.note, `${path}.price.note é obrigatório.`);
+  for (const [stepIndex, step] of service.steps.entries()) {
+    assert(step.number, `${path}.steps[${stepIndex}].number é obrigatório.`);
+    assert(step.title, `${path}.steps[${stepIndex}].title é obrigatório.`);
+    assert(step.description, `${path}.steps[${stepIndex}].description é obrigatória.`);
+  }
 }
+
+assert(
+  services.some((service) => service.published && service.featured),
+  "services.json deve conter pelo menos um serviço publicado e destacado.",
+);
 
 for (const [index, faq] of faqs.entries()) {
   assert(faq.question, `src/data/faqs.json[${index}].question é obrigatória.`);
@@ -96,6 +150,14 @@ for (const [collectionName, items] of [
     assert(
       typeof item.published === "boolean",
       `${path}.published deve ser true ou false.`,
+    );
+    assert(
+      typeof item.featured === "boolean",
+      `${path}.featured deve ser true ou false.`,
+    );
+    assert(
+      Number.isInteger(item.order) && item.order >= 0,
+      `${path}.order deve ser um número inteiro igual ou maior que zero.`,
     );
 
     if (item.published && collectionName === "products") {
@@ -116,12 +178,17 @@ for (const [collectionName, items] of [
         `${path}.images deve conter pelo menos uma imagem.`,
       );
 
-      for (const image of item.images) {
+      for (const [imageIndex, image] of item.images.entries()) {
+        assert(image?.src, `${path}.images[${imageIndex}].src é obrigatório.`);
+        assert(
+          image?.alt,
+          `${path}.images[${imageIndex}].alt é obrigatório em português brasileiro.`,
+        );
         try {
-          await access(new URL(`../src/assets/catalog/${image}`, import.meta.url));
+          await access(new URL(`../src/assets/catalog/${image.src}`, import.meta.url));
         } catch {
           throw new Error(
-            `${path} referencia a imagem ausente src/assets/catalog/${image}.`,
+            `${path} referencia a imagem ausente src/assets/catalog/${image.src}.`,
           );
         }
       }

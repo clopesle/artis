@@ -7,5 +7,11 @@
   "currency": "BRL",
   "serviceArea": "Atendimento online para todo o Brasil",
   "instagramUrl": "",
-  "whatsappNumber": ""
+  "whatsappNumber": "",
+  "announcement": {
+    "enabled": false,
+    "text": "",
+    "linkLabel": "",
+    "href": ""
+  }
 }

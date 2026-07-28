@@ -14,7 +14,7 @@ every publication recoverable through Git history.
 
 | File            | Content                                                                  |
 | --------------- | ------------------------------------------------------------------------ |
-| `site.json`     | Name, slogan, locale, service area, and public contact                   |
+| `site.json`     | Name, slogan, service area, public contact, and announcement             |
 | `services.json` | Service names, prices, descriptions, included items, and process         |
 | `products.json` | Joias, prices, images, availability, order, and publication state        |
 | `projects.json` | Authorized portfolio projects, images, categories, and publication state |
@@ -25,6 +25,7 @@ every publication recoverable through Git history.
 - Keep quotation marks and commas exactly as JSON requires.
 - Use `published: false` to hide a product or project without deleting it.
 - Use `featured: true` for the item that should receive primary emphasis.
+- Use `order` to control the remaining order; lower numbers appear first.
 - Use slugs with lowercase letters, numbers, and hyphens only.
 - Never reuse an `id` or `slug`.
 - Store prices as customer-facing Brazilian Portuguese labels.
@@ -58,7 +59,7 @@ every publication recoverable through Git history.
    editorial photography.
 5. Upload the source under `src/assets/catalog/`.
 6. Add its filename to the relevant content entry.
-7. Add a precise `imageAlt` in Brazilian Portuguese.
+7. Add a precise `alt` (or project `imageAlt`) in Brazilian Portuguese.
 
 Do not upload client images directly into `public/`; that bypasses image optimization.
 
@@ -72,6 +73,7 @@ Do not upload client images directly into `public/`; that bypasses image optimiz
   "slug": "nome-da-joia",
   "published": false,
   "featured": false,
+  "order": 10,
   "name": "Nome confirmado",
   "shortDescription": "Descrição confirmada",
   "description": ["Primeiro parágrafo aprovado.", "Segundo parágrafo opcional."],
@@ -79,7 +81,12 @@ Do not upload client images directly into `public/`; that bypasses image optimiz
   "material": "Ouro 18k",
   "priceLabel": "R$ 000",
   "availability": "sob-consulta",
-  "images": ["nome-do-arquivo.jpg"]
+  "images": [
+    {
+      "src": "nome-do-arquivo.jpg",
+      "alt": "Descrição objetiva da joia em português"
+    }
+  ]
 }
 ```
 
@@ -96,6 +103,7 @@ been reviewed.
   "slug": "nome-do-projeto",
   "published": false,
   "featured": false,
+  "order": 10,
   "title": "Título aprovado",
   "shortDescription": "Contexto aprovado",
   "description": ["História aprovada do projeto."],
@@ -107,6 +115,22 @@ been reviewed.
 ```
 
 Never set `published` to `true` when `consentConfirmed` is not true.
+
+## Publishing an announcement
+
+Use the `announcement` object in `site.json`. Keep it disabled while drafting:
+
+```json
+{
+  "enabled": false,
+  "text": "Agenda de agosto aberta.",
+  "linkLabel": "Conhecer o processo",
+  "href": "/servicos/design-auricular-digital-personalizado/"
+}
+```
+
+Set `enabled` to `true` only after the message is approved. Leave `href` and `linkLabel`
+empty for a text-only announcement. Links must be internal paths beginning with `/`.
 
 ## Invalid content
 

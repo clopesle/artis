@@ -18,11 +18,30 @@ export const getStaticPaths = (() =>
 
 type Service = (typeof services)[number];
 const { service } = Astro.props as { service: Service };
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  name: service.name,
+  description: service.shortDescription,
+  provider: {
+    "@type": "ProfessionalService",
+    name: "ARTÍS",
+  },
+  areaServed: { "@type": "Country", name: "Brasil" },
+  offers: {
+    "@type": "AggregateOffer",
+    priceCurrency: service.price.currency,
+    lowPrice: service.price.min,
+    highPrice: service.price.max,
+    availability: "https://schema.org/InStock",
+  },
+};
 ---
 
 <BaseLayout
   title={service.name}
   description={`${service.shortDescription} Atendimento online para todo o Brasil.`}
+  structuredData={structuredData}
 >
   <section class="service-hero">
     <div class="service-hero__copy" data-reveal>
