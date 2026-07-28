@@ -14,6 +14,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const publishedServices = services.filter((item) => item.published);
 const service = publishedServices.find((item) => item.featured) ?? publishedServices[0];
+const formatPrice = (amount: number) =>
+  new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: service?.price.currency ?? "BRL",
+    maximumFractionDigits: 0,
+  }).format(amount);
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -161,7 +167,12 @@ const structuredData = {
     </div>
     <div class="service-highlight__price" data-reveal>
       <span>Investimento</span>
-      <strong>{service.price.label}</strong>
+      <strong aria-label={service.price.label}>
+        <span>de</span>{" "}
+        <span class="price-amount">{formatPrice(service.price.min)}</span>{" "}
+        <span>a</span>{" "}
+        <span class="price-amount">{formatPrice(service.price.max)}</span>
+      </strong>
       <p>{service.price.note}</p>
       <div class="rule"></div>
       <p>{service.purchaseBenefit}</p>
@@ -524,6 +535,10 @@ const structuredData = {
     line-height: 0.9;
   }
 
+  .service-highlight__price .price-amount {
+    white-space: nowrap;
+  }
+
   .service-highlight__price p {
     max-width: 28rem;
     color: color-mix(in oklab, var(--color-graphite) 78%, transparent);
@@ -826,7 +841,7 @@ const structuredData = {
     }
 
     .service-highlight {
-      grid-template-columns: 1.45fr 0.55fr;
+      grid-template-columns: 1.1fr 0.9fr;
     }
 
     .service-highlight__main {
@@ -869,7 +884,7 @@ const structuredData = {
     }
 
     .service-highlight__price strong {
-      font-size: 5rem;
+      font-size: clamp(3.5rem, 4vw, 4rem);
     }
 
     .manifesto blockquote {

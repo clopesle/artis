@@ -19,6 +19,12 @@ export const getStaticPaths = (() =>
 
 type Service = (typeof services)[number];
 const { service } = Astro.props as { service: Service };
+const formatPrice = (amount: number) =>
+  new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: service.price.currency,
+    maximumFractionDigits: 0,
+  }).format(amount);
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -99,7 +105,12 @@ const structuredData = {
       <p>Investimento inicial</p>
     </div>
     <div class="investment__value" data-reveal>
-      <strong>{service.price.label}</strong>
+      <strong aria-label={service.price.label}>
+        <span>de</span>{" "}
+        <span class="price-amount">{formatPrice(service.price.min)}</span>{" "}
+        <span>a</span>{" "}
+        <span class="price-amount">{formatPrice(service.price.max)}</span>
+      </strong>
       <p>{service.price.note}</p>
     </div>
     <div class="investment__benefit" data-reveal>
@@ -259,6 +270,10 @@ const structuredData = {
     font-weight: 430;
     letter-spacing: -0.05em;
     line-height: 0.9;
+  }
+
+  .investment__value .price-amount {
+    white-space: nowrap;
   }
 
   .investment__value p {
