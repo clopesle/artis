@@ -4,7 +4,7 @@ import pages from "../data/pages.json";
 import WhatsAppLink from "./WhatsAppLink.astro";
 ---
 
-<aside class="mobile-contact-bar" aria-label="Atalho para atendimento">
+<aside class="mobile-contact-bar" aria-label={pages.global.mobileContactLabel}>
   <WhatsAppLink message={messages.project} label={pages.global.mobileCta} />
 </aside>
 

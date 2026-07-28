@@ -49,10 +49,24 @@ const [site, pages, services, faqs, products, projects, categories, providers] =
   ]);
 
 assert(site.locale === "pt-BR", "src/data/site.json deve usar locale pt-BR.");
+assert(site.wordmarkDescriptor, "src/data/site.json deve conter wordmarkDescriptor.");
+assert(site.onlineServiceLabel, "src/data/site.json deve conter onlineServiceLabel.");
 assert(
   pages.global?.navigation?.length > 0,
   "src/data/pages.json deve conter a navegação global.",
 );
+for (const key of [
+  "announcementLabel",
+  "brandHomeLabel",
+  "primaryNavigationLabel",
+  "openMenuLabel",
+  "mobileNavigationLabel",
+  "mobileContactLabel",
+  "defaultCartCta",
+  "defaultWhatsAppCta",
+]) {
+  assert(pages.global?.[key], `src/data/pages.json global.${key} deve conter texto.`);
+}
 assert(
   pages.home?.heroTitle,
   "src/data/pages.json deve conter os textos da página inicial.",

@@ -17,6 +17,14 @@
     "privacyLabel": "Privacidade",
     "faqLabel": "Perguntas frequentes",
     "footerLegal": "Conteúdo em português brasileiro.",
+    "announcementLabel": "Aviso",
+    "brandHomeLabel": "ARTÍS, página inicial",
+    "primaryNavigationLabel": "Navegação principal",
+    "openMenuLabel": "Abrir menu",
+    "mobileNavigationLabel": "Navegação para dispositivos móveis",
+    "mobileContactLabel": "Atalho para atendimento",
+    "defaultCartCta": "Adicionar à sacola",
+    "defaultWhatsAppCta": "Conversar pelo WhatsApp",
     "availabilityLabels": {
       "disponivel": "Disponível",
       "sob-consulta": "Disponibilidade sob consulta",
@@ -75,7 +83,8 @@
     "contactEyebrow": "Sua composição pode começar hoje",
     "contactTitle": "Vamos imaginar sua orelha juntas?",
     "contactDescription": "Conte o que você já usa, o que gostaria de mudar e como quer se sentir com a nova composição.",
-    "contactCta": "Quero começar meu projeto"
+    "contactCta": "Quero começar meu projeto",
+    "contactPending": "O número oficial de WhatsApp será ativado antes da publicação."
   },
   "jewelry": {
     "metaTitle": "Curadoria de joias",
@@ -145,7 +154,8 @@
     "emptyCta": "Conhecer as joias",
     "personalServiceLabel": "Atendimento pessoal",
     "disclaimer": "O envio da sacola não reserva estoque nem conclui uma compra. A ARTÍS confirma medidas, disponibilidade e valores antes de finalizar.",
-    "sendCta": "Enviar pedido pelo WhatsApp"
+    "sendCta": "Enviar pedido pelo WhatsApp",
+    "noscript": "Ative o JavaScript para montar e enviar sua sacola pelo WhatsApp."
   },
   "privacy": {
     "metaTitle": "Privacidade",

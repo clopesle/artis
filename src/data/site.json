@@ -2,10 +2,12 @@
   "name": "ARTÍS",
   "legalName": "ARTÍS",
   "tagline": "Onde anatomia encontra identidade.",
+  "wordmarkDescriptor": "design auricular",
   "description": "Design Auricular Digital Personalizado para você visualizar sua composição antes do primeiro furo.",
   "locale": "pt-BR",
   "currency": "BRL",
   "serviceArea": "Atendimento online para todo o Brasil",
+  "onlineServiceLabel": "Atendimento online",
   "instagramUrl": "",
   "whatsappNumber": "5531989319198",
   "messages": {

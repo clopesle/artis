@@ -161,7 +161,7 @@ const structuredData = {
         itemType="service"
         itemId={service.id}
         name={service.name}
-        detail="Atendimento online"
+        detail={site.onlineServiceLabel}
         priceLabel={service.price.label}
         label={pages.home.serviceCartCta}
       />
@@ -228,13 +228,7 @@ const structuredData = {
       <h2 class="headline">{pages.home.contactTitle}</h2>
       <p>{pages.home.contactDescription}</p>
       <WhatsAppLink message={messages.project} label={pages.home.contactCta} />
-      {
-        !hasWhatsApp && (
-          <p class="contact__pending">
-            O número oficial de WhatsApp será ativado antes da publicação.
-          </p>
-        )
-      }
+      {!hasWhatsApp && <p class="contact__pending">{pages.home.contactPending}</p>}
     </div>
   </section>
 </BaseLayout>

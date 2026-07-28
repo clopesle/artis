@@ -15,7 +15,7 @@ const links = pages.global.navigation.map((link) => ({
 
 {
   site.announcement.enabled && (
-    <aside class="site-announcement" aria-label="Aviso">
+    <aside class="site-announcement" aria-label={pages.global.announcementLabel}>
       <p>{site.announcement.text}</p>
       {site.announcement.href && site.announcement.linkLabel && (
         <a href={withBase(site.announcement.href)}>{site.announcement.linkLabel}</a>
@@ -25,11 +25,18 @@ const links = pages.global.navigation.map((link) => ({
 }
 
 <header class="site-header" data-site-header>
-  <a class="site-header__brand" href={withBase("/")} aria-label="ARTÍS, página inicial">
+  <a
+    class="site-header__brand"
+    href={withBase("/")}
+    aria-label={pages.global.brandHomeLabel}
+  >
     <Wordmark />
   </a>
 
-  <nav class="site-header__desktop-nav" aria-label="Navegação principal">
+  <nav
+    class="site-header__desktop-nav"
+    aria-label={pages.global.primaryNavigationLabel}
+  >
     {
       links.map((link) => (
         <a
@@ -55,12 +62,12 @@ const links = pages.global.navigation.map((link) => ({
   </div>
 
   <details class="site-header__menu">
-    <summary aria-label="Abrir menu">
+    <summary aria-label={pages.global.openMenuLabel}>
       <span></span>
       <span></span>
     </summary>
     <div class="site-header__menu-panel">
-      <nav aria-label="Navegação para dispositivos móveis">
+      <nav aria-label={pages.global.mobileNavigationLabel}>
         {
           links.map((link) => (
             <a

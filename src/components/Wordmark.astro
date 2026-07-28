@@ -1,4 +1,6 @@
 ---
+import site from "../data/site.json";
+
 interface Props {
   compact?: boolean;
 }
@@ -8,7 +10,7 @@ const { compact = false } = Astro.props;
 
 <span class:list={["wordmark", { "wordmark--compact": compact }]}>
   <span class="wordmark__name">ARTÍS</span>
-  {!compact && <span class="wordmark__descriptor">design auricular</span>}
+  {!compact && <span class="wordmark__descriptor">{site.wordmarkDescriptor}</span>}
 </span>
 
 <style>

@@ -1,6 +1,7 @@
 ---
 import products from "../data/products.json";
 import pages from "../data/pages.json";
+import site from "../data/site.json";
 import services from "../data/services.json";
 import type { CartItem } from "../lib/cart";
 import type { Product } from "../lib/content";
@@ -25,7 +26,7 @@ const cartCatalog: CartItem[] = [
       type: "service" as const,
       id: service.id,
       name: service.name,
-      detail: "Atendimento online",
+      detail: site.onlineServiceLabel,
       priceLabel: service.price.label,
       quantity: 1,
     })),
@@ -68,9 +69,7 @@ const cartCatalog: CartItem[] = [
     </div>
 
     <noscript>
-      <p class="cart__noscript">
-        Ative o JavaScript para montar e enviar sua sacola pelo WhatsApp.
-      </p>
+      <p class="cart__noscript">{pages.cart.noscript}</p>
     </noscript>
 
     <footer class="cart__footer" data-cart-footer hidden>

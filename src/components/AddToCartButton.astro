@@ -1,4 +1,5 @@
 ---
+import pages from "../data/pages.json";
 import type { CartItem, CartItemType } from "../lib/cart";
 
 interface Props {
@@ -17,7 +18,7 @@ const {
   name,
   detail,
   priceLabel,
-  label = "Adicionar à sacola",
+  label = pages.global.defaultCartCta,
   variant = "secondary",
 } = Astro.props;
 const item: CartItem = {

@@ -1,4 +1,5 @@
 ---
+import pages from "../data/pages.json";
 import { createWhatsAppUrl } from "../lib/contact";
 import { withBase } from "../lib/paths";
 
@@ -13,7 +14,7 @@ const {
   message,
   class: className,
   variant = "primary",
-  label = "Conversar pelo WhatsApp",
+  label = pages.global.defaultWhatsAppCta,
 } = Astro.props;
 const whatsappUrl = createWhatsAppUrl(message);
 const href = whatsappUrl ?? withBase("/#contato");
