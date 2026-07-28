@@ -25,7 +25,6 @@ const service: CartItem = {
   id: "design-auricular",
   name: "Design Auricular Digital Personalizado",
   detail: "Atendimento online",
-  priceLabel: "de R$ 150 a R$ 200",
   quantity: 1,
 };
 
@@ -65,7 +64,7 @@ describe("cart state", () => {
 });
 
 describe("buildOrderMessage", () => {
-  it("groups jewelry and services without exposing jewelry prices", () => {
+  it("groups jewelry and services without exposing prices", () => {
     const message = buildOrderMessage([
       { ...jewelry, quantity: 2 },
       { ...service, quantity: 1 },
@@ -75,8 +74,9 @@ describe("buildOrderMessage", () => {
     expect(message).toContain("2× Argola Clicker Cravejada");
     expect(message).toContain("Serviços:");
     expect(message).toContain(
-      "1× Design Auricular Digital Personalizado, Atendimento online (de R$ 150 a R$ 200)",
+      "1× Design Auricular Digital Personalizado, Atendimento online",
     );
+    expect(message).not.toContain("R$");
     expect(message).not.toContain("Fornecedor");
     expect(message).toContain("confirmar medidas, disponibilidade e valores das joias");
   });

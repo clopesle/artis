@@ -22,12 +22,6 @@ export const getStaticPaths = (() =>
 type Service = (typeof services)[number];
 const { service } = Astro.props as { service: Service };
 const processImage = getSiteImage(pages.serviceDetail.imageFile);
-const formatPrice = (amount: number) =>
-  new Intl.NumberFormat("pt-BR", {
-    style: "currency",
-    currency: service.price.currency,
-    maximumFractionDigits: 0,
-  }).format(amount);
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "Service",
@@ -38,13 +32,6 @@ const structuredData = {
     name: "ARTÍS",
   },
   areaServed: { "@type": "Country", name: "Brasil" },
-  offers: {
-    "@type": "AggregateOffer",
-    priceCurrency: service.price.currency,
-    lowPrice: service.price.min,
-    highPrice: service.price.max,
-    availability: "https://schema.org/InStock",
-  },
 };
 ---
 
@@ -100,21 +87,8 @@ const structuredData = {
     </ol>
   </section>
 
-  <section class="investment">
-    <div class="investment__label">
-      <p>{pages.serviceDetail.investmentLabel}</p>
-    </div>
-    <div class="investment__value" data-reveal>
-      <strong aria-label={service.price.label}>
-        <span>de</span>{" "}
-        <span class="price-amount">{formatPrice(service.price.min)}</span>{" "}
-        <span>a</span>{" "}
-        <span class="price-amount">{formatPrice(service.price.max)}</span>
-      </strong>
-      <p>{service.price.note}</p>
-    </div>
-    <div class="investment__benefit" data-reveal>
-      <p>{service.purchaseBenefit}</p>
+  <section class="service-actions section" data-reveal>
+    <div>
       <WhatsAppLink
         message={messages.project}
         label={pages.serviceDetail.contactCta}
@@ -125,7 +99,6 @@ const structuredData = {
         itemId={service.id}
         name={service.name}
         detail={site.onlineServiceLabel}
-        priceLabel={service.price.label}
         label={pages.serviceDetail.cartCta}
       />
     </div>
@@ -246,42 +219,14 @@ const structuredData = {
     font-size: 1.05rem;
   }
 
-  .investment {
-    display: grid;
+  .service-actions {
     background: var(--color-satin);
   }
 
-  .investment > div {
-    padding: clamp(1.75rem, 3vw, 3rem) var(--gutter);
-    border-bottom: 1px solid color-mix(in oklab, var(--color-graphite) 20%, transparent);
-  }
-
-  .investment__label p,
-  .investment__benefit p {
-    max-width: 34rem;
-    margin: 0;
-    line-height: 1.5;
-  }
-
-  .investment__value strong {
-    display: block;
-    font-family: var(--font-display);
-    font-size: clamp(2.75rem, 10vw, 4rem);
-    font-weight: 430;
-    letter-spacing: -0.05em;
-    line-height: 0.9;
-  }
-
-  .investment__value .price-amount {
-    white-space: nowrap;
-  }
-
-  .investment__value p {
-    margin: 1rem 0 0;
-  }
-
-  .investment__benefit :global(.button) {
-    margin-top: 2rem;
+  .service-actions > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
   }
 
   @media (min-width: 64rem) {
@@ -296,20 +241,6 @@ const structuredData = {
     .included {
       grid-template-columns: 0.8fr 1.2fr;
       gap: 4rem;
-    }
-
-    .investment {
-      grid-template-columns: 0.5fr 1fr 0.8fr;
-    }
-
-    .investment__value strong {
-      font-size: 4rem;
-    }
-
-    .investment > div {
-      border-right: 1px solid
-        color-mix(in oklab, var(--color-graphite) 20%, transparent);
-      border-bottom: 0;
     }
   }
 </style>

@@ -55,8 +55,8 @@ fabricating the approved mark.
   admin importer may add a confirmed material category after editorial review.
 - Customer-facing pages, the sacola, and WhatsApp messages must not expose which
   wholesale catalog supplies a jewelry item.
-- Jewelry prices remain hidden. An optional BRL amount is configurable in content for
-  non-confidential planning, while service prices remain visible.
+- Jewelry and service prices remain hidden. Configured values are only for
+  non-confidential internal planning and are not rendered publicly.
 - Jewelry is organized by editable material categories, initially Ouro, Titânio ASTM,
   Aço 316L, and PVD, and searchable by name, jewelry type, material, position, and
   descriptive attributes.
@@ -274,8 +274,8 @@ This definition will be refined with measurable acceptance criteria during disco
   catalogs.
 - Added category navigation, accent-insensitive search, local sacola persistence, and a
   combined jewelry-and-service WhatsApp order flow.
-- Configured the official WhatsApp number and verified that checkout messages omit
-  jewelry prices and supplier identity.
+- Configured the official WhatsApp number and verified that checkout messages omit all
+  prices and supplier identity.
 - Created the initial living decision log.
 - Recorded the repository as empty and inventoried missing project assets.
 - Transcribed confirmed constraints from the project brief.

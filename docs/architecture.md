@@ -35,9 +35,8 @@ account, payment checkout, or browser-based write credential. Every content publ
 is a Git commit.
 
 The customer sacola is temporary browser state stored under `artis-cart-v1` in
-`localStorage`. It contains only selected item identifiers, public labels, quantities,
-and the configured service price label. It never stores personal data, supplier
-information, credentials, or jewelry prices.
+`localStorage`. It contains only selected item identifiers, public labels, and
+quantities. It never stores personal data, supplier information, credentials, or prices.
 
 The main structured files are:
 

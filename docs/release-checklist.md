@@ -24,7 +24,7 @@
 - [x] Messages are correctly encoded and describe the originating context
 - [x] Catalog search and category filters return the expected jewelry
 - [x] Jewelry and services can be combined, updated, and removed from the sacola
-- [x] Sacola messages omit jewelry prices and supplier identity
+- [x] Sacola messages omit all prices and supplier identity
 - [ ] Mobile sticky action does not cover important content
 - [ ] Every page has a clear next action
 - [ ] Instagram profile links to the final HTTPS URL

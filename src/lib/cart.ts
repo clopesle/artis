@@ -1,5 +1,5 @@
 export const CART_STORAGE_KEY = "artis-cart-v1";
-const CART_VERSION = 1;
+const CART_VERSION = 2;
 const MAX_QUANTITY = 99;
 
 export type CartItemType = "product" | "service";
@@ -10,7 +10,6 @@ export interface CartItem {
   id: string;
   name: string;
   detail?: string;
-  priceLabel?: string;
   quantity: number;
 }
 
@@ -104,10 +103,7 @@ export function deserializeCart(value: string | null): CartItem[] {
 
 function messageLine(item: CartItem) {
   const detail = item.detail ? `, ${item.detail}` : "";
-  const price =
-    item.type === "service" && item.priceLabel ? ` (${item.priceLabel})` : "";
-
-  return `• ${item.quantity}× ${item.name}${detail}${price}`;
+  return `• ${item.quantity}× ${item.name}${detail}`;
 }
 
 export function buildOrderMessage(items: CartItem[]) {

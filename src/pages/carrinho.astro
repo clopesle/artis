@@ -27,7 +27,6 @@ const cartCatalog: CartItem[] = [
       id: service.id,
       name: service.name,
       detail: site.onlineServiceLabel,
-      priceLabel: service.price.label,
       quantity: 1,
     })),
 ];
@@ -170,11 +169,6 @@ const cartCatalog: CartItem[] = [
     copy.append(createTextElement("h3", item.name));
 
     if (item.detail) copy.append(createTextElement("p", item.detail));
-    if (item.type === "service" && item.priceLabel) {
-      const price = createTextElement("strong", item.priceLabel);
-      price.className = "cart-row__price";
-      copy.append(price);
-    }
 
     const controls = document.createElement("div");
     controls.className = "cart-row__controls";

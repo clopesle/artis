@@ -12,15 +12,15 @@ every publication recoverable through Git history.
 
 ## What each file controls
 
-| File              | Content                                                                  |
-| ----------------- | ------------------------------------------------------------------------ |
-| `site.json`       | Name, slogan, service area, public contact, and announcement             |
-| `pages.json`      | Navigation, page titles, paragraphs, calls to action, and interface copy |
-| `services.json`   | Service names, prices, descriptions, included items, and process         |
-| `products.json`   | Joias, prices, images, availability, order, and publication state        |
-| `projects.json`   | Authorized portfolio projects, images, categories, and publication state |
-| `faqs.json`       | Questions and answers                                                    |
-| `categories.json` | Materiais do catálogo, tipos de joias e categorias de portfólio          |
+| File              | Content                                                                   |
+| ----------------- | ------------------------------------------------------------------------- |
+| `site.json`       | Name, slogan, service area, public contact, and announcement              |
+| `pages.json`      | Navigation, page titles, paragraphs, calls to action, and interface copy  |
+| `services.json`   | Service names, internal prices, descriptions, included items, and process |
+| `products.json`   | Joias, prices, images, availability, order, and publication state         |
+| `projects.json`   | Authorized portfolio projects, images, categories, and publication state  |
+| `faqs.json`       | Questions and answers                                                     |
+| `categories.json` | Materiais do catálogo, tipos de joias e categorias de portfólio           |
 
 The protected `/admin/` panel uses these same files. Direct editing on GitHub remains
 available as a contingency and audit workflow.
@@ -33,9 +33,8 @@ available as a contingency and audit workflow.
 - Use `order` to control the remaining order; lower numbers appear first.
 - Use slugs with lowercase letters, numbers, and hyphens only.
 - Never reuse an `id` or `slug`.
-- Store service prices as customer-facing Brazilian Portuguese labels.
-- Product `price.amount` is configurable for internal planning, but the public site and
-  WhatsApp order intentionally omit jewelry prices.
+- Service and product prices remain configurable for internal planning, but the public
+  site, structured data, sacola, and WhatsApp order intentionally omit all prices.
 - Do not add a product until its material, price, availability, and images are
   confirmed.
 - Do not add a portfolio project until publication consent is recorded.
