@@ -267,7 +267,7 @@ const structuredData = {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: clamp(3.25rem, 9vw, 8rem) var(--gutter);
+    padding: clamp(3rem, 6vw, 5.5rem) var(--gutter);
   }
 
   .hero h1 {
@@ -302,7 +302,7 @@ const structuredData = {
 
   .hero__visual {
     position: relative;
-    min-height: 40rem;
+    min-height: 32rem;
     overflow: hidden;
     background: var(--color-linen);
   }
@@ -356,7 +356,7 @@ const structuredData = {
   .promise p {
     display: flex;
     align-items: center;
-    min-height: 4.5rem;
+    min-height: 3.75rem;
     margin: 0;
     padding: 1rem var(--gutter);
     font-size: 0.83rem;
@@ -366,7 +366,7 @@ const structuredData = {
 
   .problem {
     display: grid;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .problem__copy {
@@ -382,12 +382,12 @@ const structuredData = {
 
   .process-visual {
     position: relative;
-    width: min(calc(100% - 2 * var(--gutter)), 90rem);
+    width: min(calc(100% - 2 * var(--gutter)), var(--max-width));
     margin-inline: auto;
   }
 
   .process-visual__image {
-    min-height: 28rem;
+    min-height: 22rem;
     overflow: hidden;
     border-radius: var(--radius-image);
   }
@@ -436,7 +436,7 @@ const structuredData = {
 
   .process__steps {
     padding: 0;
-    margin: clamp(3.5rem, 7vw, 6rem) 0 0;
+    margin: clamp(2.5rem, 4vw, 4rem) 0 0;
     list-style: none;
     border-top: 1px solid var(--color-line-strong);
   }
@@ -482,7 +482,7 @@ const structuredData = {
 
   .service-highlight__main,
   .service-highlight__price {
-    padding: clamp(4rem, 9vw, 8rem) var(--gutter);
+    padding: clamp(3rem, 6vw, 5rem) var(--gutter);
   }
 
   .service-highlight .eyebrow {
@@ -527,14 +527,14 @@ const structuredData = {
   }
 
   .service-highlight__price .rule {
-    margin-block: 3rem;
+    margin-block: 2rem;
     background: color-mix(in oklab, var(--color-graphite) 24%, transparent);
   }
 
   .curation {
     display: grid;
     gap: 2rem;
-    min-height: 45rem;
+    min-height: 32rem;
   }
 
   .curation__index {
@@ -556,15 +556,15 @@ const structuredData = {
 
   .curation__object {
     position: relative;
-    min-height: 18rem;
+    min-height: 14rem;
   }
 
   .curation__ring {
     position: absolute;
     top: 1rem;
     right: 10%;
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
     border: 0.8rem solid var(--color-satin);
     border-radius: 50%;
     box-shadow:
@@ -574,7 +574,7 @@ const structuredData = {
 
   .curation__stone {
     position: absolute;
-    top: 7rem;
+    top: 5.5rem;
     right: 47%;
     width: 2.6rem;
     height: 2.6rem;
@@ -598,7 +598,7 @@ const structuredData = {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: clamp(6rem, 14vw, 12rem) var(--gutter);
+    padding: clamp(4rem, 8vw, 7rem) var(--gutter);
     text-align: center;
     background: var(--color-champagne);
   }
@@ -625,7 +625,7 @@ const structuredData = {
 
   .faq {
     display: grid;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .faq__list {
@@ -641,7 +641,7 @@ const structuredData = {
     grid-template-columns: 2rem 1fr 1.5rem;
     gap: 0.75rem;
     align-items: center;
-    min-height: 5rem;
+    min-height: 4.25rem;
     cursor: pointer;
     list-style: none;
   }
@@ -702,7 +702,7 @@ const structuredData = {
   .contact {
     position: relative;
     display: grid;
-    min-height: 42rem;
+    min-height: 30rem;
     overflow: hidden;
     background: var(--color-satin);
   }
@@ -712,7 +712,7 @@ const structuredData = {
     z-index: 2;
     align-self: center;
     max-width: 55rem;
-    padding: clamp(5rem, 11vw, 10rem) var(--gutter);
+    padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
   }
 
   .contact__copy > p:not(.eyebrow, .contact__pending) {
@@ -765,7 +765,7 @@ const structuredData = {
   @media (min-width: 64rem) {
     .hero {
       grid-template-columns: 1.02fr 0.98fr;
-      min-height: calc(100svh - 6.75rem);
+      min-height: min(44rem, calc(100svh - 5.25rem));
     }
 
     .hero__copy {
@@ -812,7 +812,7 @@ const structuredData = {
 
     .process__steps li {
       grid-template-columns: 5rem 1fr;
-      padding-block: 2.2rem;
+      padding-block: 1.6rem;
     }
 
     .service-highlight {
@@ -837,24 +837,24 @@ const structuredData = {
     }
 
     .curation__object {
-      min-height: 31rem;
+      min-height: 24rem;
     }
 
     .curation__ring {
       top: 2rem;
       right: 15%;
-      width: 13rem;
-      height: 13rem;
-      border-width: 1.2rem;
+      width: 9rem;
+      height: 9rem;
+      border-width: 0.9rem;
     }
 
     .curation__stone {
-      top: 15rem;
+      top: 11rem;
     }
 
     .faq {
       grid-template-columns: 0.65fr 1.35fr;
-      gap: 7rem;
+      gap: 4rem;
       align-items: start;
     }
 

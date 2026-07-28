@@ -139,12 +139,12 @@ const structuredData = {
 <style>
   .product-detail {
     display: grid;
-    min-height: calc(100svh - 6.75rem);
+    min-height: min(46rem, calc(100svh - 5.25rem));
   }
 
   .product-detail__gallery {
     display: grid;
-    min-height: 38rem;
+    min-height: 30rem;
     background: var(--color-linen);
   }
 
@@ -156,19 +156,19 @@ const structuredData = {
   }
 
   .product-detail__gallery :global(img) {
-    min-height: 38rem;
-    max-height: 52rem;
+    min-height: 30rem;
+    max-height: 44rem;
     object-fit: cover;
   }
 
   .product-detail__copy {
     align-self: center;
-    padding: clamp(4rem, 9vw, 8rem) var(--gutter);
+    padding: clamp(3rem, 6vw, 5rem) var(--gutter);
   }
 
   .product-detail__back {
     display: inline-block;
-    margin-bottom: 3rem;
+    margin-bottom: 2rem;
     color: var(--color-text-muted);
     text-decoration: none;
   }

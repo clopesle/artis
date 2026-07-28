@@ -125,7 +125,7 @@ const structuredData = {
   .service-hero {
     position: relative;
     display: grid;
-    min-height: 42rem;
+    min-height: 30rem;
     overflow: hidden;
     color: var(--color-paper);
     background: var(--color-graphite);
@@ -136,7 +136,7 @@ const structuredData = {
     z-index: 2;
     align-self: center;
     max-width: 68rem;
-    padding: clamp(5rem, 12vw, 11rem) var(--gutter);
+    padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
   }
 
   .service-hero__copy h1 {
@@ -162,7 +162,7 @@ const structuredData = {
     position: absolute;
     right: -6rem;
     bottom: -8rem;
-    width: min(85vw, 42rem);
+    width: min(70vw, 32rem);
     opacity: 0.28;
   }
 
@@ -187,8 +187,8 @@ const structuredData = {
   }
 
   .service-image {
-    width: min(calc(100% - 2 * var(--gutter)), 90rem);
-    max-height: 52rem;
+    width: min(calc(100% - 2 * var(--gutter)), var(--max-width));
+    max-height: 40rem;
     margin-inline: auto;
     overflow: hidden;
     border-radius: var(--radius-image);
@@ -207,7 +207,7 @@ const structuredData = {
 
   .included {
     display: grid;
-    gap: 3rem;
+    gap: 2rem;
   }
 
   .included ol {
@@ -241,7 +241,7 @@ const structuredData = {
   }
 
   .investment > div {
-    padding: clamp(2rem, 5vw, 5rem) var(--gutter);
+    padding: clamp(1.75rem, 3vw, 3rem) var(--gutter);
     border-bottom: 1px solid color-mix(in oklab, var(--color-graphite) 20%, transparent);
   }
 
@@ -280,7 +280,7 @@ const structuredData = {
 
     .included {
       grid-template-columns: 0.8fr 1.2fr;
-      gap: 7rem;
+      gap: 4rem;
     }
 
     .investment {

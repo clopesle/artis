@@ -90,7 +90,7 @@ const publishedProjects = (projects as Project[])
 <style>
   .projects-hero {
     position: relative;
-    min-height: 42rem;
+    min-height: 30rem;
     overflow: hidden;
     color: var(--color-paper);
     background: var(--color-graphite);
@@ -100,7 +100,7 @@ const publishedProjects = (projects as Project[])
     position: relative;
     z-index: 2;
     max-width: 70rem;
-    padding: clamp(5rem, 12vw, 11rem) var(--gutter);
+    padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
   }
 
   .projects-hero h1 {
@@ -120,7 +120,7 @@ const publishedProjects = (projects as Project[])
     position: absolute;
     right: -5rem;
     bottom: -10rem;
-    width: min(80vw, 38rem);
+    width: min(70vw, 30rem);
     opacity: 0.28;
   }
 
@@ -131,12 +131,12 @@ const publishedProjects = (projects as Project[])
 
   .projects-list {
     display: grid;
-    gap: clamp(3rem, 7vw, 6rem);
+    gap: clamp(2rem, 4vw, 3.5rem);
   }
 
   .projects-list__image {
     display: block;
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 1 / 1;
     overflow: hidden;
     background: var(--color-linen);
     border-radius: var(--radius-image);
@@ -194,7 +194,7 @@ const publishedProjects = (projects as Project[])
   }
 
   .project-principle {
-    padding: clamp(6rem, 15vw, 13rem) var(--gutter);
+    padding: clamp(4rem, 8vw, 7rem) var(--gutter);
     background: var(--color-champagne);
   }
 
@@ -214,11 +214,11 @@ const publishedProjects = (projects as Project[])
     }
 
     .projects-list {
-      grid-template-columns: repeat(2, 1fr);
+      grid-template-columns: repeat(3, 1fr);
     }
 
     .projects-list article:nth-child(even) {
-      padding-top: 8rem;
+      padding-top: 0;
     }
   }
 </style>

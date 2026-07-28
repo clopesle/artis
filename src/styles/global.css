@@ -14,8 +14,8 @@
   --color-line-strong: color-mix(in oklab, var(--color-graphite) 28%, transparent);
   --color-focus: oklch(53% 0.12 58);
 
-  --gutter: clamp(1.25rem, 4.5vw, 5.5rem);
-  --max-width: 90rem;
+  --gutter: clamp(1.25rem, 3.5vw, 4rem);
+  --max-width: 82rem;
   --radius-sm: 0.35rem;
   --radius-md: 0.9rem;
   --radius-image: clamp(0.9rem, 2vw, 1.8rem);
@@ -226,11 +226,11 @@ p {
 .section {
   width: min(100%, var(--max-width));
   margin-inline: auto;
-  padding: clamp(5rem, 11vw, 10rem) var(--gutter);
+  padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
 }
 
 .section--tight {
-  padding-block: clamp(3.5rem, 7vw, 6rem);
+  padding-block: clamp(2.75rem, 5vw, 4.5rem);
 }
 
 .rule {

@@ -47,8 +47,8 @@ rounded:
   pill: "999px"
 spacing:
   touch-target: "3.25rem"
-  section-mobile: "5rem"
-  section-fluid: "clamp(5rem, 11vw, 10rem)"
+  section-mobile: "3.5rem"
+  section-fluid: "clamp(3.5rem, 7vw, 6rem)"
 components:
   button-primary:
     backgroundColor: "{colors.warm-graphite}"
@@ -88,6 +88,7 @@ and ornamental excess.
 - Warm daylight, tactile paper, stone, and real skin texture
 - Thin construction lines used as evidence of process
 - Strong asymmetric typography balanced by quiet negative space
+- Compact storefront density: shallow sections and three-column desktop object grids
 - One decisive photograph instead of repeated decorative imagery
 - Mobile-first pacing for an Instagram-to-WhatsApp journey
 - Choreographed reveals with an immediate reduced-motion fallback

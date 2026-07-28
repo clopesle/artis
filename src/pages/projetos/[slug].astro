@@ -61,12 +61,12 @@ const { project } = Astro.props as { project: Project };
 <style>
   .project-detail__header {
     max-width: 82rem;
-    padding: clamp(5rem, 11vw, 10rem) var(--gutter);
+    padding: clamp(3.5rem, 7vw, 6rem) var(--gutter);
   }
 
   .project-detail__header > a {
     display: inline-block;
-    margin-bottom: 4rem;
+    margin-bottom: 2.5rem;
     color: var(--color-text-muted);
     text-decoration: none;
   }
@@ -80,8 +80,8 @@ const { project } = Astro.props as { project: Project };
   }
 
   .project-detail__image {
-    width: min(calc(100% - 2 * var(--gutter)), 90rem);
-    max-height: 58rem;
+    width: min(calc(100% - 2 * var(--gutter)), var(--max-width));
+    max-height: 44rem;
     margin-inline: auto;
     overflow: hidden;
     border-radius: var(--radius-image);
