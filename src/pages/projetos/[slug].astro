@@ -1,0 +1,137 @@
+---
+import { Image } from "astro:assets";
+import type { GetStaticPaths } from "astro";
+import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import { getCatalogImage } from "../../lib/catalog-images";
+import { messages } from "../../lib/contact";
+import type { Project } from "../../lib/content";
+import { withBase } from "../../lib/paths";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = (async () => {
+  const { default: projectsData } = await import("../../data/projects.json");
+  const projects = projectsData as Project[];
+
+  return projects
+    .filter((project) => project.published && project.consentConfirmed)
+    .map((project) => ({
+      params: { slug: project.slug },
+      props: { project },
+    }));
+}) satisfies GetStaticPaths;
+
+const { project } = Astro.props as { project: Project };
+---
+
+<BaseLayout title={project.title} description={project.shortDescription}>
+  <article class="project-detail">
+    <header class="project-detail__header" data-reveal>
+      <a href={withBase("/projetos/")}>← Voltar para projetos</a>
+      <p class="eyebrow">{project.categories.join(" • ")}</p>
+      <h1 class="display">{project.title}</h1>
+      <p class="lede">{project.shortDescription}</p>
+    </header>
+
+    <div class="project-detail__image" data-reveal>
+      <Image
+        src={getCatalogImage(project.image)}
+        alt={project.imageAlt}
+        widths={[640, 960, 1280, 1600]}
+        sizes="100vw"
+        format="avif"
+        quality={80}
+        loading="eager"
+      />
+    </div>
+
+    <div class="project-detail__story section" data-reveal>
+      <span aria-hidden="true">ARTÍS</span>
+      <div>
+        {project.description.map((paragraph) => <p>{paragraph}</p>)}
+        <WhatsAppLink
+          message={messages.portfolio}
+          label="Quero criar meu projeto"
+          variant="secondary"
+        />
+      </div>
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .project-detail__header {
+    max-width: 82rem;
+    padding: clamp(5rem, 11vw, 10rem) var(--gutter);
+  }
+
+  .project-detail__header > a {
+    display: inline-block;
+    margin-bottom: 4rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .project-detail__header h1 {
+    max-width: 11ch;
+  }
+
+  .project-detail__header .lede {
+    margin-top: 2rem;
+  }
+
+  .project-detail__image {
+    width: min(calc(100% - 2 * var(--gutter)), 90rem);
+    max-height: 58rem;
+    margin-inline: auto;
+    overflow: hidden;
+    border-radius: var(--radius-image);
+  }
+
+  .project-detail__image :global(picture),
+  .project-detail__image :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .project-detail__image :global(img) {
+    object-fit: cover;
+  }
+
+  .project-detail__story {
+    display: grid;
+    grid-template-columns: 4rem 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-detail__story > span {
+    color: var(--color-satin);
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    writing-mode: vertical-rl;
+  }
+
+  .project-detail__story > div {
+    max-width: 52rem;
+  }
+
+  .project-detail__story p {
+    color: var(--color-text-muted);
+    font-size: clamp(1.12rem, 2vw, 1.35rem);
+    line-height: 1.55;
+  }
+
+  .project-detail__story :global(.button) {
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .project-detail__story {
+      grid-template-columns: 0.6fr 1.4fr;
+    }
+
+    .project-detail__story > div {
+      justify-self: end;
+    }
+  }
+</style>

@@ -1,4 +1,4 @@
-import { readFile } from "node:fs/promises";
+import { access, readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 
 const projectRoot = fileURLToPath(new URL("../", import.meta.url));
@@ -97,6 +97,61 @@ for (const [collectionName, items] of [
       typeof item.published === "boolean",
       `${path}.published deve ser true ou false.`,
     );
+
+    if (item.published && collectionName === "products") {
+      assert(item.shortDescription, `${path}.shortDescription é obrigatória.`);
+      assert(
+        Array.isArray(item.description) && item.description.length > 0,
+        `${path}.description deve conter pelo menos um parágrafo.`,
+      );
+      assert(item.category, `${path}.category é obrigatória.`);
+      assert(item.material, `${path}.material é obrigatório.`);
+      assert(item.priceLabel, `${path}.priceLabel é obrigatório.`);
+      assert(
+        ["disponivel", "sob-consulta", "indisponivel"].includes(item.availability),
+        `${path}.availability é inválida.`,
+      );
+      assert(
+        Array.isArray(item.images) && item.images.length > 0,
+        `${path}.images deve conter pelo menos uma imagem.`,
+      );
+
+      for (const image of item.images) {
+        try {
+          await access(new URL(`../src/assets/catalog/${image}`, import.meta.url));
+        } catch {
+          throw new Error(
+            `${path} referencia a imagem ausente src/assets/catalog/${image}.`,
+          );
+        }
+      }
+    }
+
+    if (item.published && collectionName === "projects") {
+      assert(
+        item.consentConfirmed === true,
+        `${path} não pode ser publicado sem consentConfirmed: true.`,
+      );
+      assert(item.shortDescription, `${path}.shortDescription é obrigatória.`);
+      assert(
+        Array.isArray(item.description) && item.description.length > 0,
+        `${path}.description deve conter pelo menos um parágrafo.`,
+      );
+      assert(item.image, `${path}.image é obrigatória.`);
+      assert(item.imageAlt, `${path}.imageAlt é obrigatória.`);
+      assert(
+        Array.isArray(item.categories) && item.categories.length > 0,
+        `${path}.categories deve conter pelo menos uma categoria.`,
+      );
+
+      try {
+        await access(new URL(`../src/assets/catalog/${item.image}`, import.meta.url));
+      } catch {
+        throw new Error(
+          `${path} referencia a imagem ausente src/assets/catalog/${item.image}.`,
+        );
+      }
+    }
   }
 }
 

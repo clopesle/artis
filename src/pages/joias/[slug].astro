@@ -1,0 +1,167 @@
+---
+import { Image } from "astro:assets";
+import type { GetStaticPaths } from "astro";
+import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import { getCatalogImage } from "../../lib/catalog-images";
+import { messages } from "../../lib/contact";
+import type { Product } from "../../lib/content";
+import { withBase } from "../../lib/paths";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+
+export const getStaticPaths = (async () => {
+  const { default: productsData } = await import("../../data/products.json");
+  const products = productsData as Product[];
+
+  return products
+    .filter((product) => product.published)
+    .map((product) => ({
+      params: { slug: product.slug },
+      props: { product },
+    }));
+}) satisfies GetStaticPaths;
+
+const { product } = Astro.props as { product: Product };
+const availabilityLabels: Record<Product["availability"], string> = {
+  disponivel: "Disponível",
+  "sob-consulta": "Disponibilidade sob consulta",
+  indisponivel: "Indisponível",
+};
+const message = `${messages.jewelry} Tenho interesse em: ${product.name}.`;
+---
+
+<BaseLayout title={product.name} description={product.shortDescription}>
+  <article class="product-detail">
+    <div class="product-detail__image" data-reveal>
+      <Image
+        src={getCatalogImage(product.images[0])}
+        alt={`${product.name}, joia selecionada pela ARTÍS`}
+        widths={[640, 960, 1280]}
+        sizes="(min-width: 64rem) 52vw, 100vw"
+        format="avif"
+        quality={80}
+        loading="eager"
+      />
+    </div>
+    <div class="product-detail__copy" data-reveal>
+      <a class="product-detail__back" href={withBase("/joias/")}>
+        ← Voltar para joias
+      </a>
+      <p class="eyebrow">{product.category}</p>
+      <h1 class="display">{product.name}</h1>
+      <p class="lede">{product.shortDescription}</p>
+
+      <dl>
+        <div>
+          <dt>Material</dt>
+          <dd>{product.material}</dd>
+        </div>
+        <div>
+          <dt>Disponibilidade</dt>
+          <dd>{availabilityLabels[product.availability]}</dd>
+        </div>
+      </dl>
+
+      <strong class="product-detail__price">{product.priceLabel}</strong>
+
+      {
+        product.description.map((paragraph) => (
+          <p class="product-detail__description">{paragraph}</p>
+        ))
+      }
+
+      {
+        product.availability !== "indisponivel" && (
+          <WhatsAppLink message={message} label="Consultar esta joia" />
+        )
+      }
+    </div>
+  </article>
+</BaseLayout>
+
+<style>
+  .product-detail {
+    display: grid;
+    min-height: calc(100svh - 6.75rem);
+  }
+
+  .product-detail__image {
+    min-height: 38rem;
+    background: var(--color-linen);
+  }
+
+  .product-detail__image :global(picture),
+  .product-detail__image :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .product-detail__image :global(img) {
+    object-fit: cover;
+  }
+
+  .product-detail__copy {
+    align-self: center;
+    padding: clamp(4rem, 9vw, 8rem) var(--gutter);
+  }
+
+  .product-detail__back {
+    display: inline-block;
+    margin-bottom: 3rem;
+    color: var(--color-text-muted);
+    text-decoration: none;
+  }
+
+  .product-detail h1 {
+    max-width: 8ch;
+  }
+
+  .product-detail .lede {
+    margin-block: 2rem;
+  }
+
+  .product-detail dl {
+    margin: 0 0 2rem;
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  .product-detail dl > div {
+    display: grid;
+    grid-template-columns: 8rem 1fr;
+    gap: 1rem;
+    padding-block: 0.9rem;
+    border-bottom: 1px solid var(--color-line-strong);
+  }
+
+  .product-detail dt {
+    color: var(--color-text-muted);
+  }
+
+  .product-detail dd {
+    margin: 0;
+  }
+
+  .product-detail__price {
+    display: block;
+    margin-bottom: 2rem;
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 450;
+  }
+
+  .product-detail__description {
+    max-width: 42rem;
+    color: var(--color-text-muted);
+    line-height: 1.55;
+  }
+
+  .product-detail :global(.button) {
+    margin-top: 1.5rem;
+  }
+
+  @media (min-width: 64rem) {
+    .product-detail {
+      grid-template-columns: 1.05fr 0.95fr;
+    }
+  }
+</style>

@@ -56,9 +56,8 @@ every publication recoverable through Git history.
 3. Use a short lowercase filename with hyphens.
 4. Keep original images reasonably sized; use at least 1600px on the long edge for
    editorial photography.
-5. Upload the source under `src/assets/`.
-6. Add its filename to the relevant content entry only after a developer connects that
-   content type to Astro's image pipeline.
+5. Upload the source under `src/assets/catalog/`.
+6. Add its filename to the relevant content entry.
 7. Add a precise `imageAlt` in Brazilian Portuguese.
 
 Do not upload client images directly into `public/`; that bypasses image optimization.
@@ -75,6 +74,9 @@ Do not upload client images directly into `public/`; that bypasses image optimiz
   "featured": false,
   "name": "Nome confirmado",
   "shortDescription": "Descrição confirmada",
+  "description": ["Primeiro parágrafo aprovado.", "Segundo parágrafo opcional."],
+  "category": "Piercing",
+  "material": "Ouro 18k",
   "priceLabel": "R$ 000",
   "availability": "sob-consulta",
   "images": ["nome-do-arquivo.jpg"]
@@ -96,6 +98,7 @@ been reviewed.
   "featured": false,
   "title": "Título aprovado",
   "shortDescription": "Contexto aprovado",
+  "description": ["História aprovada do projeto."],
   "image": "nome-do-arquivo.jpg",
   "imageAlt": "Descrição objetiva em português",
   "categories": ["minimalista"],

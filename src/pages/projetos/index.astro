@@ -1,9 +1,12 @@
 ---
+import { Image } from "astro:assets";
 import EarBlueprint from "../../components/EarBlueprint.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import projects from "../../data/projects.json";
+import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
 import type { Project } from "../../lib/content";
+import { withBase } from "../../lib/paths";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 const publishedProjects = (projects as Project[]).filter(
@@ -33,8 +36,26 @@ const publishedProjects = (projects as Project[]).filter(
     publishedProjects.length > 0 ? (
       <section class="projects-list section">
         {publishedProjects.map((project) => (
-          <article>
-            <h2>{project.title}</h2>
+          <article data-reveal>
+            <a
+              class="projects-list__image"
+              href={withBase(`/projetos/${project.slug}/`)}
+              aria-label={`Conhecer o projeto ${project.title}`}
+            >
+              <Image
+                src={getCatalogImage(project.image)}
+                alt={project.imageAlt}
+                widths={[480, 720, 960]}
+                sizes="(min-width: 64rem) 42vw, 100vw"
+                format="avif"
+                quality={78}
+              />
+            </a>
+            <p>{project.categories.join(" • ")}</p>
+            <h2 class="title">
+              <a href={withBase(`/projetos/${project.slug}/`)}>{project.title}</a>
+            </h2>
+            <p>{project.shortDescription}</p>
           </article>
         ))}
       </section>
@@ -107,6 +128,54 @@ const publishedProjects = (projects as Project[]).filter(
     gap: 2rem;
   }
 
+  .projects-list {
+    display: grid;
+    gap: clamp(3rem, 7vw, 6rem);
+  }
+
+  .projects-list__image {
+    display: block;
+    aspect-ratio: 4 / 5;
+    overflow: hidden;
+    background: var(--color-linen);
+    border-radius: var(--radius-image);
+  }
+
+  .projects-list__image :global(picture),
+  .projects-list__image :global(img) {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .projects-list__image :global(img) {
+    object-fit: cover;
+    transition: transform 620ms var(--ease-out);
+  }
+
+  .projects-list__image:hover :global(img) {
+    transform: scale(1.025);
+  }
+
+  .projects-list article > p:first-of-type {
+    margin: 1.2rem 0 0.8rem;
+    color: var(--color-bronze);
+    font-size: 0.72rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .projects-list h2 a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .projects-list article > p:last-child {
+    max-width: 38rem;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
   .portfolio-pending > span {
     color: var(--color-bronze);
     font-size: 0.75rem;
@@ -141,6 +210,14 @@ const publishedProjects = (projects as Project[]).filter(
   @media (min-width: 64rem) {
     .portfolio-pending {
       grid-template-columns: 0.5fr 1.5fr;
+    }
+
+    .projects-list {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .projects-list article:nth-child(even) {
+      padding-top: 8rem;
     }
   }
 </style>

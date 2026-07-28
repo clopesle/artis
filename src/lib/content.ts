@@ -5,6 +5,9 @@ export interface Product {
   featured?: boolean;
   name: string;
   shortDescription: string;
+  description: string[];
+  category: string;
+  material: string;
   priceLabel: string;
   availability: "disponivel" | "sob-consulta" | "indisponivel";
   images: string[];
@@ -17,6 +20,7 @@ export interface Project {
   featured?: boolean;
   title: string;
   shortDescription: string;
+  description: string[];
   image: string;
   imageAlt: string;
   categories: string[];
