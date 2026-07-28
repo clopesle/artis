@@ -259,6 +259,24 @@ p {
   }
 }
 
+@media (min-width: 64rem) {
+  html {
+    font-size: 17px;
+  }
+
+  .display {
+    font-size: clamp(4.5rem, 7vw, 7rem);
+  }
+
+  .headline {
+    font-size: clamp(3.15rem, 4.5vw, 4.75rem);
+  }
+
+  .title {
+    font-size: clamp(2rem, 2.5vw, 2.5rem);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

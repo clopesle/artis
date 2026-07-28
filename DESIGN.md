@@ -18,23 +18,31 @@ typography:
     fontWeight: 430
     lineHeight: 0.84
     letterSpacing: "-0.045em"
+  displayDesktop:
+    fontSize: "clamp(4.5rem, 7vw, 7rem)"
   headline:
     fontFamily: "Bodoni Moda Variable, Iowan Old Style, serif"
     fontSize: "clamp(2.65rem, 7vw, 6rem)"
     fontWeight: 430
     lineHeight: 0.94
     letterSpacing: "-0.04em"
+  headlineDesktop:
+    fontSize: "clamp(3.15rem, 4.5vw, 4.75rem)"
   title:
     fontFamily: "Bodoni Moda Variable, Iowan Old Style, serif"
     fontSize: "clamp(1.9rem, 4vw, 3.4rem)"
     fontWeight: 460
     lineHeight: 1
     letterSpacing: "-0.025em"
+  titleDesktop:
+    fontSize: "clamp(2rem, 2.5vw, 2.5rem)"
   body:
     fontFamily: "Afacad Flux Variable, Helvetica Neue, sans-serif"
     fontSize: "1rem"
     fontWeight: 400
     lineHeight: 1.55
+  bodyDesktop:
+    rootFontSize: "17px"
   label:
     fontFamily: "Afacad Flux Variable, Helvetica Neue, sans-serif"
     fontSize: "0.74rem"
