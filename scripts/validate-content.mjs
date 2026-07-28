@@ -71,6 +71,17 @@ assert(
   pages.home?.heroTitle,
   "src/data/pages.json deve conter os textos da página inicial.",
 );
+for (const path of [
+  "home.heroImageFile",
+  "home.processImageFile",
+  "serviceDetail.imageFile",
+]) {
+  const [section, key] = path.split(".");
+  assert(
+    typeof pages[section]?.[key] === "string" && pages[section][key].trim(),
+    `src/data/pages.json ${path} deve conter uma imagem editorial.`,
+  );
+}
 assert(
   pages.jewelry?.catalogTitle,
   "src/data/pages.json deve conter os textos da joalheria.",

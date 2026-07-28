@@ -49,6 +49,7 @@
     "heroPrimaryCta": "Quero visualizar minha orelha",
     "heroSecondaryCta": "Entender o processo",
     "heroNote": "O projeto é seu.",
+    "heroImageFile": "hero-artis.png",
     "heroImageAlt": "Mulher adulta de pele morena com uma composição auricular delicada em joias douradas",
     "heroVisualLabel": "projeto 01",
     "heroVisualNote": "proporção • intenção • identidade",
@@ -64,6 +65,7 @@
       "Na ARTÍS, cada escolha começa pela escuta. Antes de perfurar, a gente visualiza, compara possibilidades e desenha uma composição que faça sentido para você."
     ],
     "processImageAlt": "Mão usando uma caneta digital para planejar uma composição auricular em um tablet",
+    "processImageFile": "processo-artis.png",
     "processCaption": "A anatomia não limita o projeto. Ela mostra por onde uma composição única pode começar.",
     "processEyebrow": "Como funciona",
     "processTitle": "Da conversa à visualização.",
@@ -134,6 +136,7 @@
   },
   "serviceDetail": {
     "heroCta": "Quero meu projeto personalizado",
+    "imageFile": "processo-artis.png",
     "imageAlt": "Criação de um Design Auricular Digital em um tablet",
     "includedEyebrow": "O que você recebe",
     "includedTitle": "Um projeto para decidir com calma.",

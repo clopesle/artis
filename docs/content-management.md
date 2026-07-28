@@ -71,6 +71,16 @@ available as a contingency and audit workflow.
 
 Do not upload client images directly into `public/`; that bypasses image optimization.
 
+## Placing an editorial image with text
+
+Open **Textos das páginas** in `/admin/`. The top of the editor lists every current
+editorial image and the exact place where it is rendered. Each image field includes a
+preview, a selector for an existing uploaded image, and **Enviar e usar nesta posição**.
+
+After sending an image, save the text page as well. The upload stores the asset in the
+repository first; saving the text records where the image is used. This keeps image use
+reviewable in Git history and avoids orphaned visual content.
+
 ## Adding a product
 
 `products.json` contains the approved curatorial catalog. A valid entry follows this

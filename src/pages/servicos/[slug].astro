@@ -4,11 +4,11 @@ import type { GetStaticPaths } from "astro";
 import AddToCartButton from "../../components/AddToCartButton.astro";
 import EarBlueprint from "../../components/EarBlueprint.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
-import processImage from "../../assets/processo-artis.png";
 import pages from "../../data/pages.json";
 import site from "../../data/site.json";
 import services from "../../data/services.json";
 import { messages } from "../../lib/contact";
+import { getSiteImage } from "../../lib/site-images";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 
 export const getStaticPaths = (() =>
@@ -21,6 +21,7 @@ export const getStaticPaths = (() =>
 
 type Service = (typeof services)[number];
 const { service } = Astro.props as { service: Service };
+const processImage = getSiteImage(pages.serviceDetail.imageFile);
 const formatPrice = (amount: number) =>
   new Intl.NumberFormat("pt-BR", {
     style: "currency",

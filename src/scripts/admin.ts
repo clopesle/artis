@@ -111,6 +111,25 @@ const sections: Section[] = [
   },
 ];
 
+const EDITORIAL_IMAGE_USAGES = [
+  {
+    section: "home",
+    key: "heroImageFile",
+    location: "Página inicial · imagem de destaque",
+  },
+  {
+    section: "home",
+    key: "processImageFile",
+    location: "Página inicial · imagem do processo",
+  },
+  {
+    section: "serviceDetail",
+    key: "imageFile",
+    location: "Página de serviço · imagem editorial",
+  },
+] as const;
+const DEFAULT_EDITORIAL_IMAGES = ["hero-artis.png", "processo-artis.png"];
+
 const root = document.querySelector<HTMLElement>("#admin-root")!;
 const bridgeUrl = root.dataset.bridgeUrl?.replace(/\/$/, "") ?? "";
 const authScreen = document.querySelector<HTMLElement>("#auth-screen")!;
@@ -307,6 +326,142 @@ function selectOptions(key: string, currentValue: string): string[] | null {
   return options.includes(currentValue) ? options : [currentValue, ...options];
 }
 
+function editorialImageUrl(filename: string) {
+  const repository = session?.repository ?? "clopesle/artis";
+  return `https://raw.githubusercontent.com/${repository}/main/src/assets/${filename}`;
+}
+
+function addSelectOption(select: HTMLSelectElement, value: string) {
+  if (Array.from(select.options).some((option) => option.value === value)) return;
+  const option = element("option", { text: value });
+  option.value = value;
+  select.append(option);
+}
+
+function renderImageReferenceField(
+  parent: HTMLElement,
+  key: string,
+  value: string,
+  update: (value: string) => void,
+) {
+  const field = element("div", { className: "field image-reference" });
+  const label = element("label", { text: labelFor(key) });
+  const preview = element("img");
+  preview.src = editorialImageUrl(value);
+  preview.alt = "Prévia da imagem editorial selecionada";
+  preview.loading = "lazy";
+
+  const select = element("select");
+  addSelectOption(select, value);
+  DEFAULT_EDITORIAL_IMAGES.forEach((filename) => addSelectOption(select, filename));
+  select.value = value;
+  select.addEventListener("change", () => {
+    preview.src = editorialImageUrl(select.value);
+    update(select.value);
+  });
+
+  const fileInput = element("input");
+  fileInput.type = "file";
+  fileInput.accept = ".avif,.jpg,.jpeg,.png,.webp";
+  fileInput.hidden = true;
+  const upload = element("button", {
+    className: "button secondary small",
+    text: "Enviar e usar nesta posição",
+    type: "button",
+  });
+  upload.addEventListener("click", () => fileInput.click());
+  fileInput.addEventListener("change", async () => {
+    const file = fileInput.files?.[0];
+    if (!file) return;
+    const safeName = slugify(file.name.replace(/\.[^.]+$/, ""));
+    const extension = file.name.split(".").at(-1)?.toLowerCase();
+    if (
+      !safeName ||
+      !extension ||
+      !["avif", "jpg", "jpeg", "png", "webp"].includes(extension)
+    ) {
+      field.append(notice("Use uma imagem AVIF, JPG, PNG ou WebP.", "error"));
+      return;
+    }
+    const filename = `catalog/${safeName}.${extension}`;
+    upload.disabled = true;
+    upload.textContent = "Enviando…";
+    try {
+      await api("/api/content", {
+        method: "PUT",
+        body: JSON.stringify({
+          path: `src/assets/${filename}`,
+          message: `admin: adicionar imagem editorial ${safeName}.${extension}`,
+          encoding: "base64",
+          content: await blobToBase64(file),
+        }),
+      });
+      addSelectOption(select, filename);
+      select.value = filename;
+      preview.src = editorialImageUrl(filename);
+      update(filename);
+      field.append(
+        notice(
+          "Imagem enviada. Salve os textos para publicar esta referência na página.",
+          "success",
+        ),
+      );
+    } catch (error) {
+      field.append(
+        notice(
+          error instanceof Error ? error.message : "Falha ao enviar a imagem.",
+          "error",
+        ),
+      );
+    } finally {
+      upload.disabled = false;
+      upload.textContent = "Enviar e usar nesta posição";
+      fileInput.value = "";
+    }
+  });
+
+  const controls = element("div", { className: "image-reference__controls" });
+  controls.append(select, upload, fileInput);
+  field.append(label, preview, controls);
+  parent.append(field);
+
+  void api<RepositoryFile[]>("/api/content?path=src%2Fassets%2Fcatalog")
+    .then((files) => {
+      files
+        .filter((file) => file.type === "file" && file.name !== ".gitkeep")
+        .forEach((file) => addSelectOption(select, `catalog/${file.name}`));
+    })
+    .catch(() => undefined);
+}
+
+function renderEditorialImageUsage(data: JsonObject) {
+  const usage = element("section", { className: "editorial-image-usage" });
+  usage.append(
+    element("div", { className: "field-label", text: "Imagens usadas nesta página" }),
+    element("p", {
+      text: "Cada imagem aparece na posição indicada abaixo. Use o seletor ou o envio junto ao respectivo campo para trocá-la.",
+    }),
+  );
+  const list = element("div", { className: "editorial-image-usage__list" });
+  EDITORIAL_IMAGE_USAGES.forEach(({ section, key, location }) => {
+    const filename = String((data[section] as JsonObject | undefined)?.[key] ?? "");
+    const item = element("article", { className: "editorial-image-usage__item" });
+    const image = element("img");
+    image.src = editorialImageUrl(filename);
+    image.alt = "";
+    image.loading = "lazy";
+    const body = element("div");
+    body.append(
+      element("strong", { text: location }),
+      element("small", { text: filename || "Sem imagem selecionada" }),
+    );
+    item.append(image, body);
+    list.append(item);
+  });
+  usage.append(list);
+  return usage;
+}
+
 function renderPrimitiveField(
   parent: HTMLElement,
   key: string,
@@ -445,6 +600,11 @@ function renderObjectFields(
         object[key] = next;
         onChange();
       });
+    } else if (key.endsWith("ImageFile") && typeof value === "string") {
+      renderImageReferenceField(parent, key, value, (next) => {
+        object[key] = next;
+        onChange();
+      });
     } else if (value !== null && typeof value === "object") {
       const fieldset = element("fieldset");
       fieldset.append(element("legend", { text: labelFor(key) }));
@@ -474,6 +634,9 @@ async function renderStructuredSection(section: Section) {
   workspace.replaceChildren(editorIntro(section));
   if (section.mode === "object") {
     const panel = element("div", { className: "editor-panel" });
+    if (section.id === "pages") {
+      panel.append(renderEditorialImageUsage(record.data as JsonObject));
+    }
     const fields = element("div", { className: "fields" });
     renderObjectFields(fields, record.data as JsonObject, () => markDirty(record));
     panel.append(fields);
