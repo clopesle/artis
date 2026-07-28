@@ -1,1 +1,362 @@
-[]
+[
+  {
+    "id": "argola-clicker-cravejada-ouro",
+    "slug": "argola-clicker-cravejada-ouro-18k",
+    "published": true,
+    "featured": true,
+    "order": 10,
+    "name": "Argola Clicker Cravejada",
+    "shortDescription": "Uma linha contínua de zircônias em uma argola delicada de ouro 18K.",
+    "description": [
+      "O clicker facilita a abertura e mantém o desenho limpo quando fechado.",
+      "A curvatura com brilho frontal funciona como ponto principal em composições delicadas."
+    ],
+    "category": "Argolas",
+    "material": "Ouro 18K",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker",
+    "stone": "Zircônia cúbica cristal",
+    "options": ["0,8 × 11 mm", "0,8 × 12 mm"],
+    "suggestedPlacements": ["Hélix", "Lóbulo", "Conch", "Daith"],
+    "images": [
+      {
+        "src": "argola-clicker-cravejada-ouro.png",
+        "alt": "Argola clicker de ouro 18K com uma fileira frontal de zircônias cristal"
+      }
+    ]
+  },
+  {
+    "id": "segmento-d-cravejado-ouro",
+    "slug": "segmento-d-cravejado-ouro-18k",
+    "published": true,
+    "featured": false,
+    "order": 20,
+    "name": "Segmento D Cravejado",
+    "shortDescription": "Ouro 18K e zircônias em um desenho frontal que acompanha a curva da orelha.",
+    "description": [
+      "O formato em D aproxima a fileira de pedras da anatomia e cria uma leitura precisa de frente.",
+      "Uma escolha de presença para conch, hélix ou lóbulo, sempre após avaliação de medida."
+    ],
+    "category": "Argolas",
+    "material": "Ouro 18K",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker",
+    "stone": "Zircônia cúbica cristal",
+    "options": ["1,0 × 10 mm", "1,0 × 12 mm"],
+    "suggestedPlacements": ["Conch", "Hélix", "Lóbulo", "Daith"],
+    "images": [
+      {
+        "src": "segmento-d-cravejado-ouro.jpg",
+        "alt": "Segmento em formato D de ouro 18K com zircônias cristal na parte frontal"
+      }
+    ]
+  },
+  {
+    "id": "segmento-liso-titanio",
+    "slug": "segmento-liso-titanio",
+    "published": true,
+    "featured": false,
+    "order": 30,
+    "name": "Segmento Liso",
+    "shortDescription": "Uma argola essencial em titânio ASTM F136, leve e sem ornamentos.",
+    "description": [
+      "A superfície contínua mantém a composição silenciosa e deixa outros pontos de brilho respirarem.",
+      "Disponível em diferentes diâmetros e espessuras para adequação profissional à anatomia."
+    ],
+    "category": "Argolas",
+    "material": "Titânio ASTM F136",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker",
+    "options": ["0,8 a 1,6 mm de espessura", "5 a 14 mm de diâmetro"],
+    "suggestedPlacements": ["Hélix", "Lóbulo", "Conch", "Rook", "Daith"],
+    "images": [
+      {
+        "src": "segmento-liso-titanio.jpg",
+        "alt": "Argola lisa articulada em titânio polido de cor prateada"
+      }
+    ]
+  },
+  {
+    "id": "argola-trio-zirconias",
+    "slug": "argola-trio-zirconias-titanio",
+    "published": true,
+    "featured": false,
+    "order": 40,
+    "name": "Argola Trio de Zircônias",
+    "shortDescription": "Três pequenos grupos de brilho estruturam esta argola de titânio.",
+    "description": [
+      "O ritmo das esferas e zircônias cria textura sem perder a leveza do desenho.",
+      "Pode ser escolhida em titânio natural ou com acabamento PVD Gold."
+    ],
+    "category": "Argolas",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker",
+    "stone": "Zircônia cúbica cristal",
+    "options": ["1,2 × 8 mm", "Titânio natural", "PVD Gold"],
+    "suggestedPlacements": ["Daith", "Hélix", "Lóbulo"],
+    "images": [
+      {
+        "src": "argola-trio-zirconias.jpg",
+        "alt": "Argola de titânio com três grupos de esferas e zircônias, nas versões natural e dourada"
+      }
+    ]
+  },
+  {
+    "id": "argola-pingente-gota",
+    "slug": "argola-pingente-gota-titanio",
+    "published": true,
+    "featured": true,
+    "order": 50,
+    "name": "Argola com Gota Lapidada",
+    "shortDescription": "Uma gota suspensa encontra uma linha precisa de zircônias.",
+    "description": [
+      "O pingente traz movimento para pontos que aceitam uma composição mais longa.",
+      "A estrutura em titânio pode ser escolhida no acabamento natural ou PVD Gold."
+    ],
+    "category": "Argolas",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker",
+    "stone": "Zircônia cúbica",
+    "options": ["1,0 × 8 mm", "1,0 × 10 mm", "Titânio natural", "PVD Gold"],
+    "suggestedPlacements": ["Hélix", "Lóbulo"],
+    "images": [
+      {
+        "src": "argola-pingente-gota.jpeg",
+        "alt": "Argola clicker com fileira de zircônias e pingente em forma de gota, nas versões prateada e dourada"
+      }
+    ]
+  },
+  {
+    "id": "argola-zirconias-aco",
+    "slug": "argola-zirconias-aco-316l",
+    "published": true,
+    "featured": false,
+    "order": 60,
+    "name": "Argola Zircônias em Garra",
+    "shortDescription": "Zircônias aparentes desenham uma frente luminosa sobre aço cirúrgico 316L.",
+    "description": [
+      "As garras deixam a entrada de luz livre e criam um brilho nítido na composição.",
+      "Há opções em aço natural e em aço com revestimento PVD Gold."
+    ],
+    "category": "Argolas",
+    "material": "Aço cirúrgico 316L ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker",
+    "stone": "Zircônia cúbica",
+    "options": ["1,2 × 8 mm", "1,2 × 10 mm", "1,2 × 11 mm", "Aço natural", "PVD Gold"],
+    "suggestedPlacements": ["Hélix", "Conch", "Lóbulo"],
+    "images": [
+      {
+        "src": "argola-zirconias-aco.jpeg",
+        "alt": "Argola clicker em aço 316L com zircônias presas por garras, nas versões prateada e dourada"
+      }
+    ]
+  },
+  {
+    "id": "labret-zirconia-pvd",
+    "slug": "labret-zirconia-titanio-pvd-gold",
+    "published": true,
+    "featured": false,
+    "order": 70,
+    "name": "Labret Ponto de Luz",
+    "shortDescription": "Um ponto de zircônia em titânio com acabamento PVD Gold.",
+    "description": [
+      "O topo compacto cria um brilho pontual, útil para equilibrar peças maiores.",
+      "A rosca interna oferece uma superfície de inserção mais suave e permite diferentes medidas."
+    ],
+    "category": "Labrets",
+    "material": "Titânio ASTM F136 com PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Rosca interna",
+    "stone": "Zircônia cúbica cristal",
+    "options": ["1,2 ou 1,6 mm", "Hastes de 6 a 10 mm", "Topos de 2 a 4 mm"],
+    "suggestedPlacements": ["Tragus", "Hélix", "Lóbulo", "Flat"],
+    "images": [
+      {
+        "src": "labret-zirconia-pvd.jpg",
+        "alt": "Labret dourado com topo pequeno de zircônia cristal e base plana"
+      }
+    ]
+  },
+  {
+    "id": "labret-estrela-opala",
+    "slug": "labret-estrela-opala-titanio",
+    "published": true,
+    "featured": true,
+    "order": 80,
+    "name": "Labret Estrela de Opala",
+    "shortDescription": "Uma estrela de oito pontas abraça uma opala de reflexos suaves.",
+    "description": [
+      "O topo de 8 mm funciona como elemento focal e combina brilho metálico com cor iridescente.",
+      "A estrutura é de titânio ASTM F136, com opção natural ou PVD Gold."
+    ],
+    "category": "Labrets",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Rosca interna",
+    "stone": "Opala sintética",
+    "options": ["1,2 × 8 mm", "Topo de 8 mm", "Titânio natural", "PVD Gold"],
+    "suggestedPlacements": ["Flat", "Hélix", "Lóbulo"],
+    "images": [
+      {
+        "src": "labret-estrela-opala.jpg",
+        "alt": "Labret de titânio com topo em estrela e opala clara, nas versões prateada e dourada"
+      }
+    ]
+  },
+  {
+    "id": "haste-estrela-titanio",
+    "slug": "haste-estrela-titanio",
+    "published": true,
+    "featured": false,
+    "order": 90,
+    "name": "Haste Disco Estrela",
+    "shortDescription": "Uma haste de titânio com disco plano em forma de estrela.",
+    "description": [
+      "O desenho sem pedra cria um ponto gráfico discreto e fácil de combinar.",
+      "A rosca interna permite trocar o topo mantendo a escolha da haste adequada à anatomia."
+    ],
+    "category": "Hastes",
+    "material": "Titânio ASTM F136",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Rosca interna",
+    "options": ["1,2 × 8 mm", "1,6 × 8 mm"],
+    "suggestedPlacements": ["Tragus", "Hélix", "Lóbulo", "Flat"],
+    "images": [
+      {
+        "src": "haste-estrela-titanio.jpg",
+        "alt": "Haste de titânio prateado com disco plano em formato de estrela"
+      }
+    ]
+  },
+  {
+    "id": "topo-ametista-ouro",
+    "slug": "topo-ametista-ouro-18k",
+    "published": true,
+    "featured": true,
+    "order": 100,
+    "name": "Topo de Ouro com Ametista",
+    "shortDescription": "Ametista lapidada em um topo push pin de ouro amarelo 18K.",
+    "description": [
+      "A pedra roxa cria um acento de cor preciso sem aumentar o volume da composição.",
+      "O topo acompanha uma haste labret de titânio com acabamento PVD Gold."
+    ],
+    "category": "Topos",
+    "material": "Ouro 18K e titânio com PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Push pin",
+    "stone": "Ametista",
+    "options": ["Topos de 2 mm, 2,5 mm ou 3 mm", "Haste 1,2 × 8 mm"],
+    "suggestedPlacements": ["Tragus", "Hélix", "Lóbulo", "Flat"],
+    "images": [
+      {
+        "src": "topo-ametista-ouro.jpg",
+        "alt": "Topo de ouro amarelo 18K com ametista roxa e haste labret dourada de titânio"
+      }
+    ]
+  },
+  {
+    "id": "corrente-dupla-titanio",
+    "slug": "corrente-dupla-titanio-pvd-gold",
+    "published": true,
+    "featured": false,
+    "order": 110,
+    "name": "Corrente Dupla",
+    "shortDescription": "Duas correntes finas de titânio PVD Gold conectam pontos da composição.",
+    "description": [
+      "A corrente cria movimento e relação entre duas perfurações já cicatrizadas.",
+      "Diferentes comprimentos permitem ajustar a queda ao desenho de cada orelha."
+    ],
+    "category": "Correntes",
+    "material": "Titânio ASTM F136 com PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Argolas de conexão",
+    "options": ["20 mm", "25 mm", "30 mm", "40 mm", "50 mm"],
+    "suggestedPlacements": [
+      "Conexão entre hélix e lóbulo",
+      "Conexão entre dois lóbulos"
+    ],
+    "images": [
+      {
+        "src": "corrente-dupla-titanio.jpeg",
+        "alt": "Correntes duplas finas de titânio dourado em diferentes comprimentos"
+      }
+    ]
+  },
+  {
+    "id": "brinco-gota-zirconia",
+    "slug": "brinco-gota-zirconia-aco-316l",
+    "published": true,
+    "featured": false,
+    "order": 120,
+    "name": "Brinco Gota de Zircônia",
+    "shortDescription": "Uma pequena gota de zircônia para o lóbulo, em aço 316L com PVD Gold.",
+    "description": [
+      "A gota acrescenta cor e um eixo vertical delicado ao primeiro ou segundo furo do lóbulo.",
+      "As variações de pedra permitem repetir ou contrastar tons presentes na composição."
+    ],
+    "category": "Brincos",
+    "material": "Aço cirúrgico 316L com PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Tarraxa borboleta",
+    "stone": "Zircônia cúbica",
+    "options": ["Cristal", "Verde", "Azul-claro", "Rosa"],
+    "suggestedPlacements": ["Lóbulo"],
+    "images": [
+      {
+        "src": "brinco-gota-zirconia.jpg",
+        "alt": "Par de brincos dourados em forma de gota com zircônias rosas"
+      }
+    ]
+  }
+]

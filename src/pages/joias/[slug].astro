@@ -82,15 +82,36 @@ const structuredData = {
           <dt>Disponibilidade</dt>
           <dd>{availabilityLabels[product.availability]}</dd>
         </div>
+        <div>
+          <dt>Fecho</dt>
+          <dd>{product.closure}</dd>
+        </div>
+        {
+          product.stone && (
+            <div>
+              <dt>Pedra</dt>
+              <dd>{product.stone}</dd>
+            </div>
+          )
+        }
       </dl>
-
-      <strong class="product-detail__price">{product.priceLabel}</strong>
 
       {
         product.description.map((paragraph) => (
           <p class="product-detail__description">{paragraph}</p>
         ))
       }
+
+      <section class="product-detail__options" aria-labelledby="opcoes">
+        <h2 id="opcoes">Opções para consulta</h2>
+        <ul>
+          {product.options.map((option) => <li>{option}</li>)}
+        </ul>
+        <p>
+          Posições sugeridas: {product.suggestedPlacements.join(", ")}. A medida final
+          depende da anatomia e da avaliação profissional.
+        </p>
+      </section>
 
       {
         product.availability !== "indisponivel" && (
@@ -167,18 +188,43 @@ const structuredData = {
     margin: 0;
   }
 
-  .product-detail__price {
-    display: block;
-    margin-bottom: 2rem;
-    font-family: var(--font-display);
-    font-size: 2.2rem;
-    font-weight: 450;
-  }
-
   .product-detail__description {
     max-width: 42rem;
     color: var(--color-text-muted);
     line-height: 1.55;
+  }
+
+  .product-detail__options {
+    max-width: 42rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--color-line-strong);
+  }
+
+  .product-detail__options h2 {
+    font-family: var(--font-display);
+    font-size: 1.7rem;
+    font-weight: 450;
+  }
+
+  .product-detail__options ul {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    padding: 0;
+    list-style: none;
+  }
+
+  .product-detail__options li {
+    padding: 0.45rem 0.75rem;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-line-strong);
+    border-radius: 999px;
+  }
+
+  .product-detail__options p {
+    color: var(--color-text-muted);
+    line-height: 1.5;
   }
 
   .product-detail :global(.button) {

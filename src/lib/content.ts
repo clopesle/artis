@@ -14,8 +14,15 @@ export interface Product {
   description: string[];
   category: string;
   material: string;
-  priceLabel: string;
+  price: {
+    amount: number | null;
+    currency: "BRL";
+  };
   availability: "disponivel" | "sob-consulta" | "indisponivel";
+  closure: string;
+  stone?: string;
+  options: string[];
+  suggestedPlacements: string[];
   images: CatalogImage[];
 }
 

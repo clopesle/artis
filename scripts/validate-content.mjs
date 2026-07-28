@@ -168,14 +168,46 @@ for (const [collectionName, items] of [
       );
       assert(item.category, `${path}.category é obrigatória.`);
       assert(item.material, `${path}.material é obrigatório.`);
-      assert(item.priceLabel, `${path}.priceLabel é obrigatório.`);
+      assert(
+        [
+          "Ouro 18K",
+          "Titânio ASTM F136",
+          "Titânio ASTM F136 ou PVD Gold",
+          "Titânio ASTM F136 com PVD Gold",
+          "Aço cirúrgico 316L ou PVD Gold",
+          "Aço cirúrgico 316L com PVD Gold",
+          "Ouro 18K e titânio com PVD Gold",
+        ].includes(item.material),
+        `${path}.material deve usar apenas ouro, titânio, aço 316L ou PVD.`,
+      );
+      assert(item.price?.currency === "BRL", `${path}.price.currency deve ser BRL.`);
+      assert(
+        item.price.amount === null ||
+          (Number.isFinite(item.price.amount) && item.price.amount > 0),
+        `${path}.price.amount deve ser null ou um valor positivo.`,
+      );
       assert(
         ["disponivel", "sob-consulta", "indisponivel"].includes(item.availability),
         `${path}.availability é inválida.`,
       );
+      assert(item.closure, `${path}.closure é obrigatório.`);
+      assert(
+        Array.isArray(item.options) && item.options.length > 0,
+        `${path}.options deve conter pelo menos uma opção.`,
+      );
+      assert(
+        Array.isArray(item.suggestedPlacements) && item.suggestedPlacements.length > 0,
+        `${path}.suggestedPlacements deve conter pelo menos uma posição.`,
+      );
       assert(
         Array.isArray(item.images) && item.images.length > 0,
         `${path}.images deve conter pelo menos uma imagem.`,
+      );
+      assert(
+        !/(angel\s*piercings?|mypiercing|my\s*piercing|https?:\/\/)/i.test(
+          JSON.stringify(item),
+        ),
+        `${path} expõe fornecedor ou URL no conteúdo público.`,
       );
 
       for (const [imageIndex, image] of item.images.entries()) {

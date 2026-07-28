@@ -28,7 +28,9 @@ every publication recoverable through Git history.
 - Use `order` to control the remaining order; lower numbers appear first.
 - Use slugs with lowercase letters, numbers, and hyphens only.
 - Never reuse an `id` or `slug`.
-- Store prices as customer-facing Brazilian Portuguese labels.
+- Store service prices as customer-facing Brazilian Portuguese labels.
+- Product `price.amount` is configurable for internal planning, but the public site and
+  WhatsApp order intentionally omit jewelry prices.
 - Do not add a product until its material, price, availability, and images are
   confirmed.
 - Do not add a portfolio project until publication consent is recorded.
@@ -65,7 +67,8 @@ Do not upload client images directly into `public/`; that bypasses image optimiz
 
 ## Adding a product
 
-`products.json` intentionally begins as an empty list. A valid entry follows this shape:
+`products.json` contains the approved curatorial catalog. A valid entry follows this
+shape:
 
 ```json
 {
@@ -79,8 +82,15 @@ Do not upload client images directly into `public/`; that bypasses image optimiz
   "description": ["Primeiro parágrafo aprovado.", "Segundo parágrafo opcional."],
   "category": "Piercing",
   "material": "Ouro 18k",
-  "priceLabel": "R$ 000",
+  "price": {
+    "amount": null,
+    "currency": "BRL"
+  },
   "availability": "sob-consulta",
+  "closure": "Clicker",
+  "stone": "Zircônia",
+  "options": ["1,2 × 8 mm"],
+  "suggestedPlacements": ["Hélix", "Lóbulo"],
   "images": [
     {
       "src": "nome-do-arquivo.jpg",
@@ -92,6 +102,10 @@ Do not upload client images directly into `public/`; that bypasses image optimiz
 
 Keep new entries unpublished until image rendering and the product detail route have
 been reviewed.
+
+The repository is public. A configured `price.amount` can be read in the JSON source
+even though the website does not render it. Never place confidential supplier cost
+prices in this repository.
 
 ## Adding a portfolio project
 
