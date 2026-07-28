@@ -44,19 +44,19 @@ repositório.
 
 Em **Settings → Developer settings → GitHub Apps → New GitHub App**, preencher:
 
-| Campo                                   | Valor                                                       |
-| --------------------------------------- | ----------------------------------------------------------- |
-| Homepage URL                            | `https://clopesle.github.io/artis/`                         |
-| Callback URL                            | `https://<subdomínio-cloudflare>.workers.dev/auth/callback` |
-| Expire user authorization tokens        | Ativado                                                     |
-| Repository permissions → Contents       | Read and write                                              |
-| Repository permissions → Metadata       | Read-only                                                   |
-| Installation                            | Somente `clopesle/artis`                                    |
+| Campo                             | Valor                                                       |
+| --------------------------------- | ----------------------------------------------------------- |
+| Homepage URL                      | `https://clopesle.github.io/artis/`                         |
+| Callback URL                      | `https://<subdomínio-cloudflare>.workers.dev/auth/callback` |
+| Expire user authorization tokens  | Ativado                                                     |
+| Repository permissions → Contents | Read and write                                              |
+| Repository permissions → Metadata | Read-only                                                   |
+| Installation                      | Somente `clopesle/artis`                                    |
 
 Para permitir que colaboradoras do repositório, como `rafaelromao`, concluam a
-autorização, abrir **Advanced → Danger zone → Make public** depois de criar o App.
-No fluxo de criação, esta opção aparece como **Where can this GitHub App be installed?
-→ Any account**. Tornar o App público não concede acesso administrativo ao público: a
+autorização, abrir **Advanced → Danger zone → Make public** depois de criar o App. No
+fluxo de criação, esta opção aparece como **Where can this GitHub App be installed? →
+Any account**. Tornar o App público não concede acesso administrativo ao público: a
 instalação continua limitada a `clopesle/artis` e a ponte também recusa qualquer conta
 que não tenha permissão `push` ou `admin` nesse repositório.
 
