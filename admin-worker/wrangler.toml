@@ -10,6 +10,9 @@ GITHUB_REPOSITORY = "clopesle/artis"
 GITHUB_BRANCH = "main"
 GITHUB_CLIENT_ID = "REPLACE"
 
+[secrets]
+required = ["GITHUB_CLIENT_SECRET", "STATE_SECRET"]
+
 [[kv_namespaces]]
 binding = "SESSIONS"
 id = "REPLACE"

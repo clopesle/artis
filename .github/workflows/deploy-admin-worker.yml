@@ -1,0 +1,35 @@
+name: Deploy Admin Bridge
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - "admin-worker/**"
+      - ".github/workflows/deploy-admin-worker.yml"
+      - "package.json"
+      - "package-lock.json"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: admin-bridge
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: vars.ADMIN_BRIDGE_CONFIGURED == 'true'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Deploy bridge
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          wranglerVersion: "4.115.0"
+          command: deploy --config admin-worker/wrangler.toml

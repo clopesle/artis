@@ -44,12 +44,17 @@ incluindo `55`, DDD e número.
 Os arquivos editáveis ficam em `src/data/`:
 
 - `site.json`: dados institucionais e contato
+- `pages.json`: navegação e textos editoriais das páginas
 - `services.json`: serviços e preços
 - `products.json`: joias e disponibilidade
 - `projects.json`: projetos autorizados para o portfólio
 - `faqs.json`: perguntas frequentes
 
 Consulte `docs/content-management.md` antes de publicar alterações.
+
+O painel protegido fica em `/admin/`. A interface continua hospedada pelo GitHub Pages;
+uma ponte mínima em Cloudflare Workers mantém os segredos e tokens fora do navegador.
+Consulte `docs/deployment.md` para a configuração inicial.
 
 ## Documentação
 

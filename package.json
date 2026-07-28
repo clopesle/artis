@@ -12,7 +12,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "test": "vitest run",
-    "verify": "npm run format:check && npm run check && npm test && npm run build"
+    "verify": "npm run format:check && npm run check && npm test && npm run build",
+    "admin:dev": "wrangler dev --config admin-worker/wrangler.toml",
+    "admin:deploy": "wrangler deploy --config admin-worker/wrangler.toml"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
@@ -26,7 +28,8 @@
     "prettier": "3.9.6",
     "prettier-plugin-astro": "0.14.1",
     "typescript": "5.9.3",
-    "vitest": "4.1.10"
+    "vitest": "4.1.10",
+    "wrangler": "^4.115.0"
   },
   "engines": {
     "node": ">=24.0.0"

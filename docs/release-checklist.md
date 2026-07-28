@@ -38,6 +38,15 @@
 - [x] CSS, fonts, images, favicon, sitemap, and robots file load under the base path
 - [ ] Rollback through a revert commit has been understood by the owner
 
+## Protected administration
+
+- [ ] GitHub App is installed only on `clopesle/artis`
+- [ ] GitHub App Contents permission is read/write and no broader than required
+- [ ] Worker secrets exist only in Cloudflare
+- [ ] `/admin/` accepts a repository editor and refuses an unrelated GitHub account
+- [ ] A saved admin edit creates an auditable commit and Pages deployment
+- [ ] Provider import creates an unpublished draft without supplier identity or price
+
 ## Quality
 
 - [ ] `npm run verify` passes from a clean install
