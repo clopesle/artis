@@ -1,0 +1,168 @@
+{
+  "global": {
+    "navigation": [
+      { "href": "/", "label": "Início" },
+      {
+        "href": "/servicos/design-auricular-digital-personalizado/",
+        "label": "Design Auricular"
+      },
+      { "href": "/joias/", "label": "Nossa Joalheria" },
+      { "href": "/projetos/", "label": "Projetos" }
+    ],
+    "cartLabel": "Sacola",
+    "projectCta": "Começar meu projeto",
+    "mobileCta": "Quero visualizar minha orelha",
+    "navigationLabel": "Navegue",
+    "informationLabel": "Informações",
+    "privacyLabel": "Privacidade",
+    "faqLabel": "Perguntas frequentes",
+    "footerLegal": "Conteúdo em português brasileiro."
+  },
+  "home": {
+    "heroEyebrow": "Design Auricular Digital Personalizado",
+    "heroTitle": "Veja sua composição",
+    "heroTitleAccent": "antes do primeiro furo.",
+    "heroDescription": "Criamos um projeto digital exclusivo para a sua anatomia, o seu estilo e as escolhas que você deseja fazer com segurança.",
+    "heroPrimaryCta": "Quero visualizar minha orelha",
+    "heroSecondaryCta": "Entender o processo",
+    "heroNote": "O projeto é seu.",
+    "heroImageAlt": "Mulher adulta de pele morena com uma composição auricular delicada em joias douradas",
+    "heroVisualLabel": "projeto 01",
+    "heroVisualNote": "proporção • intenção • identidade",
+    "promises": [
+      "Feito para a sua anatomia",
+      "Visualização antes da perfuração",
+      "Liberdade para executar onde preferir"
+    ],
+    "problemEyebrow": "Escolher também é projetar",
+    "problemTitle": "Não comece pela joia.",
+    "problemParagraphs": [
+      "Uma joia pode ser linda e ainda assim não conversar com a sua orelha, com as peças que você já usa ou com o resultado que imaginou.",
+      "Na ARTÍS, cada escolha começa pela escuta. Antes de perfurar, a gente visualiza, compara possibilidades e desenha uma composição que faça sentido para você."
+    ],
+    "processImageAlt": "Mão usando uma caneta digital para planejar uma composição auricular em um tablet",
+    "processCaption": "A anatomia não limita o projeto. Ela mostra por onde uma composição única pode começar.",
+    "processEyebrow": "Como funciona",
+    "processTitle": "Da conversa à visualização.",
+    "processDescription": "Um processo próximo e inteiramente online, com tempo para entender, experimentar e decidir.",
+    "processCta": "Começar minha conversa",
+    "serviceLink": "Ver tudo o que está incluído",
+    "investmentLabel": "Investimento",
+    "serviceCartCta": "Adicionar serviço à sacola",
+    "curationEyebrow": "Curadoria de joias",
+    "curationTitle": "A joia entra no desenho, não o contrário.",
+    "curationDescription": "Formato, proporção, brilho e material são escolhidos para trabalhar juntos. Você pode adquirir as peças com a ARTÍS ou usar o projeto para orientar sua compra onde preferir.",
+    "curationCta": "Conhecer a curadoria",
+    "manifestoEyebrow": "ARTÍS acredita que",
+    "manifestoQuote": "Toda mulher merece experimentar sua composição antes de transformar sua orelha.",
+    "faqEyebrow": "Perguntas frequentes",
+    "faqTitle": "Antes de começar.",
+    "contactEyebrow": "Sua composição pode começar hoje",
+    "contactTitle": "Vamos imaginar sua orelha juntas?",
+    "contactDescription": "Conte o que você já usa, o que gostaria de mudar e como quer se sentir com a nova composição.",
+    "contactCta": "Quero começar meu projeto"
+  },
+  "jewelry": {
+    "metaTitle": "Curadoria de joias",
+    "metaDescription": "Joias escolhidas para conversar com a anatomia, o projeto e a identidade de cada mulher.",
+    "eyebrow": "Curadoria de joias",
+    "title": "Cada peça tem um porquê.",
+    "description": "A curadoria nasce do desenho. Proporção, formato, material e brilho são considerados para que cada joia ocupe o lugar certo na composição.",
+    "cta": "Conversar sobre joias",
+    "catalogEyebrow": "Encontre sua peça",
+    "catalogTitle": "Curadoria por forma e função.",
+    "searchLabel": "Buscar joia",
+    "searchPlaceholder": "Nome, material ou posição",
+    "filterLabel": "Filtrar por categoria",
+    "allCategoriesLabel": "Todas",
+    "emptyTitle": "Nenhuma peça encontrou esse termo.",
+    "emptyDescription": "Experimente outro nome, material, posição ou categoria.",
+    "pendingEyebrow": "Catálogo em curadoria",
+    "pendingTitle": "Sem peças genéricas para preencher espaço.",
+    "pendingDescription": "O catálogo público será aberto quando cada joia tiver informações, imagens e disponibilidade confirmadas. Enquanto isso, a curadoria acontece de forma personalizada durante o seu projeto.",
+    "pendingCta": "Pedir uma curadoria personalizada",
+    "principles": ["proporção", "material", "harmonia"]
+  },
+  "projects": {
+    "metaTitle": "Projetos auriculares",
+    "metaDescription": "Conheça projetos de Design Auricular Digital desenvolvidos pela ARTÍS e publicados com autorização.",
+    "eyebrow": "Projetos ARTÍS",
+    "title": "Nenhuma orelha pede a mesma resposta.",
+    "description": "Cada projeto nasce de uma conversa diferente. O portfólio reúne apenas trabalhos reais publicados com autorização.",
+    "pendingEyebrow": "Portfólio em preparação",
+    "pendingTitle": "Projetos reais pedem contexto e autorização.",
+    "pendingDescription": "Estamos preparando os primeiros casos com o cuidado que eles merecem. Nenhuma imagem ou história será publicada apenas para preencher esta página.",
+    "pendingCta": "Quero criar meu projeto",
+    "principle": "A composição ideal não é a que tem mais joias. É a que parece ter nascido para você.",
+    "backLabel": "Voltar para projetos",
+    "detailCta": "Quero criar meu projeto"
+  },
+  "productDetail": {
+    "backLabel": "Voltar para joias",
+    "materialLabel": "Material",
+    "availabilityLabel": "Disponibilidade",
+    "closureLabel": "Fecho",
+    "stoneLabel": "Pedra",
+    "optionsTitle": "Opções para consulta",
+    "placementsPrefix": "Posições sugeridas:",
+    "placementsNote": "A medida final depende da anatomia e da avaliação profissional.",
+    "consultCta": "Consultar esta joia"
+  },
+  "serviceDetail": {
+    "heroCta": "Quero meu projeto personalizado",
+    "imageAlt": "Criação de um Design Auricular Digital em um tablet",
+    "includedEyebrow": "O que você recebe",
+    "includedTitle": "Um projeto para decidir com calma.",
+    "investmentLabel": "Investimento inicial",
+    "contactCta": "Conversar sobre meu projeto",
+    "cartCta": "Adicionar serviço à sacola"
+  },
+  "cart": {
+    "metaTitle": "Sua sacola",
+    "metaDescription": "Revise as joias e serviços escolhidos e envie seu pedido para a ARTÍS pelo WhatsApp.",
+    "eyebrow": "Sua seleção ARTÍS",
+    "title": "Uma composição começa pelas escolhas.",
+    "description": "Reúna joias e serviços. Medidas, disponibilidade e valores das peças serão confirmados pessoalmente no WhatsApp.",
+    "summaryTitle": "Sua sacola",
+    "clearLabel": "Limpar seleção",
+    "emptyTitle": "Ainda não há escolhas por aqui.",
+    "emptyDescription": "Explore a curadoria, escolha as peças que conversam com você e volte para enviar tudo em uma única mensagem.",
+    "emptyCta": "Conhecer as joias",
+    "personalServiceLabel": "Atendimento pessoal",
+    "disclaimer": "O envio da sacola não reserva estoque nem conclui uma compra. A ARTÍS confirma medidas, disponibilidade e valores antes de finalizar.",
+    "sendCta": "Enviar pedido pelo WhatsApp"
+  },
+  "privacy": {
+    "metaTitle": "Privacidade",
+    "metaDescription": "Como o site da ARTÍS trata dados e direciona conversas para o WhatsApp.",
+    "eyebrow": "Privacidade",
+    "title": "Poucos dados. Mais clareza.",
+    "description": "Esta página descreve o funcionamento atual do site. O texto deve ser revisado profissionalmente antes de um lançamento comercial definitivo.",
+    "sections": [
+      {
+        "title": "O que este site coleta",
+        "text": "O site público não possui contas, formulários próprios, pagamento online ou ferramentas de análise de audiência. A navegação não solicita seus dados pessoais diretamente."
+      },
+      {
+        "title": "Contato pelo WhatsApp",
+        "text": "Ao escolher conversar com a ARTÍS, você será direcionada ao WhatsApp com uma mensagem inicial relacionada ao conteúdo visitado. A partir desse momento, o tratamento das informações também segue as políticas do WhatsApp e as escolhas feitas na conversa."
+      },
+      {
+        "title": "Sacola neste dispositivo",
+        "text": "As joias e os serviços adicionados à sacola ficam salvos apenas no armazenamento local do seu navegador. Essa seleção não inclui dados pessoais, não é enviada para a ARTÍS automaticamente e pode ser apagada ao limpar a sacola ou os dados do navegador."
+      },
+      {
+        "title": "Imagens enviadas para o projeto",
+        "text": "Fotos da orelha e demais informações necessárias ao atendimento só devem ser enviadas durante a conversa oficial. O uso, a conservação e uma eventual autorização para portfólio precisam ser informados durante o atendimento."
+      }
+    ],
+    "backCta": "Voltar ao início"
+  },
+  "notFound": {
+    "metaTitle": "Página não encontrada",
+    "metaDescription": "A página que você procura não foi encontrada.",
+    "eyebrow": "Esta página não faz parte do projeto",
+    "title": "Vamos voltar ao desenho certo?",
+    "backCta": "Voltar ao início"
+  }
+}

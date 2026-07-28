@@ -36,9 +36,10 @@ function validateUnique(items, key, path) {
   );
 }
 
-const [site, services, faqs, products, projects, categories, providers] =
+const [site, pages, services, faqs, products, projects, categories, providers] =
   await Promise.all([
     readJson("../src/data/site.json"),
+    readJson("../src/data/pages.json"),
     readJson("../src/data/services.json"),
     readJson("../src/data/faqs.json"),
     readJson("../src/data/products.json"),
@@ -48,6 +49,22 @@ const [site, services, faqs, products, projects, categories, providers] =
   ]);
 
 assert(site.locale === "pt-BR", "src/data/site.json deve usar locale pt-BR.");
+assert(
+  pages.global?.navigation?.length > 0,
+  "src/data/pages.json deve conter a navegação global.",
+);
+assert(
+  pages.home?.heroTitle,
+  "src/data/pages.json deve conter os textos da página inicial.",
+);
+assert(
+  pages.jewelry?.catalogTitle,
+  "src/data/pages.json deve conter os textos da joalheria.",
+);
+assert(
+  pages.projects?.title,
+  "src/data/pages.json deve conter os textos do portfólio.",
+);
 assert(site.currency === "BRL", "src/data/site.json deve usar moeda BRL.");
 assert(
   site.tagline === "Onde anatomia encontra identidade.",

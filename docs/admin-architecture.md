@@ -51,7 +51,8 @@ commits em main → validação → GitHub Pages
 | Categorias              | `src/data/categories.json` |
 | Portfólio               | `src/data/projects.json`   |
 | Perguntas frequentes    | `src/data/faqs.json`       |
-| Imagens                 | `src/assets/catalog/`      |
+| Textos das páginas      | `src/data/pages.json`      |
+| Imagens                 | `src/assets/`              |
 | Fornecedores            | `admin/providers.json`     |
 
 Os fornecedores existem somente no contexto administrativo. Seus nomes e URLs não são

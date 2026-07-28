@@ -1,62 +1,33 @@
 ---
 import { withBase } from "../lib/paths";
+import pages from "../data/pages.json";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Privacidade"
-  description="Como o site da ARTÍS trata dados e direciona conversas para o WhatsApp."
+  title={pages.privacy.metaTitle}
+  description={pages.privacy.metaDescription}
   hideMobileContact
 >
   <article class="legal section">
     <header>
-      <p class="eyebrow">Privacidade</p>
-      <h1 class="headline">Poucos dados. Mais clareza.</h1>
-      <p class="lede">
-        Esta página descreve o funcionamento atual do site. O texto deve ser revisado
-        profissionalmente antes de um lançamento comercial definitivo.
-      </p>
+      <p class="eyebrow">{pages.privacy.eyebrow}</p>
+      <h1 class="headline">{pages.privacy.title}</h1>
+      <p class="lede">{pages.privacy.description}</p>
     </header>
 
-    <section>
-      <h2>O que este site coleta</h2>
-      <p>
-        O site público não possui contas, formulários próprios, pagamento online ou
-        ferramentas de análise de audiência. A navegação não solicita seus dados
-        pessoais diretamente.
-      </p>
-    </section>
+    {
+      pages.privacy.sections.map((section) => (
+        <section>
+          <h2>{section.title}</h2>
+          <p>{section.text}</p>
+        </section>
+      ))
+    }
 
-    <section>
-      <h2>Contato pelo WhatsApp</h2>
-      <p>
-        Ao escolher conversar com a ARTÍS, você será direcionada ao WhatsApp com uma
-        mensagem inicial relacionada ao conteúdo visitado. A partir desse momento, o
-        tratamento das informações também segue as políticas do WhatsApp e as escolhas
-        feitas na conversa.
-      </p>
-    </section>
-
-    <section>
-      <h2>Sacola neste dispositivo</h2>
-      <p>
-        As joias e os serviços adicionados à sacola ficam salvos apenas no armazenamento
-        local do seu navegador. Essa seleção não inclui dados pessoais, não é enviada
-        para a ARTÍS automaticamente e pode ser apagada ao limpar a sacola ou os dados
-        do navegador.
-      </p>
-    </section>
-
-    <section>
-      <h2>Imagens enviadas para o projeto</h2>
-      <p>
-        Fotos da orelha e demais informações necessárias ao atendimento só devem ser
-        enviadas durante a conversa oficial. O uso, a conservação e uma eventual
-        autorização para portfólio precisam ser informados durante o atendimento.
-      </p>
-    </section>
-
-    <a class="button button--secondary" href={withBase("/")}>Voltar ao início</a>
+    <a class="button button--secondary" href={withBase("/")}>
+      {pages.privacy.backCta}
+    </a>
   </article>
 </BaseLayout>
 

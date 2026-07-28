@@ -1,20 +1,21 @@
 ---
 import { withBase } from "../lib/paths";
+import pages from "../data/pages.json";
 import BaseLayout from "../layouts/BaseLayout.astro";
 ---
 
 <BaseLayout
-  title="Página não encontrada"
-  description="A página que você procura não foi encontrada."
+  title={pages.notFound.metaTitle}
+  description={pages.notFound.metaDescription}
   hideMobileContact
   noIndex
 >
   <section class="not-found">
     <span aria-hidden="true">404</span>
     <div>
-      <p class="eyebrow">Esta página não faz parte do projeto</p>
-      <h1 class="headline">Vamos voltar ao desenho certo?</h1>
-      <a class="button" href={withBase("/")}>Voltar ao início</a>
+      <p class="eyebrow">{pages.notFound.eyebrow}</p>
+      <h1 class="headline">{pages.notFound.title}</h1>
+      <a class="button" href={withBase("/")}>{pages.notFound.backCta}</a>
     </div>
   </section>
 </BaseLayout>

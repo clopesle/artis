@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import AddToCartButton from "../../components/AddToCartButton.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import products from "../../data/products.json";
+import pages from "../../data/pages.json";
 import { availabilityLabels, byEditorialPriority } from "../../lib/catalog";
 import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
@@ -30,19 +31,13 @@ const categoryGroups = categories.map((category) => ({
 }));
 ---
 
-<BaseLayout
-  title="Curadoria de joias"
-  description="Joias escolhidas para conversar com a anatomia, o projeto e a identidade de cada mulher."
->
+<BaseLayout title={pages.jewelry.metaTitle} description={pages.jewelry.metaDescription}>
   <section class="collection-hero">
     <div data-reveal>
-      <p class="eyebrow">Curadoria de joias</p>
-      <h1 class="display">Cada peça tem um porquê.</h1>
-      <p class="lede">
-        A curadoria nasce do desenho. Proporção, formato, material e brilho são
-        considerados para que cada joia ocupe o lugar certo na composição.
-      </p>
-      <WhatsAppLink message={messages.jewelry} label="Conversar sobre joias" />
+      <p class="eyebrow">{pages.jewelry.eyebrow}</p>
+      <h1 class="display">{pages.jewelry.title}</h1>
+      <p class="lede">{pages.jewelry.description}</p>
+      <WhatsAppLink message={messages.jewelry} label={pages.jewelry.cta} />
     </div>
     <div class="collection-hero__jewel" aria-hidden="true">
       <span></span>
@@ -60,16 +55,16 @@ const categoryGroups = categories.map((category) => ({
       <section class="catalog section" aria-labelledby="catalogo">
         <header class="catalog__header" data-reveal>
           <div>
-            <p class="eyebrow">Encontre sua peça</p>
+            <p class="eyebrow">{pages.jewelry.catalogEyebrow}</p>
             <h2 id="catalogo" class="headline">
-              Curadoria por forma e função.
+              {pages.jewelry.catalogTitle}
             </h2>
           </div>
           <label class="catalog__search">
-            <span>Buscar joia</span>
+            <span>{pages.jewelry.searchLabel}</span>
             <input
               type="search"
-              placeholder="Nome, material ou posição"
+              placeholder={pages.jewelry.searchPlaceholder}
               autocomplete="off"
               data-catalog-query
             />
@@ -79,9 +74,9 @@ const categoryGroups = categories.map((category) => ({
             </svg>
           </label>
           <fieldset class="catalog__filters" data-catalog-filters>
-            <legend>Filtrar por categoria</legend>
+            <legend>{pages.jewelry.filterLabel}</legend>
             <button type="button" data-category="" aria-pressed="true">
-              Todas
+              {pages.jewelry.allCategoriesLabel}
             </button>
             {categories.map((category) => (
               <button type="button" data-category={category} aria-pressed="false">
@@ -168,23 +163,19 @@ const categoryGroups = categories.map((category) => ({
         </div>
 
         <div class="catalog__empty" data-catalog-empty hidden>
-          <p class="title">Nenhuma peça encontrou esse termo.</p>
-          <p>Experimente outro nome, material, posição ou categoria.</p>
+          <p class="title">{pages.jewelry.emptyTitle}</p>
+          <p>{pages.jewelry.emptyDescription}</p>
         </div>
       </section>
     ) : (
       <section class="empty-catalog section" data-reveal>
-        <span>Catálogo em curadoria</span>
+        <span>{pages.jewelry.pendingEyebrow}</span>
         <div>
-          <h2 class="headline">Sem peças genéricas para preencher espaço.</h2>
-          <p class="lede">
-            O catálogo público será aberto quando cada joia tiver informações, imagens e
-            disponibilidade confirmadas. Enquanto isso, a curadoria acontece de forma
-            personalizada durante o seu projeto.
-          </p>
+          <h2 class="headline">{pages.jewelry.pendingTitle}</h2>
+          <p class="lede">{pages.jewelry.pendingDescription}</p>
           <WhatsAppLink
             message={messages.jewelry}
-            label="Pedir uma curadoria personalizada"
+            label={pages.jewelry.pendingCta}
             variant="secondary"
           />
         </div>
@@ -193,9 +184,13 @@ const categoryGroups = categories.map((category) => ({
   }
 
   <section class="jewelry-principles">
-    <p>01 <span>proporção</span></p>
-    <p>02 <span>material</span></p>
-    <p>03 <span>harmonia</span></p>
+    {
+      pages.jewelry.principles.map((principle, index) => (
+        <p>
+          {String(index + 1).padStart(2, "0")} <span>{principle}</span>
+        </p>
+      ))
+    }
   </section>
 </BaseLayout>
 

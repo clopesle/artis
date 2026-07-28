@@ -2,6 +2,7 @@
 import { Image } from "astro:assets";
 import type { GetStaticPaths } from "astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import pages from "../../data/pages.json";
 import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
 import type { Project } from "../../lib/content";
@@ -26,7 +27,7 @@ const { project } = Astro.props as { project: Project };
 <BaseLayout title={project.title} description={project.shortDescription}>
   <article class="project-detail">
     <header class="project-detail__header" data-reveal>
-      <a href={withBase("/projetos/")}>← Voltar para projetos</a>
+      <a href={withBase("/projetos/")}>← {pages.projects.backLabel}</a>
       <p class="eyebrow">{project.categories.join(" • ")}</p>
       <h1 class="display">{project.title}</h1>
       <p class="lede">{project.shortDescription}</p>
@@ -50,7 +51,7 @@ const { project } = Astro.props as { project: Project };
         {project.description.map((paragraph) => <p>{paragraph}</p>)}
         <WhatsAppLink
           message={messages.portfolio}
-          label="Quero criar meu projeto"
+          label={pages.projects.detailCta}
           variant="secondary"
         />
       </div>

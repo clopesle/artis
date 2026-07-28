@@ -11,6 +11,9 @@ describe("admin bridge security", () => {
     expect(isAllowedRepositoryPath("src/data/products.json")).toBe(true);
     expect(isAllowedRepositoryPath("admin/providers.json")).toBe(true);
     expect(isAllowedRepositoryPath("src/assets/catalog/nova-joia.webp")).toBe(true);
+    expect(isAllowedRepositoryPath("src/assets/hero-artis.png")).toBe(true);
+    expect(isAllowedRepositoryWritePath("src/assets/processo-artis.png")).toBe(true);
+    expect(isAllowedRepositoryWritePath("src/assets/outra-imagem.png")).toBe(false);
     expect(isAllowedRepositoryPath(".github/workflows/deploy-pages.yml")).toBe(false);
     expect(isAllowedRepositoryPath("src/assets/catalog/../site.json")).toBe(false);
   });

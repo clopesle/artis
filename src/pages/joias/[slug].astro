@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import type { GetStaticPaths } from "astro";
 import AddToCartButton from "../../components/AddToCartButton.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
+import pages from "../../data/pages.json";
 import { availabilityLabels } from "../../lib/catalog";
 import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
@@ -68,7 +69,7 @@ const structuredData = {
     </div>
     <div class="product-detail__copy" data-reveal>
       <a class="product-detail__back" href={withBase("/joias/")}>
-        ← Voltar para joias
+        ← {pages.productDetail.backLabel}
       </a>
       <p class="eyebrow">{product.category}</p>
       <h1 class="display">{product.name}</h1>
@@ -76,21 +77,21 @@ const structuredData = {
 
       <dl>
         <div>
-          <dt>Material</dt>
+          <dt>{pages.productDetail.materialLabel}</dt>
           <dd>{product.material}</dd>
         </div>
         <div>
-          <dt>Disponibilidade</dt>
+          <dt>{pages.productDetail.availabilityLabel}</dt>
           <dd>{availabilityLabels[product.availability]}</dd>
         </div>
         <div>
-          <dt>Fecho</dt>
+          <dt>{pages.productDetail.closureLabel}</dt>
           <dd>{product.closure}</dd>
         </div>
         {
           product.stone && (
             <div>
-              <dt>Pedra</dt>
+              <dt>{pages.productDetail.stoneLabel}</dt>
               <dd>{product.stone}</dd>
             </div>
           )
@@ -104,13 +105,13 @@ const structuredData = {
       }
 
       <section class="product-detail__options" aria-labelledby="opcoes">
-        <h2 id="opcoes">Opções para consulta</h2>
+        <h2 id="opcoes">{pages.productDetail.optionsTitle}</h2>
         <ul>
           {product.options.map((option) => <li>{option}</li>)}
         </ul>
         <p>
-          Posições sugeridas: {product.suggestedPlacements.join(", ")}. A medida final
-          depende da anatomia e da avaliação profissional.
+          {pages.productDetail.placementsPrefix}{" "}
+          {product.suggestedPlacements.join(", ")}. {pages.productDetail.placementsNote}
         </p>
       </section>
 
@@ -126,7 +127,7 @@ const structuredData = {
             />
             <WhatsAppLink
               message={message}
-              label="Consultar esta joia"
+              label={pages.productDetail.consultCta}
               variant="secondary"
             />
           </div>

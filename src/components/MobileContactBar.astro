@@ -1,10 +1,11 @@
 ---
 import { messages } from "../lib/contact";
+import pages from "../data/pages.json";
 import WhatsAppLink from "./WhatsAppLink.astro";
 ---
 
 <aside class="mobile-contact-bar" aria-label="Atalho para atendimento">
-  <WhatsAppLink message={messages.project} label="Quero visualizar minha orelha" />
+  <WhatsAppLink message={messages.project} label={pages.global.mobileCta} />
 </aside>
 
 <style>

@@ -3,6 +3,7 @@ import { Image } from "astro:assets";
 import EarBlueprint from "../../components/EarBlueprint.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import projects from "../../data/projects.json";
+import pages from "../../data/pages.json";
 import { byEditorialPriority } from "../../lib/catalog";
 import { getCatalogImage } from "../../lib/catalog-images";
 import { messages } from "../../lib/contact";
@@ -16,17 +17,14 @@ const publishedProjects = (projects as Project[])
 ---
 
 <BaseLayout
-  title="Projetos auriculares"
-  description="Conheça projetos de Design Auricular Digital desenvolvidos pela ARTÍS e publicados com autorização."
+  title={pages.projects.metaTitle}
+  description={pages.projects.metaDescription}
 >
   <section class="projects-hero">
     <div class="projects-hero__copy" data-reveal>
-      <p class="eyebrow">Projetos ARTÍS</p>
-      <h1 class="display">Nenhuma orelha pede a mesma resposta.</h1>
-      <p class="lede">
-        Cada projeto nasce de uma conversa diferente. O portfólio reúne apenas trabalhos
-        reais publicados com autorização.
-      </p>
+      <p class="eyebrow">{pages.projects.eyebrow}</p>
+      <h1 class="display">{pages.projects.title}</h1>
+      <p class="lede">{pages.projects.description}</p>
     </div>
     <div class="projects-hero__mark" aria-hidden="true">
       <EarBlueprint />
@@ -62,16 +60,13 @@ const publishedProjects = (projects as Project[])
       </section>
     ) : (
       <section class="portfolio-pending section" data-reveal>
-        <span>Portfólio em preparação</span>
+        <span>{pages.projects.pendingEyebrow}</span>
         <div>
-          <h2 class="headline">Projetos reais pedem contexto e autorização.</h2>
-          <p class="lede">
-            Estamos preparando os primeiros casos com o cuidado que eles merecem.
-            Nenhuma imagem ou história será publicada apenas para preencher esta página.
-          </p>
+          <h2 class="headline">{pages.projects.pendingTitle}</h2>
+          <p class="lede">{pages.projects.pendingDescription}</p>
           <WhatsAppLink
             message={messages.portfolio}
-            label="Quero criar meu projeto"
+            label={pages.projects.pendingCta}
             variant="secondary"
           />
         </div>
@@ -80,10 +75,7 @@ const publishedProjects = (projects as Project[])
   }
 
   <section class="project-principle">
-    <p>
-      A composição ideal não é a que tem mais joias. É a que parece ter nascido para
-      você.
-    </p>
+    <p>{pages.projects.principle}</p>
   </section>
 </BaseLayout>
 

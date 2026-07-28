@@ -5,19 +5,27 @@ export const CONTENT_FILES = new Set([
   "src/data/categories.json",
   "src/data/projects.json",
   "src/data/faqs.json",
+  "src/data/pages.json",
   "admin/providers.json",
 ]);
 
 const IMAGE_PATH = /^src\/assets\/catalog\/[a-z0-9][a-z0-9-]*\.(avif|jpe?g|png|webp)$/i;
+const SITE_IMAGES = new Set([
+  "src/assets/hero-artis.png",
+  "src/assets/processo-artis.png",
+]);
 
 export function isAllowedRepositoryPath(path) {
   return (
-    CONTENT_FILES.has(path) || path === "src/assets/catalog" || IMAGE_PATH.test(path)
+    CONTENT_FILES.has(path) ||
+    path === "src/assets/catalog" ||
+    SITE_IMAGES.has(path) ||
+    IMAGE_PATH.test(path)
   );
 }
 
 export function isAllowedRepositoryWritePath(path) {
-  return CONTENT_FILES.has(path) || IMAGE_PATH.test(path);
+  return CONTENT_FILES.has(path) || SITE_IMAGES.has(path) || IMAGE_PATH.test(path);
 }
 
 export function assertAllowedRepositoryPath(path) {

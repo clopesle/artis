@@ -5,6 +5,7 @@ import AddToCartButton from "../../components/AddToCartButton.astro";
 import EarBlueprint from "../../components/EarBlueprint.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import processImage from "../../assets/processo-artis.png";
+import pages from "../../data/pages.json";
 import services from "../../data/services.json";
 import { messages } from "../../lib/contact";
 import BaseLayout from "../../layouts/BaseLayout.astro";
@@ -55,10 +56,7 @@ const structuredData = {
       <p class="eyebrow">{service.eyebrow}</p>
       <h1 class="display">{service.name}</h1>
       <p class="lede">{service.shortDescription}</p>
-      <WhatsAppLink
-        message={messages.project}
-        label="Quero meu projeto personalizado"
-      />
+      <WhatsAppLink message={messages.project} label={pages.serviceDetail.heroCta} />
     </div>
     <div class="service-hero__mark" aria-hidden="true">
       <EarBlueprint />
@@ -75,7 +73,7 @@ const structuredData = {
   <section class="service-image" data-reveal>
     <Image
       src={processImage}
-      alt="Criação de um Design Auricular Digital em um tablet"
+      alt={pages.serviceDetail.imageAlt}
       widths={[640, 960, 1280, 1600]}
       sizes="100vw"
       format="avif"
@@ -85,8 +83,8 @@ const structuredData = {
 
   <section class="included section">
     <div class="included__heading" data-reveal>
-      <p class="eyebrow">O que você recebe</p>
-      <h2 class="headline">Um projeto para decidir com calma.</h2>
+      <p class="eyebrow">{pages.serviceDetail.includedEyebrow}</p>
+      <h2 class="headline">{pages.serviceDetail.includedTitle}</h2>
     </div>
     <ol>
       {
@@ -102,7 +100,7 @@ const structuredData = {
 
   <section class="investment">
     <div class="investment__label">
-      <p>Investimento inicial</p>
+      <p>{pages.serviceDetail.investmentLabel}</p>
     </div>
     <div class="investment__value" data-reveal>
       <strong aria-label={service.price.label}>
@@ -117,7 +115,7 @@ const structuredData = {
       <p>{service.purchaseBenefit}</p>
       <WhatsAppLink
         message={messages.project}
-        label="Conversar sobre meu projeto"
+        label={pages.serviceDetail.contactCta}
         variant="secondary"
       />
       <AddToCartButton
@@ -126,7 +124,7 @@ const structuredData = {
         name={service.name}
         detail="Atendimento online"
         priceLabel={service.price.label}
-        label="Adicionar serviço à sacola"
+        label={pages.serviceDetail.cartCta}
       />
     </div>
   </section>

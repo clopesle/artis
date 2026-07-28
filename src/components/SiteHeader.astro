@@ -1,20 +1,16 @@
 ---
 import site from "../data/site.json";
+import pages from "../data/pages.json";
 import { messages } from "../lib/contact";
 import { withBase } from "../lib/paths";
 import WhatsAppLink from "./WhatsAppLink.astro";
 import Wordmark from "./Wordmark.astro";
 
 const currentPath = Astro.url.pathname;
-const links = [
-  { href: withBase("/"), label: "Início" },
-  {
-    href: withBase("/servicos/design-auricular-digital-personalizado/"),
-    label: "Design Auricular",
-  },
-  { href: withBase("/joias/"), label: "Nossa Joalheria" },
-  { href: withBase("/projetos/"), label: "Projetos" },
-];
+const links = pages.global.navigation.map((link) => ({
+  ...link,
+  href: withBase(link.href),
+}));
 ---
 
 {
@@ -48,12 +44,12 @@ const links = [
 
   <div class="site-header__desktop-cta">
     <a class="site-header__cart" href={withBase("/carrinho/")}>
-      Sacola
+      {pages.global.cartLabel}
       <span data-cart-count data-empty>0</span>
     </a>
     <WhatsAppLink
       message={messages.project}
-      label="Começar meu projeto"
+      label={pages.global.projectCta}
       variant="secondary"
     />
   </div>
@@ -79,11 +75,12 @@ const links = [
           href={withBase("/carrinho/")}
           aria-current={currentPath === withBase("/carrinho/") ? "page" : undefined}
         >
-          Sacola <span data-cart-count data-empty>0</span>
+          {pages.global.cartLabel}
+          <span data-cart-count data-empty>0</span>
         </a>
       </nav>
-      <WhatsAppLink message={messages.project} label="Começar meu projeto" />
-      <p>Atendimento online para todo o Brasil.</p>
+      <WhatsAppLink message={messages.project} label={pages.global.projectCta} />
+      <p>{site.serviceArea}.</p>
     </div>
   </details>
 </header>

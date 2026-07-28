@@ -1,5 +1,6 @@
 ---
 import site from "../data/site.json";
+import pages from "../data/pages.json";
 import { withBase } from "../lib/paths";
 import Wordmark from "./Wordmark.astro";
 ---
@@ -12,24 +13,24 @@ import Wordmark from "./Wordmark.astro";
 
   <div class="site-footer__links">
     <div>
-      <p class="site-footer__label">Navegue</p>
-      <a href={withBase("/servicos/design-auricular-digital-personalizado/")}>
-        Design Auricular
-      </a>
-      <a href={withBase("/joias/")}>Nossa Joalheria</a>
-      <a href={withBase("/carrinho/")}>Sacola</a>
-      <a href={withBase("/projetos/")}>Projetos</a>
+      <p class="site-footer__label">{pages.global.navigationLabel}</p>
+      {
+        pages.global.navigation
+          .filter((link) => link.href !== "/")
+          .map((link) => <a href={withBase(link.href)}>{link.label}</a>)
+      }
+      <a href={withBase("/carrinho/")}>{pages.global.cartLabel}</a>
     </div>
     <div>
-      <p class="site-footer__label">Informações</p>
-      <a href={withBase("/privacidade/")}>Privacidade</a>
-      <a href={withBase("/#perguntas")}>Perguntas frequentes</a>
+      <p class="site-footer__label">{pages.global.informationLabel}</p>
+      <a href={withBase("/privacidade/")}>{pages.global.privacyLabel}</a>
+      <a href={withBase("/#perguntas")}>{pages.global.faqLabel}</a>
     </div>
   </div>
 
   <div class="site-footer__base">
-    <p>© {new Date().getFullYear()} ARTÍS. Conteúdo em português brasileiro.</p>
-    <p>Atendimento online para todo o Brasil.</p>
+    <p>© {new Date().getFullYear()} ARTÍS. {pages.global.footerLegal}</p>
+    <p>{site.serviceArea}.</p>
   </div>
 </footer>
 

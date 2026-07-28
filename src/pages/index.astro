@@ -6,6 +6,7 @@ import WhatsAppLink from "../components/WhatsAppLink.astro";
 import heroImage from "../assets/hero-artis.png";
 import processImage from "../assets/processo-artis.png";
 import faqs from "../data/faqs.json";
+import pages from "../data/pages.json";
 import services from "../data/services.json";
 import site from "../data/site.json";
 import { hasWhatsApp, messages } from "../lib/contact";
@@ -36,34 +37,29 @@ const structuredData = {
 <BaseLayout structuredData={structuredData}>
   <section class="hero">
     <div class="hero__copy" data-reveal>
-      <p class="eyebrow">Design Auricular Digital Personalizado</p>
+      <p class="eyebrow">{pages.home.heroEyebrow}</p>
       <h1 class="display">
-        Veja sua composição <span>antes do primeiro furo.</span>
+        {pages.home.heroTitle}
+        <span>{pages.home.heroTitleAccent}</span>
       </h1>
-      <p class="hero__description">
-        Criamos um projeto digital exclusivo para a sua anatomia, o seu estilo e as
-        escolhas que você deseja fazer com segurança.
-      </p>
+      <p class="hero__description">{pages.home.heroDescription}</p>
       <div class="hero__actions">
-        <WhatsAppLink
-          message={messages.project}
-          label="Quero visualizar minha orelha"
-        />
+        <WhatsAppLink message={messages.project} label={pages.home.heroPrimaryCta} />
         <a
           class="button button--text"
           href={withBase("/servicos/design-auricular-digital-personalizado/")}
         >
-          Entender o processo
+          {pages.home.heroSecondaryCta}
           <span aria-hidden="true">↗</span>
         </a>
       </div>
-      <p class="hero__note">{site.serviceArea}. O projeto é seu.</p>
+      <p class="hero__note">{site.serviceArea}. {pages.home.heroNote}</p>
     </div>
 
     <div class="hero__visual">
       <Image
         src={heroImage}
-        alt="Mulher adulta de pele morena com uma composição auricular delicada em joias douradas"
+        alt={pages.home.heroImageAlt}
         widths={[480, 720, 960, 1200]}
         sizes="(min-width: 64rem) 50vw, 100vw"
         format="avif"
@@ -75,32 +71,23 @@ const structuredData = {
         <EarBlueprint />
       </div>
       <div class="hero__visual-note">
-        <span>projeto 01</span>
-        <span>proporção • intenção • identidade</span>
+        <span>{pages.home.heroVisualLabel}</span>
+        <span>{pages.home.heroVisualNote}</span>
       </div>
     </div>
   </section>
 
   <section class="promise" aria-label="Compromissos da ARTÍS">
-    <p>Feito para a sua anatomia</p>
-    <p>Visualização antes da perfuração</p>
-    <p>Liberdade para executar onde preferir</p>
+    {pages.home.promises.map((promise) => <p>{promise}</p>)}
   </section>
 
   <section class="problem section" data-reveal>
     <div class="problem__statement">
-      <p class="eyebrow">Escolher também é projetar</p>
-      <h2 class="headline">Não comece pela joia.</h2>
+      <p class="eyebrow">{pages.home.problemEyebrow}</p>
+      <h2 class="headline">{pages.home.problemTitle}</h2>
     </div>
     <div class="problem__copy">
-      <p>
-        Uma joia pode ser linda e ainda assim não conversar com a sua orelha, com as
-        peças que você já usa ou com o resultado que imaginou.
-      </p>
-      <p>
-        Na ARTÍS, cada escolha começa pela escuta. Antes de perfurar, a gente visualiza,
-        compara possibilidades e desenha uma composição que faça sentido para você.
-      </p>
+      {pages.home.problemParagraphs.map((paragraph) => <p>{paragraph}</p>)}
     </div>
   </section>
 
@@ -108,7 +95,7 @@ const structuredData = {
     <div class="process-visual__image" data-reveal>
       <Image
         src={processImage}
-        alt="Mão usando uma caneta digital para planejar uma composição auricular em um tablet"
+        alt={pages.home.processImageAlt}
         widths={[640, 960, 1280, 1600]}
         sizes="100vw"
         format="avif"
@@ -117,21 +104,15 @@ const structuredData = {
     </div>
     <div class="process-visual__caption" data-reveal>
       <span>01</span>
-      <p>
-        A anatomia não limita o projeto. Ela mostra por onde uma composição única pode
-        começar.
-      </p>
+      <p>{pages.home.processCaption}</p>
     </div>
   </section>
 
   <section class="process section" id="como-funciona">
     <div class="process__header" data-reveal>
-      <p class="eyebrow">Como funciona</p>
-      <h2 class="headline">Da conversa à visualização.</h2>
-      <p class="lede">
-        Um processo próximo e inteiramente online, com tempo para entender, experimentar
-        e decidir.
-      </p>
+      <p class="eyebrow">{pages.home.processEyebrow}</p>
+      <h2 class="headline">{pages.home.processTitle}</h2>
+      <p class="lede">{pages.home.processDescription}</p>
     </div>
     <ol class="process__steps">
       {
@@ -149,7 +130,7 @@ const structuredData = {
     <div class="process__action" data-reveal>
       <WhatsAppLink
         message={messages.project}
-        label="Começar minha conversa"
+        label={pages.home.processCta}
         variant="secondary"
       />
     </div>
@@ -161,12 +142,12 @@ const structuredData = {
       <h2 class="headline">{service.name}</h2>
       <p class="lede">{service.shortDescription}</p>
       <a class="button button--text" href={withBase(`/servicos/${service.slug}/`)}>
-        Ver tudo o que está incluído
+        {pages.home.serviceLink}
         <span aria-hidden="true">↗</span>
       </a>
     </div>
     <div class="service-highlight__price" data-reveal>
-      <span>Investimento</span>
+      <span>{pages.home.investmentLabel}</span>
       <strong aria-label={service.price.label}>
         <span>de</span>{" "}
         <span class="price-amount">{formatPrice(service.price.min)}</span>{" "}
@@ -182,7 +163,7 @@ const structuredData = {
         name={service.name}
         detail="Atendimento online"
         priceLabel={service.price.label}
-        label="Adicionar serviço à sacola"
+        label={pages.home.serviceCartCta}
       />
     </div>
   </section>
@@ -190,15 +171,11 @@ const structuredData = {
   <section class="curation section" data-reveal>
     <div class="curation__index" aria-hidden="true">02</div>
     <div class="curation__copy">
-      <p class="eyebrow">Curadoria de joias</p>
-      <h2 class="headline">A joia entra no desenho, não o contrário.</h2>
-      <p class="lede">
-        Formato, proporção, brilho e material são escolhidos para trabalhar juntos. Você
-        pode adquirir as peças com a ARTÍS ou usar o projeto para orientar sua compra
-        onde preferir.
-      </p>
+      <p class="eyebrow">{pages.home.curationEyebrow}</p>
+      <h2 class="headline">{pages.home.curationTitle}</h2>
+      <p class="lede">{pages.home.curationDescription}</p>
       <a class="button button--secondary" href={withBase("/joias/")}>
-        Conhecer a curadoria
+        {pages.home.curationCta}
       </a>
     </div>
     <div class="curation__object" aria-hidden="true">
@@ -214,17 +191,15 @@ const structuredData = {
   </section>
 
   <section class="manifesto" data-reveal>
-    <p class="manifesto__small">ARTÍS acredita que</p>
-    <blockquote>
-      “Toda mulher merece experimentar sua composição antes de transformar sua orelha.”
-    </blockquote>
+    <p class="manifesto__small">{pages.home.manifestoEyebrow}</p>
+    <blockquote>“{pages.home.manifestoQuote}”</blockquote>
     <p class="manifesto__signature">{site.tagline}</p>
   </section>
 
   <section class="faq section" id="perguntas">
     <div class="faq__header" data-reveal>
-      <p class="eyebrow">Perguntas frequentes</p>
-      <h2 class="headline">Antes de começar.</h2>
+      <p class="eyebrow">{pages.home.faqEyebrow}</p>
+      <h2 class="headline">{pages.home.faqTitle}</h2>
     </div>
     <div class="faq__list">
       {
@@ -249,13 +224,10 @@ const structuredData = {
       <EarBlueprint />
     </div>
     <div class="contact__copy" data-reveal>
-      <p class="eyebrow">Sua composição pode começar hoje</p>
-      <h2 class="headline">Vamos imaginar sua orelha juntas?</h2>
-      <p>
-        Conte o que você já usa, o que gostaria de mudar e como quer se sentir com a
-        nova composição.
-      </p>
-      <WhatsAppLink message={messages.project} label="Quero começar meu projeto" />
+      <p class="eyebrow">{pages.home.contactEyebrow}</p>
+      <h2 class="headline">{pages.home.contactTitle}</h2>
+      <p>{pages.home.contactDescription}</p>
+      <WhatsAppLink message={messages.project} label={pages.home.contactCta} />
       {
         !hasWhatsApp && (
           <p class="contact__pending">

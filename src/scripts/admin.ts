@@ -47,6 +47,14 @@ const sections: Section[] = [
     mode: "object",
   },
   {
+    id: "pages",
+    label: "Textos das páginas",
+    description:
+      "Títulos, parágrafos, chamadas, navegação e textos institucionais do site.",
+    path: "src/data/pages.json",
+    mode: "object",
+  },
+  {
     id: "products",
     label: "Joias",
     description: "Catálogo, materiais, disponibilidade, imagens e publicação.",
@@ -84,7 +92,8 @@ const sections: Section[] = [
   {
     id: "images",
     label: "Imagens",
-    description: "Arquivos de catálogo usados por joias e projetos.",
+    description:
+      "Imagens principais do site e arquivos de catálogo usados por joias e projetos.",
     mode: "images",
   },
   {
@@ -647,9 +656,16 @@ async function renderImages() {
   panel.append(toolbar);
 
   const files = await api<RepositoryFile[]>("/api/content?path=src%2Fassets%2Fcatalog");
-  const images = files.filter(
-    (file) => file.type === "file" && file.name !== ".gitkeep",
+  const siteImagePaths = ["src/assets/hero-artis.png", "src/assets/processo-artis.png"];
+  const siteImages = await Promise.all(
+    siteImagePaths.map((path) =>
+      api<RepositoryFile>(`/api/content?path=${encodeURIComponent(path)}`),
+    ),
   );
+  const images = [
+    ...siteImages,
+    ...files.filter((file) => file.type === "file" && file.name !== ".gitkeep"),
+  ];
   const grid = element("div", { className: "image-grid" });
   images.forEach((file) => {
     const card = element("article", { className: "image-card" });
@@ -662,11 +678,68 @@ async function renderImages() {
       element("strong", { text: file.name }),
       element("small", { text: file.path }),
     );
+
+    const replaceInput = element("input");
+    replaceInput.type = "file";
+    const extension = file.name.split(".").at(-1)?.toLowerCase() ?? "";
+    replaceInput.accept = `.${extension}`;
+    replaceInput.hidden = true;
+    const replace = element("button", {
+      className: "button secondary small",
+      text: "Substituir arquivo",
+      type: "button",
+    });
+    replace.addEventListener("click", () => replaceInput.click());
+    replaceInput.addEventListener("change", async () => {
+      const replacement = replaceInput.files?.[0];
+      if (!replacement) return;
+      const replacementExtension = replacement.name.split(".").at(-1)?.toLowerCase();
+      if (replacementExtension !== extension) {
+        panel.prepend(
+          notice(
+            `Envie um arquivo .${extension} para substituir esta imagem.`,
+            "error",
+          ),
+        );
+        replaceInput.value = "";
+        return;
+      }
+      replace.disabled = true;
+      replace.textContent = "Substituindo…";
+      try {
+        await api("/api/content", {
+          method: "PUT",
+          body: JSON.stringify({
+            path: file.path,
+            sha: file.sha,
+            message: `admin: substituir imagem ${file.name}`,
+            encoding: "base64",
+            content: await blobToBase64(replacement),
+          }),
+        });
+        await renderImages();
+      } catch (error) {
+        panel.prepend(
+          notice(
+            error instanceof Error ? error.message : "Falha ao substituir imagem.",
+            "error",
+          ),
+        );
+      } finally {
+        replace.disabled = false;
+        replace.textContent = "Substituir arquivo";
+        replaceInput.value = "";
+      }
+    });
+    body.append(replace, replaceInput);
+
+    const isSiteImage = siteImagePaths.includes(file.path);
     const remove = element("button", {
       className: "button danger small",
       text: "Excluir arquivo",
       type: "button",
     });
+    remove.hidden = isSiteImage;
     remove.addEventListener("click", async () => {
       if (
         !confirm(
@@ -695,7 +768,7 @@ async function renderImages() {
         );
       }
     });
-    body.append(remove);
+    if (!isSiteImage) body.append(remove);
     card.append(image, body);
     grid.append(card);
   });

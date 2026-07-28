@@ -15,6 +15,7 @@ every publication recoverable through Git history.
 | File              | Content                                                                  |
 | ----------------- | ------------------------------------------------------------------------ |
 | `site.json`       | Name, slogan, service area, public contact, and announcement             |
+| `pages.json`      | Navigation, page titles, paragraphs, calls to action, and interface copy |
 | `services.json`   | Service names, prices, descriptions, included items, and process         |
 | `products.json`   | Joias, prices, images, availability, order, and publication state        |
 | `projects.json`   | Authorized portfolio projects, images, categories, and publication state |
@@ -63,7 +64,8 @@ available as a contingency and audit workflow.
 3. Use a short lowercase filename with hyphens.
 4. Keep original images reasonably sized; use at least 1600px on the long edge for
    editorial photography.
-5. Upload the source under `src/assets/catalog/`.
+5. Upload catalog and portfolio sources under `src/assets/catalog/`. Replace the
+   homepage and process images in place through the **Imagens** area of `/admin/`.
 6. Add its filename to the relevant content entry.
 7. Add a precise `alt` (or project `imageAlt`) in Brazilian Portuguese.
 
