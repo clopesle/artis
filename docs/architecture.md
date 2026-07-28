@@ -30,8 +30,14 @@ Presentation files may read content files. Content files never import presentati
 
 ## Data and persistence
 
-GitHub is the only persistent content source. There is no database, customer account,
-checkout, or browser-based write credential. Every content publication is a Git commit.
+GitHub is the only persistent business-content source. There is no database, customer
+account, payment checkout, or browser-based write credential. Every content publication
+is a Git commit.
+
+The customer sacola is temporary browser state stored under `artis-cart-v1` in
+`localStorage`. It contains only selected item identifiers, public labels, quantities,
+and the configured service price label. It never stores personal data, supplier
+information, credentials, or jewelry prices.
 
 The main structured files are:
 
@@ -61,9 +67,10 @@ The build also generates:
 
 ## Client-side JavaScript
 
-The site ships only a small script for one-time reveal transitions and closing the
-mobile menu after navigation. Navigation, FAQ disclosures, and content remain functional
-without application JavaScript.
+The site ships small scripts for reveal transitions, mobile-menu behavior, catalog
+search, category filtering, and the local sacola. Navigation, FAQ disclosures, and all
+catalog content remain readable without application JavaScript. Search and the sacola
+require JavaScript and provide explicit fallback copy.
 
 ## Images
 

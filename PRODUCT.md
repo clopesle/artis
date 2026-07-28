@@ -12,14 +12,16 @@ and want to understand how the result could look before making an aesthetic and
 anatomical commitment.
 
 The visitor's job is to gain confidence, understand the personalized digital design
-service, see evidence of care and taste, and begin a consultation through WhatsApp.
+service, discover suitable jewelry by category or search, assemble a calm shortlist, and
+begin a contextual consultation through WhatsApp.
 
 ## Product Purpose
 
 The site presents ARTÍS as a Brazilian specialist in personalized digital auricular
 design, visagism, and jewelry curation. It explains the online process, shows the
 quality of the work, and converts qualified interest into contextual WhatsApp
-conversations.
+conversations. Jewelry and services can share one temporary sacola, but the website does
+not expose jewelry prices or perform payment checkout.
 
 Success means a visitor quickly understands that ARTÍS plans a composition before any
 piercing, trusts the brand's aesthetic and technical judgment, and contacts ARTÍS about

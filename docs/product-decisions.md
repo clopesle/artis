@@ -23,10 +23,12 @@ commercial content.
 - Current state: Astro 7 static site with automated checks and a Pages workflow
 - Existing application code: mobile-first multi-page public site in `src/`
 - Existing structured content: JSON content files in `src/data/`
-- Existing images: two generated editorial assets in `src/assets/`
+- Existing images: two generated editorial assets and 12 curated product photographs in
+  `src/assets/`
 - Existing brand context: `PRODUCT.md`, `DESIGN.md`, and `.impeccable/design.json`
 - Existing service information: one published Design Auricular Digital service
-- Existing product information: none; the public catalog intentionally remains empty
+- Existing product information: 12 curated jewelry entries with verified allowed
+  material descriptions and consultation-only availability
 - Existing portfolio information: none; the public portfolio intentionally remains empty
   until real work and consent are supplied
 - Repository-specific agent guidance: none found
@@ -48,6 +50,16 @@ fabricating the approved mark.
   it.
 - The site must present products, services, prices, images, descriptions, and
   availability.
+- Jewelry must come only from the two owner-approved wholesale catalogs and use only
+  gold, titanium, steel 316L, or PVD material families.
+- Customer-facing pages, the sacola, and WhatsApp messages must not expose which
+  wholesale catalog supplies a jewelry item.
+- Jewelry prices remain hidden. An optional BRL amount is configurable in content for
+  non-confidential planning, while service prices remain visible.
+- Jewelry is organized by category and searchable by name, material, position, and
+  descriptive attributes.
+- Jewelry and services share a local sacola that sends one contextual order request to
+  the official WhatsApp number.
 - The site must showcase completed work through a maintainable portfolio.
 - Customer purchases, negotiation, and appointment conversations conclude through
   WhatsApp.
@@ -144,7 +156,10 @@ fabricating the approved mark.
 
 ### Required before publishing products or portfolio
 
-- Confirmed jewelry names, prices, materials, availability, and owned/licensed images
+- Confirmation that committed wholesale product photography is licensed for ARTÍS retail
+  presentation
+- Final retail jewelry values for private consultation and current wholesale
+  availability
 - Shipping area, shipping method, fulfillment expectations, and unavailable-item policy
 - Real project images, descriptions, categories, anonymity choices, and explicit consent
 - Decision on whether client before-and-after imagery is appropriate
@@ -232,8 +247,9 @@ This definition will be refined with measurable acceptance criteria during disco
 - Product and portfolio imagery will dominate perceived quality and mobile performance;
   source-image standards are not yet known.
 - Client-image permissions and legal policies are unresolved.
-- Catalog scale is unknown, so search, filters, sorting, and a multi-item inquiry list
-  remain intentionally unimplemented.
+- Catalog search and category filters may need refinement as the curated range grows.
+- Product values stored in the public repository are inspectable even when templates
+  omit them, so confidential wholesale costs must never be committed.
 
 ## Change History
 
@@ -251,6 +267,11 @@ This definition will be refined with measurable acceptance criteria during disco
   gates.
 - Enabled GitHub Pages through the repository setting supplied by the owner and verified
   successful production deployments.
+- Added 12 curated jewelry entries limited to gold, titanium, steel 316L, and PVD.
+- Added category navigation, accent-insensitive search, local sacola persistence, and a
+  combined jewelry-and-service WhatsApp order flow.
+- Configured the official WhatsApp number and verified that checkout messages omit
+  jewelry prices and supplier identity.
 - Created the initial living decision log.
 - Recorded the repository as empty and inventoried missing project assets.
 - Transcribed confirmed constraints from the project brief.

@@ -42,6 +42,11 @@ stored as the GitHub Actions repository variable `PUBLIC_WHATSAPP_NUMBER`.
 No write credential is needed at build or runtime. GitHub's deployment token is created
 for each Actions run and never enters the browser bundle.
 
+The customer sacola uses browser `localStorage` only for public item labels and
+quantities. It contains no supplier mapping, product cost, personal data, or write
+credential. Checkout is a prefilled `wa.me` link; the website does not transmit or
+retain the message.
+
 ## Future friendly editor
 
 If repository editing becomes too difficult, evaluate a GitHub App based CMS or a local

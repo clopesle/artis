@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { GetStaticPaths } from "astro";
+import AddToCartButton from "../../components/AddToCartButton.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import { availabilityLabels } from "../../lib/catalog";
 import { getCatalogImage } from "../../lib/catalog-images";
@@ -115,7 +116,20 @@ const structuredData = {
 
       {
         product.availability !== "indisponivel" && (
-          <WhatsAppLink message={message} label="Consultar esta joia" />
+          <div class="product-detail__actions">
+            <AddToCartButton
+              itemType="product"
+              itemId={product.id}
+              name={product.name}
+              detail={product.material}
+              variant="primary"
+            />
+            <WhatsAppLink
+              message={message}
+              label="Consultar esta joia"
+              variant="secondary"
+            />
+          </div>
         )
       }
     </div>
@@ -229,6 +243,12 @@ const structuredData = {
 
   .product-detail :global(.button) {
     margin-top: 1.5rem;
+  }
+
+  .product-detail__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
   }
 
   @media (min-width: 64rem) {

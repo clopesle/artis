@@ -84,6 +84,70 @@ const ogImageUrl = new URL(heroImage.src, Astro.site);
     {!hideMobileContact && <MobileContactBar />}
 
     <script>
+      import {
+        CART_STORAGE_KEY,
+        addCartItem,
+        cartItemCount,
+        deserializeCart,
+        serializeCart,
+        type CartItem,
+      } from "../lib/cart";
+
+      function readCart() {
+        try {
+          return deserializeCart(localStorage.getItem(CART_STORAGE_KEY));
+        } catch {
+          return [];
+        }
+      }
+
+      function writeCart(items: CartItem[]) {
+        try {
+          localStorage.setItem(CART_STORAGE_KEY, serializeCart(items));
+        } catch {
+          // The current page still works when browser storage is unavailable.
+        }
+
+        window.dispatchEvent(new CustomEvent("artis:cart-updated", { detail: items }));
+      }
+
+      function refreshCartCount(items = readCart()) {
+        const count = cartItemCount(items);
+
+        document.querySelectorAll("[data-cart-count]").forEach((element) => {
+          element.textContent = String(count);
+          element.toggleAttribute("data-empty", count === 0);
+        });
+      }
+
+      refreshCartCount();
+      window.addEventListener("artis:cart-updated", (event) => {
+        refreshCartCount((event as CustomEvent<CartItem[]>).detail);
+      });
+
+      document.querySelectorAll("[data-cart-add]").forEach((element) => {
+        if (!(element instanceof HTMLButtonElement)) return;
+
+        element.addEventListener("click", () => {
+          const encodedItem = element.dataset.cartItem;
+          if (!encodedItem) return;
+
+          const item = JSON.parse(encodedItem) as CartItem;
+          writeCart(addCartItem(readCart(), item));
+
+          const label = element.querySelector("[data-cart-button-label]");
+          const defaultLabel = element.dataset.defaultLabel ?? "Adicionar à sacola";
+
+          if (label) label.textContent = "Adicionado";
+          element.setAttribute("aria-label", `${item.name} adicionado à sacola`);
+
+          window.setTimeout(() => {
+            if (label) label.textContent = defaultLabel;
+            element.removeAttribute("aria-label");
+          }, 1600);
+        });
+      });
+
       const observer = new IntersectionObserver(
         (entries) => {
           for (const entry of entries) {

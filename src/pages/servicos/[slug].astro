@@ -1,6 +1,7 @@
 ---
 import { Image } from "astro:assets";
 import type { GetStaticPaths } from "astro";
+import AddToCartButton from "../../components/AddToCartButton.astro";
 import EarBlueprint from "../../components/EarBlueprint.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import processImage from "../../assets/processo-artis.png";
@@ -107,6 +108,14 @@ const structuredData = {
         message={messages.project}
         label="Conversar sobre meu projeto"
         variant="secondary"
+      />
+      <AddToCartButton
+        itemType="service"
+        itemId={service.id}
+        name={service.name}
+        detail="Atendimento online"
+        priceLabel={service.price.label}
+        label="Adicionar serviço à sacola"
       />
     </div>
   </section>

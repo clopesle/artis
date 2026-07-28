@@ -11,17 +11,20 @@
 
 ## Products and portfolio
 
-- [ ] Every published product has confirmed name, material, price, availability, and
-      owned or licensed images
+- [ ] Every published product has confirmed name, material, consultation availability,
+      and owned or licensed images
 - [ ] Every published project has explicit image and story consent
 - [ ] Client identity and anatomy are represented accurately
 - [ ] No location or other unnecessary metadata remains in client images
-- [ ] Empty catalog and portfolio states remain in place if real content is unavailable
+- [ ] The portfolio empty state remains in place until real authorized work is available
 
 ## Contact and customer journey
 
-- [ ] Every primary action opens the official WhatsApp number
-- [ ] Messages are correctly encoded and describe the originating context
+- [x] Every primary action opens the official WhatsApp number
+- [x] Messages are correctly encoded and describe the originating context
+- [x] Catalog search and category filters return the expected jewelry
+- [x] Jewelry and services can be combined, updated, and removed from the sacola
+- [x] Sacola messages omit jewelry prices and supplier identity
 - [ ] Mobile sticky action does not cover important content
 - [ ] Every page has a clear next action
 - [ ] Instagram profile links to the final HTTPS URL

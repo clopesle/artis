@@ -47,6 +47,10 @@ const links = [
   </nav>
 
   <div class="site-header__desktop-cta">
+    <a class="site-header__cart" href={withBase("/carrinho/")}>
+      Sacola
+      <span data-cart-count data-empty>0</span>
+    </a>
     <WhatsAppLink
       message={messages.project}
       label="Começar meu projeto"
@@ -71,6 +75,12 @@ const links = [
             </a>
           ))
         }
+        <a
+          href={withBase("/carrinho/")}
+          aria-current={currentPath === withBase("/carrinho/") ? "page" : undefined}
+        >
+          Sacola <span data-cart-count data-empty>0</span>
+        </a>
       </nav>
       <WhatsAppLink message={messages.project} label="Começar meu projeto" />
       <p>Atendimento online para todo o Brasil.</p>
@@ -124,6 +134,34 @@ const links = [
   .site-header__desktop-nav,
   .site-header__desktop-cta {
     display: none;
+  }
+
+  .site-header__cart {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.45rem;
+    color: var(--color-text-muted);
+    font-size: 0.82rem;
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .site-header__cart span,
+  .site-header__menu-panel nav a span {
+    display: inline-grid;
+    place-items: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding-inline: 0.25rem;
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    font-size: 0.72rem;
+    background: var(--color-graphite);
+    border-radius: 999px;
+  }
+
+  [data-cart-count][data-empty] {
+    opacity: 0.42;
   }
 
   .site-header__menu summary {
@@ -241,7 +279,9 @@ const links = [
 
     .site-header__desktop-cta {
       display: flex;
+      align-items: center;
       justify-content: flex-end;
+      gap: 1.2rem;
     }
 
     .site-header__menu {

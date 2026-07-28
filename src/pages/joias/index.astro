@@ -1,5 +1,6 @@
 ---
 import { Image } from "astro:assets";
+import AddToCartButton from "../../components/AddToCartButton.astro";
 import WhatsAppLink from "../../components/WhatsAppLink.astro";
 import products from "../../data/products.json";
 import { availabilityLabels, byEditorialPriority } from "../../lib/catalog";
@@ -12,6 +13,21 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const publishedProducts = (products as Product[])
   .filter((product) => product.published)
   .sort(byEditorialPriority);
+const preferredCategoryOrder = [
+  "Argolas",
+  "Labrets",
+  "Topos",
+  "Hastes",
+  "Correntes",
+  "Brincos",
+];
+const categories = preferredCategoryOrder.filter((category) =>
+  publishedProducts.some((product) => product.category === category),
+);
+const categoryGroups = categories.map((category) => ({
+  category,
+  products: publishedProducts.filter((product) => product.category === category),
+}));
 ---
 
 <BaseLayout
@@ -41,33 +57,112 @@ const publishedProducts = (products as Product[])
 
   {
     publishedProducts.length > 0 ? (
-      <section class="product-list section">
-        {publishedProducts.map((product) => (
-          <article data-reveal data-featured={product.featured || undefined}>
-            <a
-              class="product-list__image"
-              href={withBase(`/joias/${product.slug}/`)}
-              aria-label={`Conhecer ${product.name}`}
-            >
-              <Image
-                src={getCatalogImage(product.images[0].src)}
-                alt={product.images[0].alt}
-                widths={[480, 720, 960]}
-                sizes="(min-width: 64rem) 42vw, 100vw"
-                format="avif"
-                quality={78}
-              />
-            </a>
-            <div class="product-list__meta">
-              <span>{product.category}</span>
-              <span>{availabilityLabels[product.availability]}</span>
-            </div>
-            <h2 class="title">
-              <a href={withBase(`/joias/${product.slug}/`)}>{product.name}</a>
+      <section class="catalog section" aria-labelledby="catalogo">
+        <header class="catalog__header" data-reveal>
+          <div>
+            <p class="eyebrow">Encontre sua peça</p>
+            <h2 id="catalogo" class="headline">
+              Curadoria por forma e função.
             </h2>
-            <p>{product.shortDescription}</p>
-          </article>
-        ))}
+          </div>
+          <label class="catalog__search">
+            <span>Buscar joia</span>
+            <input
+              type="search"
+              placeholder="Nome, material ou posição"
+              autocomplete="off"
+              data-catalog-query
+            />
+            <svg aria-hidden="true" viewBox="0 0 24 24">
+              <circle cx="11" cy="11" r="6.5" />
+              <path d="m16 16 4 4" />
+            </svg>
+          </label>
+          <fieldset class="catalog__filters" data-catalog-filters>
+            <legend>Filtrar por categoria</legend>
+            <button type="button" data-category="" aria-pressed="true">
+              Todas
+            </button>
+            {categories.map((category) => (
+              <button type="button" data-category={category} aria-pressed="false">
+                {category}
+              </button>
+            ))}
+          </fieldset>
+          <p class="catalog__status" aria-live="polite" data-catalog-status>
+            {publishedProducts.length} joias encontradas
+          </p>
+        </header>
+
+        <div class="catalog__groups">
+          {categoryGroups.map((group) => (
+            <section
+              class="catalog-category"
+              data-catalog-group
+              data-category={group.category}
+              aria-labelledby={`categoria-${group.category.toLowerCase()}`}
+            >
+              <header>
+                <h3 id={`categoria-${group.category.toLowerCase()}`}>
+                  {group.category}
+                </h3>
+                <span>{String(group.products.length).padStart(2, "0")}</span>
+              </header>
+              <div class="product-list">
+                {group.products.map((product) => (
+                  <article
+                    data-reveal
+                    data-product
+                    data-search={[
+                      product.name,
+                      product.category,
+                      product.material,
+                      product.shortDescription,
+                      product.stone,
+                      ...product.suggestedPlacements,
+                    ]
+                      .filter(Boolean)
+                      .join(" ")}
+                  >
+                    <a
+                      class="product-list__image"
+                      href={withBase(`/joias/${product.slug}/`)}
+                      aria-label={`Conhecer ${product.name}`}
+                    >
+                      <Image
+                        src={getCatalogImage(product.images[0].src)}
+                        alt={product.images[0].alt}
+                        widths={[480, 720, 960]}
+                        sizes="(min-width: 64rem) 42vw, 100vw"
+                        format="avif"
+                        quality={78}
+                      />
+                    </a>
+                    <div class="product-list__meta">
+                      <span>{product.material}</span>
+                      <span>{availabilityLabels[product.availability]}</span>
+                    </div>
+                    <h4 class="title">
+                      <a href={withBase(`/joias/${product.slug}/`)}>{product.name}</a>
+                    </h4>
+                    <p>{product.shortDescription}</p>
+                    <AddToCartButton
+                      itemType="product"
+                      itemId={product.id}
+                      name={product.name}
+                      detail={product.material}
+                    />
+                  </article>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        <div class="catalog__empty" data-catalog-empty hidden>
+          <p class="title">Nenhuma peça encontrou esse termo.</p>
+          <p>Experimente outro nome, material, posição ou categoria.</p>
+        </div>
       </section>
     ) : (
       <section class="empty-catalog section" data-reveal>
@@ -95,6 +190,66 @@ const publishedProducts = (products as Product[])
     <p>03 <span>harmonia</span></p>
   </section>
 </BaseLayout>
+
+<script>
+  const queryInput = document.querySelector("[data-catalog-query]");
+  const filterButtons = Array.from(
+    document.querySelectorAll<HTMLButtonElement>("[data-category]"),
+  );
+  const groups = Array.from(
+    document.querySelectorAll<HTMLElement>("[data-catalog-group]"),
+  );
+  const status = document.querySelector("[data-catalog-status]");
+  const emptyState = document.querySelector<HTMLElement>("[data-catalog-empty]");
+  let selectedCategory = "";
+
+  const normalize = (value: string) =>
+    value
+      .normalize("NFD")
+      .replace(/\p{Diacritic}/gu, "")
+      .toLocaleLowerCase("pt-BR")
+      .trim();
+
+  function applyCatalogFilters() {
+    const query =
+      queryInput instanceof HTMLInputElement ? normalize(queryInput.value) : "";
+    let visibleCount = 0;
+
+    for (const group of groups) {
+      const categoryMatches =
+        selectedCategory === "" || group.dataset.category === selectedCategory;
+      let groupCount = 0;
+
+      group.querySelectorAll<HTMLElement>("[data-product]").forEach((product) => {
+        const queryMatches = normalize(product.dataset.search ?? "").includes(query);
+        const visible = categoryMatches && queryMatches;
+        product.hidden = !visible;
+        if (visible) groupCount += 1;
+      });
+
+      group.hidden = groupCount === 0;
+      visibleCount += groupCount;
+    }
+
+    if (status) {
+      status.textContent =
+        visibleCount === 1 ? "1 joia encontrada" : `${visibleCount} joias encontradas`;
+    }
+    if (emptyState) emptyState.hidden = visibleCount !== 0;
+  }
+
+  queryInput?.addEventListener("input", applyCatalogFilters);
+
+  for (const button of filterButtons) {
+    button.addEventListener("click", () => {
+      selectedCategory = button.dataset.category ?? "";
+      filterButtons.forEach((item) =>
+        item.setAttribute("aria-pressed", String(item === button)),
+      );
+      applyCatalogFilters();
+    });
+  }
+</script>
 
 <style>
   .collection-hero {
@@ -164,6 +319,119 @@ const publishedProducts = (products as Product[])
     gap: 2rem;
   }
 
+  .catalog__header {
+    display: grid;
+    gap: 2rem;
+    padding-bottom: clamp(4rem, 8vw, 7rem);
+    border-bottom: 1px solid var(--color-line-strong);
+  }
+
+  .catalog__header h2 {
+    max-width: 12ch;
+  }
+
+  .catalog__search {
+    position: relative;
+    align-self: end;
+    display: grid;
+    gap: 0.55rem;
+  }
+
+  .catalog__search span,
+  .catalog__filters legend {
+    color: var(--color-bronze);
+    font-size: 0.72rem;
+    font-weight: 680;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .catalog__search input {
+    width: 100%;
+    min-height: 3.75rem;
+    padding: 0.5rem 3rem 0.5rem 0;
+    color: var(--color-graphite);
+    background: transparent;
+    border: 0;
+    border-bottom: 1px solid var(--color-graphite);
+    border-radius: 0;
+    outline-offset: 0.3rem;
+  }
+
+  .catalog__search input::placeholder {
+    color: var(--color-text-muted);
+  }
+
+  .catalog__search svg {
+    position: absolute;
+    right: 0;
+    bottom: 1rem;
+    width: 1.4rem;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+  }
+
+  .catalog__filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    padding: 0;
+    border: 0;
+  }
+
+  .catalog__filters legend {
+    width: 100%;
+    margin-bottom: 0.55rem;
+  }
+
+  .catalog__filters button {
+    min-height: 2.75rem;
+    padding: 0.55rem 0.9rem;
+    color: var(--color-text-muted);
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--color-line-strong);
+    border-radius: 999px;
+  }
+
+  .catalog__filters button[aria-pressed="true"] {
+    color: var(--color-paper);
+    background: var(--color-graphite);
+    border-color: var(--color-graphite);
+  }
+
+  .catalog__status {
+    margin: 0;
+    color: var(--color-text-muted);
+  }
+
+  .catalog-category {
+    padding-block: clamp(4rem, 9vw, 8rem);
+    border-bottom: 1px solid var(--color-line-strong);
+  }
+
+  .catalog-category > header {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-bottom: clamp(2rem, 5vw, 4rem);
+  }
+
+  .catalog-category > header h3 {
+    margin: 0;
+    font-family: var(--font-display);
+    font-size: clamp(2.8rem, 7vw, 6rem);
+    font-weight: 440;
+    letter-spacing: -0.04em;
+  }
+
+  .catalog-category > header span {
+    color: var(--color-satin);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+  }
+
   .product-list {
     display: grid;
     gap: clamp(3rem, 7vw, 6rem);
@@ -209,7 +477,7 @@ const publishedProducts = (products as Product[])
     text-transform: uppercase;
   }
 
-  .product-list h2 a {
+  .product-list h4 a {
     color: inherit;
     text-decoration: none;
   }
@@ -220,8 +488,21 @@ const publishedProducts = (products as Product[])
     line-height: 1.5;
   }
 
-  .product-list article > strong {
-    font-size: 1.05rem;
+  .product-list article :global(.button) {
+    margin-top: 0.75rem;
+  }
+
+  .catalog__empty {
+    padding-block: clamp(5rem, 10vw, 9rem);
+    text-align: center;
+  }
+
+  .catalog__empty .title {
+    margin-inline: auto;
+  }
+
+  .catalog__empty > p:last-child {
+    color: var(--color-text-muted);
   }
 
   .empty-catalog > span {
@@ -284,7 +565,16 @@ const publishedProducts = (products as Product[])
     }
 
     .product-list article:nth-child(even) {
-      padding-top: 8rem;
+      padding-top: 5rem;
+    }
+
+    .catalog__header {
+      grid-template-columns: 1.1fr 0.9fr;
+    }
+
+    .catalog__filters,
+    .catalog__status {
+      grid-column: 1 / -1;
     }
 
     .jewelry-principles {
