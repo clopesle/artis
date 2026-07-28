@@ -14,28 +14,28 @@ colors:
 typography:
   display:
     fontFamily: "Bodoni Moda Variable, Iowan Old Style, serif"
-    fontSize: "clamp(3.45rem, 12vw, 9.5rem)"
+    fontSize: "clamp(2.7rem, 9vw, 4.75rem)"
     fontWeight: 430
     lineHeight: 0.84
     letterSpacing: "-0.045em"
   displayDesktop:
-    fontSize: "clamp(4.5rem, 7vw, 7rem)"
+    fontSize: "clamp(3.75rem, 4.5vw, 4.75rem)"
   headline:
     fontFamily: "Bodoni Moda Variable, Iowan Old Style, serif"
-    fontSize: "clamp(2.65rem, 7vw, 6rem)"
+    fontSize: "clamp(2.1rem, 6.5vw, 3.5rem)"
     fontWeight: 430
     lineHeight: 0.94
     letterSpacing: "-0.04em"
   headlineDesktop:
-    fontSize: "clamp(3.15rem, 4.5vw, 4.75rem)"
+    fontSize: "clamp(2.65rem, 3.25vw, 3.5rem)"
   title:
     fontFamily: "Bodoni Moda Variable, Iowan Old Style, serif"
-    fontSize: "clamp(1.9rem, 4vw, 3.4rem)"
+    fontSize: "clamp(1.55rem, 4vw, 2.3rem)"
     fontWeight: 460
     lineHeight: 1
     letterSpacing: "-0.025em"
   titleDesktop:
-    fontSize: "clamp(2rem, 2.5vw, 2.5rem)"
+    fontSize: "clamp(1.8rem, 2vw, 2.15rem)"
   body:
     fontFamily: "Afacad Flux Variable, Helvetica Neue, sans-serif"
     fontSize: "1rem"
@@ -144,11 +144,11 @@ mobile screens.
 
 ### Hierarchy
 
-- **Display:** Medium-light variable weight, fluid from 3.45rem to 9.5rem, used only for
+- **Display:** Medium-light variable weight, fluid from 2.7rem to 4.75rem, used only for
   the central promise and major page identity.
-- **Headline:** Medium-light variable weight, fluid from 2.65rem to 6rem, used for
+- **Headline:** Medium-light variable weight, fluid from 2.1rem to 3.5rem, used for
   narrative section turns.
-- **Title:** Medium variable weight, fluid from 1.9rem to 3.4rem, used for item and
+- **Title:** Medium variable weight, fluid from 1.55rem to 2.3rem, used for item and
   supporting page titles.
 - **Body:** Regular weight at 1rem with 1.55 line height and a maximum measure of 68
   characters.

@@ -115,7 +115,7 @@ p {
 .display {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(3.45rem, 12vw, 9.5rem);
+  font-size: clamp(2.7rem, 9vw, 4.75rem);
   font-weight: 430;
   letter-spacing: -0.045em;
   line-height: 0.84;
@@ -124,7 +124,7 @@ p {
 .headline {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(2.65rem, 7vw, 6rem);
+  font-size: clamp(2.1rem, 6.5vw, 3.5rem);
   font-weight: 430;
   letter-spacing: -0.04em;
   line-height: 0.94;
@@ -133,7 +133,7 @@ p {
 .title {
   margin: 0;
   font-family: var(--font-display);
-  font-size: clamp(1.9rem, 4vw, 3.4rem);
+  font-size: clamp(1.55rem, 4vw, 2.3rem);
   font-weight: 460;
   letter-spacing: -0.025em;
   line-height: 1;
@@ -265,15 +265,15 @@ p {
   }
 
   .display {
-    font-size: clamp(4.5rem, 7vw, 7rem);
+    font-size: clamp(3.75rem, 4.5vw, 4.75rem);
   }
 
   .headline {
-    font-size: clamp(3.15rem, 4.5vw, 4.75rem);
+    font-size: clamp(2.65rem, 3.25vw, 3.5rem);
   }
 
   .title {
-    font-size: clamp(2rem, 2.5vw, 2.5rem);
+    font-size: clamp(1.8rem, 2vw, 2.15rem);
   }
 }
 
