@@ -8,7 +8,7 @@ ADMIN_URL = "https://clopesle.github.io/artis/admin/"
 BRIDGE_URL = "https://artis-admin-bridge.clopes-le.workers.dev"
 GITHUB_REPOSITORY = "clopesle/artis"
 GITHUB_BRANCH = "main"
-GITHUB_CLIENT_ID = "REPLACE"
+GITHUB_CLIENT_ID = "Iv23li8sB6ZhlGZcUaty"
 
 [secrets]
 required = ["GITHUB_CLIENT_SECRET", "STATE_SECRET"]
