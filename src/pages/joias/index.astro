@@ -13,28 +13,20 @@ import BaseLayout from "../../layouts/BaseLayout.astro";
 const publishedProducts = (products as Product[])
   .filter((product) => product.published)
   .sort(byEditorialPriority);
-const preferredCategoryOrder = [
-  "Argolas",
-  "Labrets",
-  "Topos",
-  "Hastes",
-  "Correntes",
-  "Brincos",
-];
-const discoveredCategories = [
-  ...new Set(publishedProducts.map((product) => product.category)),
-];
-const categories = [
-  ...preferredCategoryOrder.filter((category) =>
-    discoveredCategories.includes(category),
-  ),
-  ...discoveredCategories.filter(
-    (category) => !preferredCategoryOrder.includes(category),
-  ),
-];
+const preferredCategoryOrder = ["Ouro", "Titânio ASTM", "Aço 316L", "PVD"];
+const categories = preferredCategoryOrder.filter((category) =>
+  publishedProducts.some((product) => product.materialCategory === category),
+);
 const categoryGroups = categories.map((category) => ({
   category,
-  products: publishedProducts.filter((product) => product.category === category),
+  id: category
+    .normalize("NFD")
+    .replace(/\p{Diacritic}/gu, "")
+    .toLocaleLowerCase("pt-BR")
+    .replace(/\s+/g, "-"),
+  products: publishedProducts.filter(
+    (product) => product.materialCategory === category,
+  ),
 }));
 ---
 
@@ -114,12 +106,10 @@ const categoryGroups = categories.map((category) => ({
               class="catalog-category"
               data-catalog-group
               data-category={group.category}
-              aria-labelledby={`categoria-${group.category.toLowerCase()}`}
+              aria-labelledby={`categoria-${group.id}`}
             >
               <header>
-                <h3 id={`categoria-${group.category.toLowerCase()}`}>
-                  {group.category}
-                </h3>
+                <h3 id={`categoria-${group.id}`}>{group.category}</h3>
                 <span>{String(group.products.length).padStart(2, "0")}</span>
               </header>
               <div class="product-list">
@@ -130,6 +120,7 @@ const categoryGroups = categories.map((category) => ({
                     data-search={[
                       product.name,
                       product.category,
+                      product.materialCategory,
                       product.material,
                       product.shortDescription,
                       ...product.description,
@@ -604,6 +595,10 @@ const categoryGroups = categories.map((category) => ({
 
     .product-list article:nth-child(even) {
       padding-top: 0;
+    }
+
+    .catalog-category > header h3 {
+      font-size: 4.25rem;
     }
 
     .catalog__header {

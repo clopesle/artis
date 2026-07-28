@@ -23,11 +23,11 @@ commercial content.
 - Current state: Astro 7 static site with automated checks and a Pages workflow
 - Existing application code: mobile-first multi-page public site in `src/`
 - Existing structured content: JSON content files in `src/data/`
-- Existing images: two generated editorial assets and 12 curated product photographs in
+- Existing images: two generated editorial assets and 24 curated product photographs in
   `src/assets/`
 - Existing brand context: `PRODUCT.md`, `DESIGN.md`, and `.impeccable/design.json`
 - Existing service information: one published Design Auricular Digital service
-- Existing product information: 12 curated jewelry entries with verified allowed
+- Existing product information: 24 curated jewelry entries with verified allowed
   material descriptions and consultation-only availability
 - Existing portfolio information: none; the public portfolio intentionally remains empty
   until real work and consent are supplied
@@ -56,7 +56,8 @@ fabricating the approved mark.
   wholesale catalog supplies a jewelry item.
 - Jewelry prices remain hidden. An optional BRL amount is configurable in content for
   non-confidential planning, while service prices remain visible.
-- Jewelry is organized by category and searchable by name, material, position, and
+- Jewelry is organized by the four owner-defined material categories—Ouro, Titânio ASTM,
+  Aço 316L, and PVD—and searchable by name, jewelry type, material, position, and
   descriptive attributes.
 - Jewelry and services share a local sacola that sends one contextual order request to
   the official WhatsApp number.
@@ -267,7 +268,9 @@ This definition will be refined with measurable acceptance criteria during disco
   gates.
 - Enabled GitHub Pages through the repository setting supplied by the owner and verified
   successful production deployments.
-- Added 12 curated jewelry entries limited to gold, titanium, steel 316L, and PVD.
+- Added 24 curated jewelry entries, balanced across Ouro, Titânio ASTM, Aço 316L, and
+  PVD after auditing the complete paginated material categories from both approved
+  catalogs.
 - Added category navigation, accent-insensitive search, local sacola persistence, and a
   combined jewelry-and-service WhatsApp order flow.
 - Configured the official WhatsApp number and verified that checkout messages omit

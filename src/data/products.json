@@ -12,6 +12,7 @@
       "A curvatura com brilho frontal funciona como ponto principal em composições delicadas."
     ],
     "category": "Argolas",
+    "materialCategory": "Ouro",
     "material": "Ouro 18K",
     "price": {
       "amount": null,
@@ -42,6 +43,7 @@
       "Uma escolha de presença para conch, hélix ou lóbulo, sempre após avaliação de medida."
     ],
     "category": "Argolas",
+    "materialCategory": "Ouro",
     "material": "Ouro 18K",
     "price": {
       "amount": null,
@@ -72,6 +74,7 @@
       "Disponível em diferentes diâmetros e espessuras para adequação profissional à anatomia."
     ],
     "category": "Argolas",
+    "materialCategory": "Titânio ASTM",
     "material": "Titânio ASTM F136",
     "price": {
       "amount": null,
@@ -101,6 +104,7 @@
       "Pode ser escolhida em titânio natural ou com acabamento PVD Gold."
     ],
     "category": "Argolas",
+    "materialCategory": "PVD",
     "material": "Titânio ASTM F136 ou PVD Gold",
     "price": {
       "amount": null,
@@ -131,6 +135,7 @@
       "A estrutura em titânio pode ser escolhida no acabamento natural ou PVD Gold."
     ],
     "category": "Argolas",
+    "materialCategory": "PVD",
     "material": "Titânio ASTM F136 ou PVD Gold",
     "price": {
       "amount": null,
@@ -161,6 +166,7 @@
       "Há opções em aço natural e em aço com revestimento PVD Gold."
     ],
     "category": "Argolas",
+    "materialCategory": "Aço 316L",
     "material": "Aço cirúrgico 316L ou PVD Gold",
     "price": {
       "amount": null,
@@ -191,6 +197,7 @@
       "A rosca interna oferece uma superfície de inserção mais suave e permite diferentes medidas."
     ],
     "category": "Labrets",
+    "materialCategory": "PVD",
     "material": "Titânio ASTM F136 com PVD Gold",
     "price": {
       "amount": null,
@@ -221,6 +228,7 @@
       "A estrutura é de titânio ASTM F136, com opção natural ou PVD Gold."
     ],
     "category": "Labrets",
+    "materialCategory": "PVD",
     "material": "Titânio ASTM F136 ou PVD Gold",
     "price": {
       "amount": null,
@@ -251,6 +259,7 @@
       "A rosca interna permite trocar o topo mantendo a escolha da haste adequada à anatomia."
     ],
     "category": "Hastes",
+    "materialCategory": "Titânio ASTM",
     "material": "Titânio ASTM F136",
     "price": {
       "amount": null,
@@ -280,6 +289,7 @@
       "O topo acompanha uma haste labret de titânio com acabamento PVD Gold."
     ],
     "category": "Topos",
+    "materialCategory": "Ouro",
     "material": "Ouro 18K e titânio com PVD Gold",
     "price": {
       "amount": null,
@@ -310,6 +320,7 @@
       "Diferentes comprimentos permitem ajustar a queda ao desenho de cada orelha."
     ],
     "category": "Correntes",
+    "materialCategory": "PVD",
     "material": "Titânio ASTM F136 com PVD Gold",
     "price": {
       "amount": null,
@@ -342,6 +353,7 @@
       "As variações de pedra permitem repetir ou contrastar tons presentes na composição."
     ],
     "category": "Brincos",
+    "materialCategory": "Aço 316L",
     "material": "Aço cirúrgico 316L com PVD Gold",
     "price": {
       "amount": null,
@@ -356,6 +368,394 @@
       {
         "src": "brinco-gota-zirconia.jpg",
         "alt": "Par de brincos dourados em forma de gota com zircônias rosas"
+      }
+    ]
+  },
+  {
+    "id": "topo-square-diamante-ouro",
+    "slug": "topo-square-diamante-ouro-18k",
+    "published": true,
+    "featured": true,
+    "order": 130,
+    "name": "Topo Square com Diamante",
+    "shortDescription": "Diamante de laboratório em um topo geométrico de ouro amarelo 18K.",
+    "description": [
+      "O desenho quadrado concentra brilho em uma escala delicada e cria contraste com joias curvas.",
+      "O topo acompanha haste labret de titânio com acabamento PVD dourado, sujeita à confirmação de medida."
+    ],
+    "category": "Topos",
+    "materialCategory": "Ouro",
+    "material": "Ouro 18K e titânio com PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Encaixe por pressão ou rosca interna",
+    "stone": "Diamante de laboratório",
+    "options": ["Topo de 2,5 mm", "Topo de 3 mm", "Haste de 1,2 × 8 mm"],
+    "suggestedPlacements": ["Hélix", "Tragus", "Lóbulo", "Conch"],
+    "images": [
+      {
+        "src": "topo-square-diamante.webp",
+        "alt": "Topo quadrado de ouro amarelo com diamante claro e haste labret dourada"
+      }
+    ]
+  },
+  {
+    "id": "argola-ouro-zirconias",
+    "slug": "argola-ouro-zirconias-premium",
+    "published": true,
+    "featured": false,
+    "order": 140,
+    "name": "Argola de Ouro com Zircônias",
+    "shortDescription": "Uma fileira de zircônias acompanha a curva de uma argola de ouro 18K.",
+    "description": [
+      "A cravação frontal cria um contorno contínuo de luz sem retirar a leveza visual da argola.",
+      "As opções de diâmetro permitem adaptar a peça a diferentes pontos da composição."
+    ],
+    "category": "Argolas",
+    "materialCategory": "Ouro",
+    "material": "Ouro 18K",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker articulado",
+    "stone": "Zircônia premium",
+    "options": [
+      "1,0 × 7 mm",
+      "1,2 × 8 mm",
+      "1,2 × 11 mm",
+      "Ouro amarelo",
+      "Ouro branco"
+    ],
+    "suggestedPlacements": ["Daith", "Hélix", "Conch", "Lóbulo"],
+    "images": [
+      {
+        "src": "argola-ouro-zirconias.jpg",
+        "alt": "Argola clicker de ouro amarelo com fileira frontal de zircônias claras"
+      }
+    ]
+  },
+  {
+    "id": "topo-flor-tres-petalas-ouro",
+    "slug": "topo-flor-tres-petalas-ouro-18k",
+    "published": true,
+    "featured": false,
+    "order": 150,
+    "name": "Topo Flor de Três Pétalas",
+    "shortDescription": "Três zircônias formam uma flor mínima em ouro amarelo 18K.",
+    "description": [
+      "A forma triangular acrescenta direção e brilho a composições delicadas.",
+      "O encaixe por pressão facilita a combinação com uma haste labret adequada à anatomia."
+    ],
+    "category": "Topos",
+    "materialCategory": "Ouro",
+    "material": "Ouro 18K e titânio com PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Encaixe por pressão",
+    "stone": "Zircônia premium",
+    "options": ["Ouro amarelo", "Haste de 1,2 × 8 mm"],
+    "suggestedPlacements": ["Hélix", "Tragus", "Lóbulo", "Flat"],
+    "images": [
+      {
+        "src": "topo-flor-tres-petalas.jpeg",
+        "alt": "Topo de ouro amarelo em forma de flor com três zircônias claras"
+      }
+    ]
+  },
+  {
+    "id": "labret-cluster-geometrico-titanio",
+    "slug": "labret-cluster-geometrico-titanio",
+    "published": true,
+    "featured": true,
+    "order": 160,
+    "name": "Labret Cluster Geométrico",
+    "shortDescription": "Um arco de zircônias em titânio ASTM F136 para acompanhar a anatomia.",
+    "description": [
+      "A sequência de pedras cria movimento ao redor do ponto de perfuração sem pesar a composição.",
+      "Pode ser escolhido em titânio natural ou com acabamento PVD dourado."
+    ],
+    "category": "Labrets",
+    "materialCategory": "Titânio ASTM",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Encaixe por pressão",
+    "stone": "Zircônia cúbica",
+    "options": ["1,2 × 8 mm", "Titânio natural", "PVD dourado"],
+    "suggestedPlacements": ["Hélix", "Flat", "Conch", "Lóbulo"],
+    "images": [
+      {
+        "src": "labret-cluster-geometrico.jpg",
+        "alt": "Labret prateado com cluster curvo de zircônias em tamanhos graduais"
+      }
+    ]
+  },
+  {
+    "id": "argola-daith-cascata-titanio",
+    "slug": "argola-daith-cascata-titanio",
+    "published": true,
+    "featured": false,
+    "order": 170,
+    "name": "Argola Daith Cascata",
+    "shortDescription": "Uma curva ornamental de zircônias em titânio ASTM F136.",
+    "description": [
+      "O desenho acompanha o centro da orelha e cria um ponto focal com ritmo e simetria.",
+      "A escolha de medida deve considerar o encaixe individual no daith ou no septo."
+    ],
+    "category": "Argolas",
+    "materialCategory": "Titânio ASTM",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker articulado",
+    "stone": "Zircônia cúbica",
+    "options": [
+      "1,2 × 8 mm",
+      "1,2 × 9 mm",
+      "1,2 × 10 mm",
+      "Titânio natural",
+      "PVD dourado"
+    ],
+    "suggestedPlacements": ["Daith", "Septo"],
+    "images": [
+      {
+        "src": "argola-daith-cascata.jpg",
+        "alt": "Argolas ornamentais prateada e dourada com cascata frontal de zircônias"
+      }
+    ]
+  },
+  {
+    "id": "brinco-flor-sakura-titanio",
+    "slug": "brinco-flor-sakura-titanio",
+    "published": true,
+    "featured": false,
+    "order": 180,
+    "name": "Brinco Flor Sakura",
+    "shortDescription": "Pétalas de zircônia em um brinco de titânio ASTM F136.",
+    "description": [
+      "A flor pequena funciona como ponto de luz no primeiro ou segundo furo do lóbulo.",
+      "O par pode ser escolhido em titânio natural ou com acabamento PVD dourado."
+    ],
+    "category": "Brincos",
+    "materialCategory": "Titânio ASTM",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Tarraxa borboleta",
+    "stone": "Zircônia cúbica",
+    "options": ["Par", "Titânio natural", "PVD dourado"],
+    "suggestedPlacements": ["Lóbulo"],
+    "images": [
+      {
+        "src": "brinco-flor-sakura.jpg",
+        "alt": "Par de brincos dourados em forma de flor com pétalas de zircônia"
+      }
+    ]
+  },
+  {
+    "id": "argola-pingente-olho-titanio",
+    "slug": "argola-pingente-olho-titanio",
+    "published": true,
+    "featured": false,
+    "order": 190,
+    "name": "Argola Pingente Olho",
+    "shortDescription": "Um pingente em forma de olho suspenso por uma argola de titânio.",
+    "description": [
+      "A pedra azul introduz cor e um movimento sutil à composição.",
+      "O acabamento pode ser natural ou PVD dourado, sempre sobre titânio ASTM F136."
+    ],
+    "category": "Argolas",
+    "materialCategory": "Titânio ASTM",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker articulado",
+    "stone": "Zircônia cúbica",
+    "options": ["1,2 × 8 mm", "Titânio natural", "PVD dourado"],
+    "suggestedPlacements": ["Hélix", "Lóbulo"],
+    "images": [
+      {
+        "src": "argola-pingente-olho.jpg",
+        "alt": "Argolas prateada e dourada com pingente de olho cravejado e pedra azul"
+      }
+    ]
+  },
+  {
+    "id": "micro-curvo-titanio-pvd",
+    "slug": "micro-curvo-titanio-pvd",
+    "published": true,
+    "featured": false,
+    "order": 200,
+    "name": "Micro Curvo PVD",
+    "shortDescription": "Haste curva de titânio com acabamentos PVD dourado ou preto.",
+    "description": [
+      "A forma simples oferece uma base versátil para rook, sobrancelha e outras perfurações compatíveis.",
+      "Espessura, comprimento, diâmetro das esferas e tipo de rosca são confirmados antes do pedido."
+    ],
+    "category": "Hastes",
+    "materialCategory": "PVD",
+    "material": "Titânio ASTM F136 ou PVD Gold",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Rosca interna ou externa",
+    "options": ["1,2 ou 1,6 mm", "6 a 18 mm", "PVD dourado", "PVD preto"],
+    "suggestedPlacements": ["Rook", "Sobrancelha"],
+    "images": [
+      {
+        "src": "micro-curvo-pvd.jpg",
+        "alt": "Hastes curvas com esferas nos acabamentos prateado, dourado e preto"
+      }
+    ]
+  },
+  {
+    "id": "labret-zirconia-aco",
+    "slug": "labret-zirconia-aco-316l",
+    "published": true,
+    "featured": true,
+    "order": 210,
+    "name": "Labret Ponto de Zircônia",
+    "shortDescription": "Um ponto de luz discreto em uma haste labret de aço 316L.",
+    "description": [
+      "A base plana e o encaixe por pressão favorecem conforto em diferentes posições da orelha.",
+      "A medida da haste e o diâmetro da pedra são escolhidos de acordo com a anatomia."
+    ],
+    "category": "Labrets",
+    "materialCategory": "Aço 316L",
+    "material": "Aço cirúrgico 316L",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Encaixe por pressão",
+    "stone": "Zircônia cúbica",
+    "options": ["1,0 ou 1,2 mm", "Haste de 6 ou 8 mm", "Topo de 2 a 3 mm"],
+    "suggestedPlacements": ["Tragus", "Hélix", "Lóbulo", "Conch"],
+    "images": [
+      {
+        "src": "labret-zirconia-aco.jpg",
+        "alt": "Labret de aço prateado com base plana e pequeno topo de zircônia"
+      }
+    ]
+  },
+  {
+    "id": "segmento-cravejado-aco",
+    "slug": "segmento-cravejado-aco-316l",
+    "published": true,
+    "featured": false,
+    "order": 220,
+    "name": "Segmento Cravejado em Aço",
+    "shortDescription": "Uma argola articulada de aço 316L com cravação frontal.",
+    "description": [
+      "A linha de zircônias acompanha a curva e adiciona brilho contínuo à composição.",
+      "As variações de espessura e diâmetro permitem ajustar a peça a diferentes perfurações."
+    ],
+    "category": "Argolas",
+    "materialCategory": "Aço 316L",
+    "material": "Aço cirúrgico 316L",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Clicker articulado",
+    "stone": "Zircônia cúbica",
+    "options": ["1,0 × 8 mm", "1,2 × 6 mm", "1,2 × 8 mm", "1,2 × 10 mm", "1,2 × 12 mm"],
+    "suggestedPlacements": ["Daith", "Hélix", "Conch", "Lóbulo"],
+    "images": [
+      {
+        "src": "segmento-cravejado-aco.jpg",
+        "alt": "Argola clicker de aço prateado com fileira frontal de zircônias"
+      }
+    ]
+  },
+  {
+    "id": "nostril-zirconia-aco",
+    "slug": "nostril-zirconia-aco-316l",
+    "published": true,
+    "featured": false,
+    "order": 230,
+    "name": "Nostril Zircônia Cristal",
+    "shortDescription": "Uma zircônia cristal mínima em haste nostril de aço 316L.",
+    "description": [
+      "O formato fino destaca apenas o ponto de luz e mantém o desenho visualmente leve.",
+      "O tamanho da pedra pode ser escolhido para um resultado mais discreto ou marcado."
+    ],
+    "category": "Nostrils",
+    "materialCategory": "Aço 316L",
+    "material": "Aço cirúrgico 316L",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Haste em anzol",
+    "stone": "Zircônia cúbica",
+    "options": [
+      "Haste de 0,8 mm",
+      "Pedra de 1,4 mm",
+      "Pedra de 1,8 mm",
+      "Pedra de 2,3 mm"
+    ],
+    "suggestedPlacements": ["Nostril"],
+    "images": [
+      {
+        "src": "nostril-zirconia-aco.jpg",
+        "alt": "Nostril de aço prateado em haste fina com pequena zircônia cristal"
+      }
+    ]
+  },
+  {
+    "id": "brinco-zirconia-aco",
+    "slug": "brinco-zirconia-aco-316l",
+    "published": true,
+    "featured": false,
+    "order": 240,
+    "name": "Brinco Zircônia Cravada",
+    "shortDescription": "Um par de pontos de luz clássicos em aço 316L.",
+    "description": [
+      "A cravação simples deixa a zircônia em evidência e combina com composições de diferentes estilos.",
+      "O formato compacto funciona no primeiro, segundo ou terceiro furo do lóbulo."
+    ],
+    "category": "Brincos",
+    "materialCategory": "Aço 316L",
+    "material": "Aço cirúrgico 316L",
+    "price": {
+      "amount": null,
+      "currency": "BRL"
+    },
+    "availability": "sob-consulta",
+    "closure": "Tarraxa borboleta",
+    "stone": "Zircônia cúbica",
+    "options": ["Par", "Zircônia cristal"],
+    "suggestedPlacements": ["Lóbulo"],
+    "images": [
+      {
+        "src": "brinco-zirconia-aco.jpg",
+        "alt": "Par de brincos de aço prateado com zircônias redondas cravadas"
       }
     ]
   }

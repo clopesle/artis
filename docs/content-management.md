@@ -80,8 +80,9 @@ shape:
   "name": "Nome confirmado",
   "shortDescription": "Descrição confirmada",
   "description": ["Primeiro parágrafo aprovado.", "Segundo parágrafo opcional."],
-  "category": "Piercing",
-  "material": "Ouro 18k",
+  "category": "Argolas",
+  "materialCategory": "Ouro",
+  "material": "Ouro 18K",
   "price": {
     "amount": null,
     "currency": "BRL"
@@ -102,6 +103,10 @@ shape:
 
 Keep new entries unpublished until image rendering and the product detail route have
 been reviewed.
+
+`materialCategory` is the public catalog grouping and must be exactly `Ouro`,
+`Titânio ASTM`, `Aço 316L`, or `PVD`. `category` describes the jewelry type and remains
+searchable.
 
 The repository is public. A configured `price.amount` can be read in the JSON source
 even though the website does not render it. Never place confidential supplier cost

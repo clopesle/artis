@@ -13,6 +13,7 @@ export interface Product {
   shortDescription: string;
   description: string[];
   category: string;
+  materialCategory: "Ouro" | "Titânio ASTM" | "Aço 316L" | "PVD";
   material: string;
   price: {
     amount: number | null;

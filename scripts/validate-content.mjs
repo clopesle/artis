@@ -167,6 +167,10 @@ for (const [collectionName, items] of [
         `${path}.description deve conter pelo menos um parágrafo.`,
       );
       assert(item.category, `${path}.category é obrigatória.`);
+      assert(
+        ["Ouro", "Titânio ASTM", "Aço 316L", "PVD"].includes(item.materialCategory),
+        `${path}.materialCategory deve ser Ouro, Titânio ASTM, Aço 316L ou PVD.`,
+      );
       assert(item.material, `${path}.material é obrigatório.`);
       assert(
         [
@@ -174,6 +178,7 @@ for (const [collectionName, items] of [
           "Titânio ASTM F136",
           "Titânio ASTM F136 ou PVD Gold",
           "Titânio ASTM F136 com PVD Gold",
+          "Aço cirúrgico 316L",
           "Aço cirúrgico 316L ou PVD Gold",
           "Aço cirúrgico 316L com PVD Gold",
           "Ouro 18K e titânio com PVD Gold",

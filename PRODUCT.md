@@ -12,8 +12,8 @@ and want to understand how the result could look before making an aesthetic and
 anatomical commitment.
 
 The visitor's job is to gain confidence, understand the personalized digital design
-service, discover suitable jewelry by category or search, assemble a calm shortlist, and
-begin a contextual consultation through WhatsApp.
+service, discover suitable jewelry across Ouro, Titânio ASTM, Aço 316L, and PVD or by
+search, assemble a calm shortlist, and begin a contextual consultation through WhatsApp.
 
 ## Product Purpose
 
