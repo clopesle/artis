@@ -52,4 +52,4 @@ configuration, approved site images, and `src/assets/catalog/`. Every write crea
 auditable commit and uses the current file SHA to prevent silent overwrites.
 
 Provider catalog requests are restricted to supported HTTPS hosts. Search results are
-filtered for the permitted jewelry materials and imported as unpublished drafts.
+imported only after editorial review, always as unpublished drafts.

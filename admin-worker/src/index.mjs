@@ -369,14 +369,7 @@ async function handleProviderSearch(request, env, session) {
     candidates = parseAngelSearch(await response.text(), provider);
   }
 
-  return json(
-    {
-      candidates,
-      eligibleCount: candidates.filter((candidate) => candidate.eligible).length,
-    },
-    200,
-    env,
-  );
+  return json({ candidates }, 200, env);
 }
 
 async function handleProviderImage(request, env, session) {

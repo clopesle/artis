@@ -132,10 +132,9 @@ function normalizeCandidate(candidate) {
 
   return {
     ...candidate,
-    eligible: Boolean(material),
-    eligibilityReason: material
-      ? `Material elegível: ${material.materialCategory}.`
-      : "Material não confirmado como Ouro, Titânio ASTM, Aço 316L ou PVD.",
+    materialStatus: material
+      ? `Material identificado: ${material.materialCategory}.`
+      : "Material a confirmar durante a revisão.",
     materialCategory: material?.materialCategory ?? null,
     material: material?.material ?? null,
     category: inferProductCategory(

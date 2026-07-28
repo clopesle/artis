@@ -129,8 +129,10 @@ conta correta. Os segredos do GitHub App continuam somente no Cloudflare.
 
 Os URLs são cadastrados no painel e ficam em `admin/providers.json`. A ponte aceita
 somente hosts HTTPS dos fornecedores já cadastrados e bloqueia redirecionamentos. A
-pesquisa filtra resultados para os materiais `Ouro`, `Titânio ASTM`, `Aço 316L` e `PVD`.
-Tipos de joias, como `Argolas` e `Labrets`, são uma classificação separada.
+pesquisa traz todos os resultados encontrados. Os materiais iniciais do catálogo são
+`Ouro`, `Titânio ASTM`, `Aço 316L` e `PVD`, mas a revisão da importação pode registrar
+um novo material quando necessário. Tipos de joias, como `Argolas` e `Labrets`, são uma
+classificação separada.
 
 Uma importação sempre cria um rascunho não publicado, sem identidade do fornecedor e sem
 preço. Revisar texto, imagem, material, medidas, disponibilidade e direitos de uso antes

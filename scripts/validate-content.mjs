@@ -140,9 +140,10 @@ validateUnique(
   "src/data/categories.json materialCategories",
 );
 assert(
-  JSON.stringify(categories.materialCategories) ===
-    JSON.stringify(["Ouro", "Titânio ASTM", "Aço 316L", "PVD"]),
-  "src/data/categories.json materialCategories deve conter Ouro, Titânio ASTM, Aço 316L e PVD nesta ordem.",
+  categories.materialCategories.every(
+    (category) => typeof category === "string" && category,
+  ),
+  "src/data/categories.json materialCategories deve conter nomes de materiais.",
 );
 validateUnique(
   categories.productCategories.map((name) => ({ name })),
@@ -289,23 +290,10 @@ for (const [collectionName, items] of [
       );
       assert(item.category, `${path}.category é obrigatória.`);
       assert(
-        ["Ouro", "Titânio ASTM", "Aço 316L", "PVD"].includes(item.materialCategory),
-        `${path}.materialCategory deve ser Ouro, Titânio ASTM, Aço 316L ou PVD.`,
+        categories.materialCategories.includes(item.materialCategory),
+        `${path}.materialCategory deve estar cadastrada em categories.json.`,
       );
       assert(item.material, `${path}.material é obrigatório.`);
-      assert(
-        [
-          "Ouro 18K",
-          "Titânio ASTM F136",
-          "Titânio ASTM F136 ou PVD Gold",
-          "Titânio ASTM F136 com PVD Gold",
-          "Aço cirúrgico 316L",
-          "Aço cirúrgico 316L ou PVD Gold",
-          "Aço cirúrgico 316L com PVD Gold",
-          "Ouro 18K e titânio com PVD Gold",
-        ].includes(item.material),
-        `${path}.material deve usar apenas ouro, titânio, aço 316L ou PVD.`,
-      );
       assert(item.price?.currency === "BRL", `${path}.price.currency deve ser BRL.`);
       assert(
         item.price.amount === null ||

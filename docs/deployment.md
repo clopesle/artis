@@ -124,7 +124,7 @@ into the GitHub Actions workflow.
 3. Confirm that an account without repository write permission is refused.
 4. Edit a harmless text field and save.
 5. Confirm the new commit on `main` and the subsequent Pages deployment.
-6. Search a provider, import an eligible item, and confirm it arrives unpublished,
+6. Search a provider, import a reviewed item, and confirm it arrives unpublished,
    without provider identity or price.
 
 ## Local production verification

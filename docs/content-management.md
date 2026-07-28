@@ -120,10 +120,11 @@ shape:
 Keep new entries unpublished until image rendering and the product detail route have
 been reviewed.
 
-`materialCategory` is the public catalog material filter and must be exactly `Ouro`,
-`Titânio ASTM`, `Aço 316L`, or `PVD`. Those permitted materials are managed visibly in
-`categories.json`. `category` describes the jewelry type (for example, `Argolas`) and
-remains searchable; it is not the public material filter.
+`materialCategory` is the public catalog material filter and must be a material listed
+in `categories.json`. The initial materials are `Ouro`, `Titânio ASTM`, `Aço 316L`, and
+`PVD`; the importer can add another material after it is confirmed in the review.
+`category` describes the jewelry type (for example, `Argolas`) and remains searchable;
+it is not the public material filter.
 
 The repository is public. A configured `price.amount` can be read in the JSON source
 even though the website does not render it. Never place confidential supplier cost

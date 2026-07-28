@@ -61,11 +61,12 @@ renderizados no site público.
 ## Importação de fornecedores
 
 A ponte consulta apenas fornecedores registrados e tipos de integração conhecidos. Os
-resultados são normalizados e filtrados para Ouro, Titânio ASTM, Aço 316L e PVD. Uma
-joia encontrada nunca é publicada automaticamente:
+resultados são normalizados, sem excluir materiais. A revisão pode registrar uma nova
+categoria de material no catálogo. Uma joia encontrada nunca é publicada
+automaticamente:
 
 1. a pessoa pesquisa o catálogo;
-2. seleciona um resultado elegível;
+2. seleciona um resultado;
 3. revisa nome, descrição, categoria, material, opções e imagem;
 4. importa a peça como rascunho com `published: false`;
 5. revisa o rascunho no site antes de publicar.

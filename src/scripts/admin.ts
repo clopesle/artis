@@ -16,6 +16,14 @@ interface ContentRecord {
   dirty: boolean;
 }
 
+interface ImportPlan {
+  candidate: ProviderCandidate;
+  product: JsonObject;
+  imageFilename: string;
+  productsRecord: ContentRecord;
+  categoriesRecord: ContentRecord;
+}
+
 interface Section {
   id: string;
   label: string;
@@ -106,7 +114,7 @@ const sections: Section[] = [
   {
     id: "import",
     label: "Importar joias",
-    description: "Pesquise fornecedores e importe peças elegíveis como rascunho.",
+    description: "Pesquise fornecedores e importe peças revisadas como rascunho.",
     mode: "import",
   },
 ];
@@ -323,7 +331,7 @@ function selectOptions(key: string, currentValue: string): string[] | null {
     options = (categories.materialCategories as JsonValue[]).map(String);
   }
   if (!options) return null;
-  return options.includes(currentValue) ? options : [currentValue, ...options];
+  return options.includes(currentValue) ? options : null;
 }
 
 function editorialImageUrl(filename: string) {
@@ -467,6 +475,7 @@ function renderPrimitiveField(
   key: string,
   value: JsonValue,
   update: (value: JsonValue) => void,
+  allowCustomMaterialCategory = false,
 ) {
   const field = element("div", { className: "field" });
 
@@ -484,7 +493,10 @@ function renderPrimitiveField(
 
   const label = element("label", { text: labelFor(key) });
   const stringValue = value === null ? "" : String(value);
-  const options = selectOptions(key, stringValue);
+  const options =
+    allowCustomMaterialCategory && key === "materialCategory"
+      ? null
+      : selectOptions(key, stringValue);
   let input: HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement;
 
   if (options) {
@@ -593,6 +605,7 @@ function renderObjectFields(
   parent: HTMLElement,
   object: JsonObject,
   onChange: () => void,
+  allowCustomMaterialCategory = false,
 ) {
   for (const [key, value] of Object.entries(object)) {
     if (Array.isArray(value)) {
@@ -609,18 +622,29 @@ function renderObjectFields(
       const fieldset = element("fieldset");
       fieldset.append(element("legend", { text: labelFor(key) }));
       const fields = element("div", { className: "fields" });
-      renderObjectFields(fields, value as JsonObject, onChange);
+      renderObjectFields(
+        fields,
+        value as JsonObject,
+        onChange,
+        allowCustomMaterialCategory,
+      );
       fieldset.append(fields);
       parent.append(fieldset);
     } else {
-      renderPrimitiveField(parent, key, value, (next) => {
-        object[key] = next;
-        if ((key === "name" || key === "title") && !String(object.slug || "")) {
-          object.slug = slugify(String(next));
-          if ("id" in object && !String(object.id || "")) object.id = object.slug;
-        }
-        onChange();
-      });
+      renderPrimitiveField(
+        parent,
+        key,
+        value,
+        (next) => {
+          object[key] = next;
+          if ((key === "name" || key === "title") && !String(object.slug || "")) {
+            object.slug = slugify(String(next));
+            if ("id" in object && !String(object.id || "")) object.id = object.slug;
+          }
+          onChange();
+        },
+        allowCustomMaterialCategory,
+      );
     }
   }
 }
@@ -946,17 +970,23 @@ async function renderImages() {
   workspace.append(panel);
 }
 
-async function importCandidate(
-  candidate: ProviderCandidate,
-  button: HTMLButtonElement,
-  product: JsonObject,
-  imageFilename: string,
-  productsRecord: ContentRecord,
-) {
+async function importCandidate(plan: ImportPlan, button: HTMLButtonElement) {
+  const { candidate, product, imageFilename, productsRecord, categoriesRecord } = plan;
   button.disabled = true;
   button.textContent = "Importando…";
   try {
     const products = productsRecord.data as JsonObject[];
+    const categories = categoriesRecord.data as JsonObject;
+    const materialCategories = categories.materialCategories as JsonValue[];
+    const materialCategory = String(product.materialCategory ?? "").trim();
+    const material = String(product.material ?? "").trim();
+    if (!materialCategory || !material) {
+      throw new Error(
+        "Informe o material e a categoria de material antes de importar.",
+      );
+    }
+    product.materialCategory = materialCategory;
+    product.material = material;
     const imageBlob = await api<Blob>(
       "/api/providers/image",
       {
@@ -978,6 +1008,21 @@ async function importCandidate(
         content: await blobToBase64(imageBlob),
       }),
     });
+
+    if (!materialCategories.map(String).includes(materialCategory)) {
+      categories.materialCategories = [...materialCategories, materialCategory];
+      const categoryResult = await api<{ content: { sha: string } }>("/api/content", {
+        method: "PUT",
+        body: JSON.stringify({
+          path: "src/data/categories.json",
+          sha: categoriesRecord.sha,
+          message: `admin: adicionar material ${materialCategory}`,
+          content: `${JSON.stringify(categories, null, 2)}\n`,
+        }),
+      });
+      categoriesRecord.sha = categoryResult.content.sha;
+      categoriesRecord.dirty = false;
+    }
 
     products.push(product);
     const result = await api<{ content: { sha: string } }>("/api/content", {
@@ -1054,7 +1099,7 @@ async function reviewCandidate(
       images: product.images,
     };
     const fields = element("div", { className: "fields" });
-    renderObjectFields(fields, reviewData, () => undefined);
+    renderObjectFields(fields, reviewData, () => undefined, true);
 
     const actions = element("div", { className: "review-dialog__actions" });
     const cancel = element("button", {
@@ -1080,7 +1125,16 @@ async function reviewCandidate(
         },
       ];
       dialog.close();
-      await importCandidate(candidate, trigger, product, imageFilename, productsRecord);
+      await importCandidate(
+        {
+          candidate,
+          product,
+          imageFilename,
+          productsRecord,
+          categoriesRecord,
+        },
+        trigger,
+      );
     });
     actions.append(cancel, confirmImport);
     dialog.append(header, preview, fields, actions);
@@ -1110,7 +1164,7 @@ async function renderImporter() {
   const panel = element("div", { className: "panel" });
   panel.append(
     notice(
-      "Somente Ouro, Titânio ASTM, Aço 316L e PVD podem ser importados. Preços e identidade do fornecedor não entram no catálogo público.",
+      "Toda peça encontrada pode virar rascunho. Confirme o material; uma nova categoria de material é adicionada ao catálogo quando necessário. Preços e identidade do fornecedor não entram no catálogo público.",
     ),
   );
   const providersRecord = await loadFile("admin/providers.json");
@@ -1156,21 +1210,21 @@ async function renderImporter() {
       element("div", { className: "loading", text: "Consultando…" }),
     );
     try {
-      const payload = await api<{
-        candidates: ProviderCandidate[];
-        eligibleCount: number;
-      }>("/api/providers/search", {
-        method: "POST",
-        body: JSON.stringify({
-          providerId: providerSelect.value,
-          query: query.value,
-        }),
-      });
+      const payload = await api<{ candidates: ProviderCandidate[] }>(
+        "/api/providers/search",
+        {
+          method: "POST",
+          body: JSON.stringify({
+            providerId: providerSelect.value,
+            query: query.value,
+          }),
+        },
+      );
       results.replaceChildren();
       results.append(
         notice(
-          `${payload.candidates.length} peça(s) encontrada(s); ${payload.eligibleCount} com material elegível.`,
-          payload.eligibleCount ? "success" : "info",
+          `${payload.candidates.length} peça(s) encontrada(s). Revise o material de cada uma antes de importar.`,
+          payload.candidates.length ? "success" : "info",
         ),
       );
       const grid = element("div", { className: "candidate-grid" });
@@ -1183,20 +1237,17 @@ async function renderImporter() {
         const body = element("div", { className: "candidate-body" });
         body.append(
           element("span", {
-            className: `badge${candidate.eligible ? "" : " ineligible"}`,
-            text: candidate.materialCategory ?? "Material não confirmado",
+            className: "badge",
+            text: candidate.materialCategory ?? "Material a confirmar",
           }),
           element("h3", { text: candidate.name }),
-          element("p", { text: candidate.eligibilityReason }),
+          element("p", { text: candidate.materialStatus }),
         );
         const importButton = element("button", {
           className: "button small",
-          text: candidate.eligible
-            ? "Importar como rascunho"
-            : "Não disponível para importação",
+          text: "Importar como rascunho",
           type: "button",
         });
-        importButton.disabled = !candidate.eligible;
         importButton.addEventListener("click", () =>
           reviewCandidate(candidate, importButton),
         );

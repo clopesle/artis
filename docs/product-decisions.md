@@ -50,14 +50,15 @@ fabricating the approved mark.
   it.
 - The site must present products, services, prices, images, descriptions, and
   availability.
-- Jewelry must come only from the two owner-approved wholesale catalogs and use only
-  gold, titanium, steel 316L, or PVD material families.
+- Jewelry must come only from the two owner-approved wholesale catalogs. The initial
+  catalog was curated from gold, titanium, steel 316L, and PVD material families; the
+  admin importer may add a confirmed material category after editorial review.
 - Customer-facing pages, the sacola, and WhatsApp messages must not expose which
   wholesale catalog supplies a jewelry item.
 - Jewelry prices remain hidden. An optional BRL amount is configurable in content for
   non-confidential planning, while service prices remain visible.
-- Jewelry is organized by the four owner-defined material categories—Ouro, Titânio ASTM,
-  Aço 316L, and PVD—and searchable by name, jewelry type, material, position, and
+- Jewelry is organized by editable material categories, initially Ouro, Titânio ASTM,
+  Aço 316L, and PVD, and searchable by name, jewelry type, material, position, and
   descriptive attributes.
 - Jewelry and services share a local sacola that sends one contextual order request to
   the official WhatsApp number.

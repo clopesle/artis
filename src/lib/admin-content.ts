@@ -11,8 +11,7 @@ export interface ProviderCandidate {
   imageUrl: string;
   imageAlt: string;
   sourceUrl: string;
-  eligible: boolean;
-  eligibilityReason: string;
+  materialStatus: string;
   materialCategory: string | null;
   material: string | null;
   category: string;
@@ -87,7 +86,7 @@ export const FIELD_LABELS: Record<string, string> = {
   image: "Imagem",
   imageAlt: "Texto alternativo da imagem",
   categories: "Categorias",
-  materialCategories: "Materiais permitidos no catálogo",
+  materialCategories: "Materiais do catálogo",
   productCategories: "Tipos de joias",
   projectCategories: "Categorias de portfólio",
   consentConfirmed: "Consentimento confirmado",
@@ -319,10 +318,6 @@ export function candidateToProductDraft(
   candidate: ProviderCandidate,
   existingProducts: JsonObject[],
 ): { product: JsonObject; imageFilename: string } {
-  if (!candidate.eligible || !candidate.materialCategory || !candidate.material) {
-    throw new Error("Somente joias com material elegível podem ser importadas.");
-  }
-
   const existingSlugs = new Set(existingProducts.map((item) => String(item.slug)));
   const baseSlug = slugify(candidate.name) || "joia-importada";
   let slug = baseSlug;
@@ -350,14 +345,16 @@ export function candidateToProductDraft(
       name: candidate.name,
       shortDescription:
         candidate.description ||
-        `${candidate.name} em ${candidate.material.toLocaleLowerCase("pt-BR")}.`,
+        (candidate.material
+          ? `${candidate.name} em ${candidate.material.toLocaleLowerCase("pt-BR")}.`
+          : "Peça selecionada para confirmação de material pela curadoria."),
       description: [
         candidate.description ||
           "Peça selecionada para revisão da curadoria antes da publicação.",
       ],
       category: candidate.category,
-      materialCategory: candidate.materialCategory,
-      material: candidate.material,
+      materialCategory: candidate.materialCategory ?? "",
+      material: candidate.material ?? "",
       price: { amount: null, currency: "BRL" },
       availability: "sob-consulta",
       closure: "Confirmar antes da publicação",

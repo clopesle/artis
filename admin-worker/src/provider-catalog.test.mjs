@@ -18,7 +18,7 @@ const myPiercing = {
 };
 
 describe("provider catalog normalization", () => {
-  it("classifies only eligible material vocabulary", () => {
+  it("normalizes recognized materials without excluding other catalog results", () => {
     expect(classifyMaterial("Ouro 18K")).toMatchObject({ materialCategory: "Ouro" });
     expect(classifyMaterial("Titânio ASTM F136")).toMatchObject({
       materialCategory: "Titânio ASTM",
@@ -34,7 +34,7 @@ describe("provider catalog normalization", () => {
     expect(classifyMaterial("Banho de ródio")).toBeNull();
   });
 
-  it("normalizes WooCommerce results and rejects ineligible materials", () => {
+  it("normalizes WooCommerce results while keeping materials that need review importable", () => {
     const results = normalizeWooProducts(
       [
         {
@@ -59,11 +59,13 @@ describe("provider catalog normalization", () => {
     );
 
     expect(results[0]).toMatchObject({
-      eligible: true,
       category: "Argolas",
       materialCategory: "Titânio ASTM",
     });
-    expect(results[1].eligible).toBe(false);
+    expect(results[1]).toMatchObject({
+      materialCategory: null,
+      material: null,
+    });
   });
 
   it("parses Angel search cards", () => {
@@ -80,7 +82,6 @@ describe("provider catalog normalization", () => {
 
     expect(candidate).toMatchObject({
       externalId: "367921585",
-      eligible: true,
       materialCategory: "Ouro",
       category: "Argolas",
     });

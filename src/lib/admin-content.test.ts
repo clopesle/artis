@@ -14,7 +14,7 @@ describe("admin content helpers", () => {
     expect(product.price).toEqual({ amount: null, currency: "BRL" });
   });
 
-  it("imports an eligible candidate without supplier identity, URL, or price", () => {
+  it("imports a provider candidate without supplier identity, URL, or price", () => {
     const { product, imageFilename } = candidateToProductDraft(
       {
         providerId: "supplier-secret",
@@ -23,8 +23,7 @@ describe("admin content helpers", () => {
         sourceUrl: "https://supplier.example/produto",
         imageUrl: "https://supplier.example/estrela.png",
         imageAlt: "",
-        eligible: true,
-        eligibilityReason: "Material elegível",
+        materialStatus: "Material identificado: Titânio ASTM.",
         materialCategory: "Titânio ASTM",
         material: "Titânio ASTM F136",
         category: "Labrets",
@@ -39,12 +38,29 @@ describe("admin content helpers", () => {
     expect(imageFilename).toBe("labret-estrela.png");
   });
 
-  it("keeps the material categories managed in admin aligned with the public catalog", () => {
-    expect(categories.materialCategories).toEqual([
-      "Ouro",
-      "Titânio ASTM",
-      "Aço 316L",
-      "PVD",
-    ]);
+  it("keeps initial material categories available for the public catalog", () => {
+    expect(categories.materialCategories).toEqual(
+      expect.arrayContaining(["Ouro", "Titânio ASTM", "Aço 316L", "PVD"]),
+    );
+  });
+
+  it("creates a draft for a material that needs curation", () => {
+    const { product } = candidateToProductDraft(
+      {
+        providerId: "supplier-secret",
+        name: "Argola de ródio",
+        description: "",
+        sourceUrl: "https://supplier.example/produto",
+        imageUrl: "https://supplier.example/argola.png",
+        imageAlt: "",
+        materialStatus: "Material a confirmar durante a revisão.",
+        materialCategory: null,
+        material: null,
+        category: "Argolas",
+      },
+      [],
+    );
+
+    expect(product).toMatchObject({ materialCategory: "", material: "" });
   });
 });
