@@ -1,6 +1,6 @@
 # ARTÍS Product Decisions
 
-Status: Discovery in progress  
+Status: Implementation complete; launch inputs pending  
 Last updated: 2026-07-28
 
 This is the living record of confirmed requirements, assumptions, open questions,
@@ -9,28 +9,32 @@ brief are not treated as approved decisions until the owner confirms them.
 
 ## Current Phase
 
-Phase 1: repository and context assessment.
+Phase 5: release preparation and owner content handoff.
 
-Major architecture, visual design, data-model, and administration decisions are gated on
-owner discovery.
+The static site, content model, validation, responsive UI, and GitHub Pages workflow are
+implemented. Launch is gated on the official WhatsApp number, GitHub Pages being enabled
+by a repository administrator, and owner approval of final commercial content.
 
 ## Repository Assessment
 
 - Repository: `clopesle/artis`
 - Local default branch: `main`
 - Remote: `git@github.com:clopesle/artis.git`
-- Current state: empty repository with no commits or tracked files
-- Existing application code: none found
-- Existing structured content or catalog data: none found
-- Existing images: none found
-- Existing brand assets or brand manual: none found
-- Existing product information: none found
-- Existing service information: none found
-- Existing portfolio information: none found
+- Current state: Astro 7 static site with automated checks and a Pages workflow
+- Existing application code: mobile-first multi-page public site in `src/`
+- Existing structured content: JSON content files in `src/data/`
+- Existing images: two generated editorial assets in `src/assets/`
+- Existing brand context: `PRODUCT.md`, `DESIGN.md`, and `.impeccable/design.json`
+- Existing service information: one published Design Auricular Digital service
+- Existing product information: none; the public catalog intentionally remains empty
+- Existing portfolio information: none; the public portfolio intentionally remains empty
+  until real work and consent are supplied
 - Repository-specific agent guidance: none found
 
-This inventory describes only the files currently available in the repository. It does
-not imply that ARTÍS has no assets or content elsewhere.
+The approved logo appears in the shared brand conversation but no production-ready
+vector or transparent source file has been supplied to the repository. The current
+header therefore uses a carefully typeset ARTÍS wordmark rather than tracing or
+fabricating the approved mark.
 
 ## Confirmed Requirements
 
@@ -116,77 +120,69 @@ not imply that ARTÍS has no assets or content elsewhere.
 - Production must contain no accidental placeholder products, prices, testimonials,
   policies, or portfolio projects.
 
-## Assumptions Pending Confirmation
+## Confirmed Business Context
 
-- Prices are likely denominated in Brazilian real.
-- Most initial visits will originate from the ARTÍS Instagram profile on mobile devices.
-- The owner may have brand and catalog assets outside this repository.
-- A static-site generator is likely useful because the catalog needs validated
-  structured content and generated detail pages, but no framework has been chosen.
+- The primary audience is sophisticated adult women.
+- The principal service is Design Auricular Digital Personalizado.
+- The service is delivered online throughout Brazil.
+- A consultation gathers the client's style, preferences, dislikes, and goals.
+- The client receives a personalized PDF and may execute the project with a qualified
+  professional of her choice.
+- The working public price range is R$ 150 to R$ 200.
+- Buying jewelry through ARTÍS gives a 50% discount on the project value.
+- Public promotional imagery should remain clean; detail belongs in supporting copy.
+- "Onde anatomia encontra identidade." is the approved institutional signature.
+- "Método ARTÍS®" is not used publicly because registration status is unconfirmed.
 
 ## Open Questions
 
-### Round 1: highest-impact discovery
+### Required before launch
 
-- What products does ARTÍS currently sell, and which product categories are active?
-- What services does ARTÍS currently offer? Which are digital and which are in person?
-- What geographic area is served, and can products be shipped?
-- Which offering is strategically most important to feature first?
-- What single action should most visitors take first: inquire about a product, request
-  an auricular project, book a consultation, or another action?
-- Should visitors contact WhatsApp directly from each item, or first build a client-side
-  selection of multiple items?
-- How comfortable is the owner with GitHub, repository files, forms, image uploads,
-  commits, pull requests, previews, and GitHub Actions?
-- Does the owner prefer the simplest GitHub web editing workflow, a secure Git-based
-  form interface, or a local form utility that exports repository files?
-- What official logos, logo variants, colors, fonts, brand guidelines, photography,
-  Instagram layouts, catalog files, price lists, service descriptions, and portfolio
-  images already exist, and how will they be supplied?
+- Official WhatsApp number, including country code and DDD
+- Repository administrator action to enable GitHub Pages with GitHub Actions as source
+- Final confirmation of the R$ 150 to R$ 200 range and 50% project discount
+- Production-ready official logo asset, preferably SVG, PDF, or transparent PNG
+- Professional review of the draft privacy language
 
-### Later discovery rounds
+### Required before publishing products or portfolio
 
-- Brand positioning, audience, differentiators, desired and prohibited brand attributes,
-  visual references, and tone of voice
-- Full product taxonomy, attributes, variants, pricing labels, availability states,
-  search/filter needs, unavailable-item behavior, and related content
-- Full service model, delivery formats, duration, pricing, requirements, process,
-  preparation, aftercare, deposits, disclaimers, and detail-page needs
-- Homepage priority and complete Instagram-to-WhatsApp customer journey
-- Portfolio permissions, anonymity, metadata, categories, before-and-after use,
-  watermarks, cropping, filtering, and featured behavior
-- WhatsApp number, message wording, inquiry-flow variants, and interest-list terminology
-- Site map, content depth, FAQs, testimonials, educational content, business hours,
-  shipping, appointment, and legal-policy requirements
-- Primary and secondary languages, currency, brand grammatical voice, and preferred
-  terminology. Brazilian Portuguese is confirmed for all site content; the need for any
-  additional language remains unresolved.
-- Domain, GitHub Pages repository path, preview expectations, publishing roles, branch
-  protection, and rollback responsibilities
+- Confirmed jewelry names, prices, materials, availability, and owned/licensed images
+- Shipping area, shipping method, fulfillment expectations, and unavailable-item policy
+- Real project images, descriptions, categories, anonymity choices, and explicit consent
+- Decision on whether client before-and-after imagery is appropriate
 
 ## Decisions
 
 ### Technical
 
-- No final framework or content format has been selected.
-- No administration or authentication approach has been selected.
-- No analytics solution has been selected.
-- The initial technical comparison must include at least two lightweight static
-  architectures and must use current primary-source evidence.
+- Astro 7 with static output is the selected site generator.
+- JSON files in `src/data/` are the source of business content.
+- Astro image processing creates responsive AVIF assets at build time.
+- The production project-site base path is `/artis/`.
+- GitHub Actions validates, type-checks, tests, builds, and deploys successful changes.
+- Native GitHub editing is the selected administration baseline.
+- No public `/admin` route or browser write credential is implemented.
+- No analytics solution is installed.
 
 ### Brand
 
-- "Onde anatomia encontra identidade." is the working primary slogan.
-- No palette, type system, photography direction, or final visual direction has been
-  approved.
+- "Onde anatomia encontra identidade." is the approved primary slogan.
+- The implemented direction is "O Atelier de Precisão": warm paper, mineral neutrals,
+  muted satin gold, warm graphite, architectural lines, natural skin, and restrained
+  editorial photography.
+- Bodoni Moda Variable and Afacad Flux Variable are self-hosted from build dependencies.
+- The official logo source remains pending; the site uses a text wordmark meanwhile.
 
 ### Content
 
 - Products, services, and portfolio are distinct maintainable content types.
 - Brazilian Portuguese (`pt-BR`) is the required language for all site content.
-- Exact fields and required attributes remain subject to owner approval.
-- Sample data, if later needed for development, must be explicitly labelled and must not
-  be mistaken for production content.
+- Required fields are enforced by `scripts/validate-content.mjs` and TypeScript content
+  contracts.
+- Empty products and projects are valid and produce intentional public states.
+- Production contains no fabricated products, projects, testimonials, or availability.
+- The implemented service and FAQ content comes from the owner's shared brand
+  conversation.
 
 ## Rejected Options
 
@@ -231,23 +227,31 @@ This definition will be refined with measurable acceptance criteria during disco
 
 ## Risks
 
-- No real brand, catalog, service, portfolio, or policy content is currently available
-  in the repository.
-- A friendly remote editor and a strict GitHub-only security model can conflict; the
-  owner workflow must determine whether repository editing, a Git-based CMS, or a local
-  utility is appropriate.
-- GitHub Pages project-site base paths can break routes and assets unless tested
-  explicitly.
+- The official logo source is missing, so the current wordmark is provisional.
+- The official WhatsApp number is missing, so public actions currently fall back to the
+  contact section instead of opening `wa.me`.
+- GitHub Pages is not yet enabled because the authenticated implementor has repository
+  write permission but not administration permission.
 - Product and portfolio imagery will dominate perceived quality and mobile performance;
   source-image standards are not yet known.
 - Client-image permissions and legal policies are unresolved.
 - Catalog scale is unknown, so search, filters, sorting, and a multi-item inquiry list
-  cannot yet be justified.
+  remain intentionally unimplemented.
 
 ## Change History
 
 ### 2026-07-28
 
+- Inspected the owner's public shared brand-development conversation.
+- Confirmed the business model, audience, online service area, primary service, working
+  price range, project ownership, purchase benefit, slogan, and visual direction.
+- Selected Astro static output with repository-managed JSON content.
+- Implemented the responsive public site, service page, catalog and portfolio empty
+  states, privacy page, 404 page, SEO, structured data, sitemap, and robots file.
+- Added automated content validation, type checks, tests, formatting, image
+  optimization, and GitHub Pages deployment workflow.
+- Recorded the remaining WhatsApp, official logo, legal-review, and Pages-admin launch
+  gates.
 - Created the initial living decision log.
 - Recorded the repository as empty and inventoried missing project assets.
 - Transcribed confirmed constraints from the project brief.
@@ -257,5 +261,5 @@ This definition will be refined with measurable acceptance criteria during disco
   input and current-source research.
 - Confirmed Brazilian Portuguese (`pt-BR`) as the required language for all
   public-facing site content.
-- Attempted to inspect the owner's referenced private ChatGPT conversation, but its
-  `/c/` URL was not accessible outside the owner's authenticated session.
+- The initial private `/c/` URL was inaccessible; the replacement public `/share/` URL
+  was successfully inspected.

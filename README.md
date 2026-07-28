@@ -50,3 +50,13 @@ Os arquivos editáveis ficam em `src/data/`:
 - `faqs.json`: perguntas frequentes
 
 Consulte `docs/content-management.md` antes de publicar alterações.
+
+## Documentação
+
+- [Arquitetura](docs/architecture.md)
+- [Gestão de conteúdo](docs/content-management.md)
+- [Segurança da administração](docs/administration-security.md)
+- [Publicação](docs/deployment.md)
+- [Solução de problemas](docs/troubleshooting.md)
+- [Checklist de lançamento](docs/release-checklist.md)
+- [Decisões do produto](docs/product-decisions.md)
