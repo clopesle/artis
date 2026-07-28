@@ -10,12 +10,12 @@ quando o workflow termina com sucesso.
 ## Limite de segurança do GitHub Pages
 
 GitHub Pages entrega apenas arquivos estáticos. Ele não pode guardar com segurança o
-segredo de um OAuth App nem um token de escrita do GitHub. Por isso, a autenticação e as
-chamadas autenticadas passam por uma ponte mínima executada fora do Pages.
+segredo de um GitHub App nem um token de escrita do GitHub. Por isso, a autenticação e
+as chamadas autenticadas passam por uma ponte mínima executada fora do Pages.
 
 A ponte:
 
-1. inicia o OAuth do GitHub;
+1. inicia a autorização do usuário pelo GitHub App;
 2. troca o código usando o segredo armazenado no ambiente do servidor;
 3. confirma que a pessoa autenticada tem permissão de escrita em `clopesle/artis`;
 4. guarda o token do GitHub apenas no servidor;
@@ -31,7 +31,7 @@ GitHub Pages /admin/
         │
         │ sessão curta
         ▼
-Ponte OAuth e API
+Ponte de autenticação e API
         │
         │ token do usuário no servidor
         ▼
