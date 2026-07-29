@@ -138,18 +138,14 @@ npm run preview
 The local preview appears under:
 
 ```text
-http://localhost:4321/artis/
+http://localhost:4321/
 ```
 
 ## Custom domain
 
-When a domain is approved:
-
-1. configure the domain in GitHub Pages
-2. set `CUSTOM_DOMAIN=1`
-3. set `SITE_URL` to the final HTTPS origin
-4. set `BASE_PATH=/`
-5. rebuild and verify canonical, sitemap, asset, and internal-link URLs
+The published site uses `https://artispiercing.com.br` from the domain root. Keep the
+Astro `site` set to that origin and do not configure an Astro `base` path. The deploy
+workflow must not pass a GitHub project-site base path into the build.
 
 Do not add a `CNAME` file before the owner controls the DNS.
 

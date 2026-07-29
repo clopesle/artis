@@ -39,8 +39,6 @@ jobs:
 
       - name: Verify site
         env:
-          SITE_URL: ${{ steps.pages.outputs.origin }}
-          BASE_PATH: ${{ steps.pages.outputs.base_path }}
           PUBLIC_WHATSAPP_NUMBER: ${{ vars.PUBLIC_WHATSAPP_NUMBER }}
           PUBLIC_ADMIN_BRIDGE_URL: ${{ vars.PUBLIC_ADMIN_BRIDGE_URL }}
         run: npm run verify
