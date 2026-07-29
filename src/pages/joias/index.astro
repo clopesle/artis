@@ -136,9 +136,11 @@ const categoryGroups = categories.map((category) => ({
                         src={getCatalogImage(product.images[0].src)}
                         alt={product.images[0].alt}
                         widths={[480, 720, 960]}
-                        sizes="(min-width: 64rem) 42vw, 100vw"
+                        sizes="(min-width: 64rem) 30vw, 100vw"
                         format="avif"
                         quality={78}
+                        loading="lazy"
+                        decoding="async"
                       />
                     </a>
                     <div class="product-list__meta">
@@ -205,6 +207,7 @@ const categoryGroups = categories.map((category) => ({
   const status = document.querySelector("[data-catalog-status]");
   const emptyState = document.querySelector<HTMLElement>("[data-catalog-empty]");
   let selectedCategory = "";
+  let filterFrame = 0;
 
   const normalize = (value: string) =>
     value
@@ -212,6 +215,15 @@ const categoryGroups = categories.map((category) => ({
       .replace(/\p{Diacritic}/gu, "")
       .toLocaleLowerCase("pt-BR")
       .trim();
+
+  const productsByGroup = new Map(
+    groups.map((group) => [
+      group,
+      Array.from(group.querySelectorAll<HTMLElement>("[data-product]")).map(
+        (element) => ({ element, search: normalize(element.dataset.search ?? "") }),
+      ),
+    ]),
+  );
 
   function applyCatalogFilters() {
     const query =
@@ -223,10 +235,10 @@ const categoryGroups = categories.map((category) => ({
         selectedCategory === "" || group.dataset.category === selectedCategory;
       let groupCount = 0;
 
-      group.querySelectorAll<HTMLElement>("[data-product]").forEach((product) => {
-        const queryMatches = normalize(product.dataset.search ?? "").includes(query);
+      (productsByGroup.get(group) ?? []).forEach(({ element, search }) => {
+        const queryMatches = search.includes(query);
         const visible = categoryMatches && queryMatches;
-        product.hidden = !visible;
+        element.hidden = !visible;
         if (visible) groupCount += 1;
       });
 
@@ -241,7 +253,12 @@ const categoryGroups = categories.map((category) => ({
     if (emptyState) emptyState.hidden = visibleCount !== 0;
   }
 
-  queryInput?.addEventListener("input", applyCatalogFilters);
+  function scheduleCatalogFilters() {
+    window.cancelAnimationFrame(filterFrame);
+    filterFrame = window.requestAnimationFrame(applyCatalogFilters);
+  }
+
+  queryInput?.addEventListener("input", scheduleCatalogFilters);
 
   for (const button of filterButtons) {
     button.addEventListener("click", () => {
@@ -249,7 +266,7 @@ const categoryGroups = categories.map((category) => ({
       filterButtons.forEach((item) =>
         item.setAttribute("aria-pressed", String(item === button)),
       );
-      applyCatalogFilters();
+      scheduleCatalogFilters();
     });
   }
 </script>
@@ -415,6 +432,8 @@ const categoryGroups = categories.map((category) => ({
   }
 
   .catalog-category {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 72rem;
     padding-block: clamp(3rem, 5vw, 4.5rem);
     border-bottom: 1px solid var(--color-line-strong);
   }
