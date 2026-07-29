@@ -3,8 +3,8 @@ main = "src/index.mjs"
 compatibility_date = "2026-07-28"
 
 [vars]
-ADMIN_ORIGIN = "https://clopesle.github.io"
-ADMIN_URL = "https://clopesle.github.io/artis/admin/"
+ADMIN_ORIGIN = "https://artispiercing.com.br"
+ADMIN_URL = "https://artispiercing.com.br/admin/"
 BRIDGE_URL = "https://artis-admin-bridge.clopes-le.workers.dev"
 GITHUB_REPOSITORY = "clopesle/artis"
 GITHUB_BRANCH = "main"

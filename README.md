@@ -23,13 +23,12 @@ npm run verify
 Esse comando valida o conteúdo estruturado, a formatação, os tipos, os testes e a
 compilação estática.
 
-## GitHub Pages
+## Publicação
 
-O site é compilado com o caminho-base do próprio repositório. No repositório
-`clopesle/artis`, o endereço padrão é:
+O site é publicado no domínio raiz:
 
 ```text
-https://clopesle.github.io/artis/
+https://artispiercing.com.br/
 ```
 
 O workflow em `.github/workflows/deploy-pages.yml` valida, compila e publica apenas o

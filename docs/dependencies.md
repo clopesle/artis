@@ -46,7 +46,7 @@ Em **Settings → Developer settings → GitHub Apps → New GitHub App**, preen
 
 | Campo                             | Valor                                                       |
 | --------------------------------- | ----------------------------------------------------------- |
-| Homepage URL                      | `https://clopesle.github.io/artis/`                         |
+| Homepage URL                      | `https://artispiercing.com.br/`                              |
 | Callback URL                      | `https://<subdomínio-cloudflare>.workers.dev/auth/callback` |
 | Expire user authorization tokens  | Ativado                                                     |
 | Repository permissions → Contents | Read and write                                              |

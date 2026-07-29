@@ -2,14 +2,13 @@
 
 ## Production target
 
-The repository is `clopesle/artis`. Without a custom domain, the expected project-site
-URL is:
+The repository is `clopesle/artis` and the production URL is:
 
 ```text
-https://clopesle.github.io/artis/
+https://artispiercing.com.br/
 ```
 
-The build uses `/artis/` as its base path.
+The build is served from the domain root and has no Astro base path.
 
 ## One-time repository configuration
 
@@ -33,7 +32,7 @@ Every push to `main` starts `.github/workflows/deploy-pages.yml`.
 The workflow:
 
 1. checks out the exact commit
-2. configures the Pages origin and base path
+2. configures GitHub Pages
 3. installs pinned dependencies with `npm ci`
 4. runs formatting, content validation, type checks, tests, and the static build
 5. uploads `dist/` as the Pages artifact
@@ -51,7 +50,7 @@ cannot keep a client secret or access token private.
 
 Create a GitHub App under the GitHub account that owns the integration:
 
-- Homepage URL: `https://clopesle.github.io/artis/`
+- Homepage URL: `https://artispiercing.com.br/`
 - Callback URL:
   `https://artis-admin-bridge.<cloudflare-subdomain>.workers.dev/auth/callback`
 - Expire user authorization tokens: enabled
@@ -119,7 +118,7 @@ into the GitHub Actions workflow.
 
 ### 5. Acceptance check
 
-1. Open `https://clopesle.github.io/artis/admin/`.
+1. Open `https://artispiercing.com.br/admin/`.
 2. Sign in with GitHub.
 3. Confirm that an account without repository write permission is refused.
 4. Edit a harmless text field and save.
